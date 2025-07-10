@@ -11,8 +11,10 @@ if (Q.kpt_seats >= 20) {
     Q.island_votes = Q.kpt_seats;
     if (Q.palmgren_campaign) {
         Q.palmgren_votes = Math.round(Q.sapt_seats*(Q.left_strength/100));
+        Q.sapt_candidate = "Palmgren";
     }
 } else if (Q.palmgren_campaign) {
+    Q.sapt_candidate = "Palmgren";
     Q.palmgren_votes = Q.kpt_seats;
     Q.palmgren_votes += Math.round(Q.sapt_seats*(Q.left_strength/100));
 }
@@ -20,9 +22,11 @@ if (Q.kpt_seats >= 20) {
 if (Q.posse_campaign) {
     Q.posse_votes = Q.sapt_seats;
     Q.posse_votes += Q.lapt_seats;
+    Q.sapt_candidate = "Posse";
 } else if (Q.aspelund_campaign) {
     Q.aspelund_votes = Q.sapt_seats;
     Q.aspelund_votes += Q.lapt_seats;
+    Q.sapt_candidate = "Aspelund";
     Q.aspelund_votes += Math.round(Q.rpt_seats*(Q.pro_republic/500));
 }
 
@@ -45,4 +49,28 @@ Q.sloth_votes = Q.tndp_seats;
 
 After a long-anticipated month, the date of the elections for the office of Minister-President has finally come. On the right, the <span style="color: #a86b15;">**TNDP**</span> runs party bureaucrat Oliver Sloth, while the <span style="color: #4e9933;">**AVPT**</span> too attempts to play it inoffensive and cautious, running a longtime party official of the center - cooperative with the junta before the republic, but also the new republic. Even further, the anti-republican parties of the <span style="color: #a22561;">**NTAP**</span>, <span style="color: #2f387f;">**FK**</span> and <span style="color: #441796;">**NT**</span> seem to have coalesced around the candidacy of war hero and veteran Tron Dahlin of the <span style="color: #a08464;">**VP**</span>.
 
-Over on our side of the aisle, things are more splintered. We 
+Over on our side of the aisle, things are more splintered. We have backed the candidacy of [+ sapt_candidate +]. [? if palmgren_campaign : Palmgren's candidacy has been met with disdain on our party's right-wing and trade unionist wings, as well as the <span style="color: #e49c21;">**LAPT**</span>. [? if kpt_votes < 20 : It has, however, been backed by the <span style="color: #990000;">communists</span>. ?] ?][? if posse_campaign : Posse's campaign has been backed somewhat reluctantly by the <span style="color: #e49c21;">**LAPT**</span>, as well as the whole of our party. ?][? if aspelund_campaign : Aspelund's campaign has been backed by the <span style="color: #e49c21;">**LAPT**</span>, naturally, as well as components of the <span style="color: #f5e324;">**RPT**</span>'s left dissatisfied by their choice of candidate. ?]
+
+The <span style="color: #f5e324;">**RPT**</span> has endorsed Matteo Hellqvist, a businessman and media mogul who has been known to look strongly to Orthaland for inspiration. Though Grönblom was expected to run, it seems he has been forced to further concede to the industrialists.
+
+[? if island_campaign : The <span style="color: #990000;">**KPT**</span>, finally, has also just barely qualified to run a candidate, and has such run their leader, Ernst Island, for the position. ?]
+
+- @vote_tallied: The votes are tallied...
+
+@vote_tallied
+
+[? if island_campaign : Island: [+ island_votes +] ?]
+
+[? if palmgren_campaign : Palmgren: [+ palmgren_votes +] ?]
+
+[? if posse_campaign : Posse: [+ posse_votes +] ?]
+
+[? if aspelund_campaign : Aspelund: [+ aspelund_votes +] ?]
+
+Hellqvist: [+ hellqvist_votes +]
+
+Haavik: [+ haavik_votes +]
+
+Sloth: [+ sloth_votes +]
+
+Dahlin: [+ dahlin_votes +]
