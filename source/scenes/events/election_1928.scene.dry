@@ -244,11 +244,7 @@ for (let party of Q.parties) {
 // step 7 - change over time
 for (var party of Q.parties) {
     Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];
-    var sign = Q['change_' + party + '_r'] > 0 
-               ? '<img src="img/arrowup.png"> ' 
-               : Q['change_' + party + '_r'] < 0 
-                 ? '<img src="img/arrowdown.png"> ' 
-                 : '<img src="img/steady.png"> ';
+    var sign = Q['change_' + party + '_r'] > 0 ? '+' : '';
     Q['change_' + party + '_r'] = Math.abs(Q['change_' + party + '_r']);
     Q['str_change_' + party] = sign + parseFloat(Q['change_' + party + '_r']).toFixed(1);
 
@@ -609,7 +605,7 @@ go-to: achievement_check_e
 
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
 {!<table>!} 
-<tr><td>Party</td><td>Vote share</td><td>% Change</td><td>Seats</td><td>% Change</td></tr>
+<tr><td>Party</td><td>Vote share</td><td>% Change</td><td>Seats</td><td>Change</td></tr>
 
 [? if kpt_seats: 
 <tr>
@@ -617,7 +613,7 @@ go-to: achievement_check_e
   <td>[+ kpt_votes +]%</td>
   <td>[+ str_votes_change_kpt +]</td>
   <td>[+ kpt_seats +] ([+ kpt_r +]%)</td>
-  <td>[+ str_seats_change_kpt +] ([+ str_change_kpt +])</td>
+  <td>[+ str_seats_change_kpt +] ([+ str_change_kpt +]%)</td>
 </tr>
 ?]
 
@@ -627,7 +623,7 @@ go-to: achievement_check_e
   <td>[+ sapt_votes +]%</td>
   <td>[+ str_votes_change_sapt +]</td>
   <td>[+ sapt_seats +] ([+ sapt_r +]%)</td>
-  <td>[+ str_seats_change_sapt +] ([+ str_change_sapt +])</td>
+  <td>[+ str_seats_change_sapt +] ([+ str_change_sapt +]%)</td>
 </tr>
 ?]
 
@@ -637,7 +633,7 @@ go-to: achievement_check_e
   <td>[+ lapt_votes +]%</td>
   <td>[+ str_votes_change_lapt +]</td>
   <td>[+ lapt_seats +] ([+ lapt_r +]%)</td>
-  <td>[+ str_seats_change_lapt +] ([+ str_change_lapt +])</td>
+  <td>[+ str_seats_change_lapt +] ([+ str_change_lapt +]%)</td>
 </tr>
 ?]
 
@@ -647,7 +643,7 @@ go-to: achievement_check_e
   <td>[+ rpt_votes +]%</td>
   <td>[+ str_votes_change_rpt +]</td>
   <td>[+ rpt_seats +] ([+ rpt_r +]%)</td>
-  <td>[+ str_seats_change_rpt +] ([+ str_change_rpt +])</td>
+  <td>[+ str_seats_change_rpt +] ([+ str_change_rpt +]%)</td>
 </tr>
 ?]
 
@@ -657,7 +653,7 @@ go-to: achievement_check_e
   <td>[+ tndp_votes +]%</td>
   <td>[+ str_votes_change_tndp +]</td>
   <td>[+ tndp_seats +] ([+ tndp_r +]%)</td>
-  <td>[+ str_seats_change_tndp +] ([+ str_change_tndp +])</td>
+  <td>[+ str_seats_change_tndp +] ([+ str_change_tndp +]%)</td>
 </tr>
 ?]
 
@@ -667,7 +663,7 @@ go-to: achievement_check_e
   <td>[+ avpt_votes +]%</td>
   <td>[+ str_votes_change_avpt +]</td>
   <td>[+ avpt_seats +] ([+ avpt_r +]%)</td>
-  <td>[+ str_seats_change_avpt +] ([+ str_change_avpt +])</td>
+  <td>[+ str_seats_change_avpt +] ([+ str_change_avpt +]%)</td>
 </tr>
 ?]
 
@@ -677,7 +673,7 @@ go-to: achievement_check_e
   <td>[+ ntap_votes +]%</td>
   <td>[+ str_votes_change_ntap +]</td>
   <td>[+ ntap_seats +] ([+ ntap_r +]%)</td>
-  <td>[+ str_seats_change_ntap +] ([+ str_change_ntap +])</td>
+  <td>[+ str_seats_change_ntap +] ([+ str_change_ntap +]%)</td>
 </tr>
 ?]
 
@@ -687,7 +683,7 @@ go-to: achievement_check_e
   <td>[+ fk_votes +]%</td>
   <td>[+ str_votes_change_fk +]</td>
   <td>[+ fk_seats +] ([+ fk_r +]%)</td>
-  <td>[+ str_seats_change_fk +] ([+ str_change_fk +])</td>
+  <td>[+ str_seats_change_fk +] ([+ str_change_fk +]%)</td>
 </tr>
 ?]
 
@@ -697,7 +693,7 @@ go-to: achievement_check_e
   <td>[+ vp_votes +]%</td>
   <td>[+ str_votes_change_vp +]</td>
   <td>[+ vp_seats +] ([+ vp_r +]%)</td>
-  <td>[+ str_seats_change_vp +] ([+ str_change_vp +])</td>
+  <td>[+ str_seats_change_vp +] ([+ str_change_vp +]%)</td>
 </tr>
 ?]
 
@@ -707,7 +703,7 @@ go-to: achievement_check_e
   <td>[+ nt_votes +]%</td>
   <td>[+ str_votes_change_nt +]</td>
   <td>[+ nt_seats +] ([+ nt_r +]%)</td>
-  <td>[+ str_seats_change_nt +] ([+ str_change_nt +])</td>
+  <td>[+ str_seats_change_nt +] ([+ str_change_nt +]%)</td>
 </tr>
 ?]
 
