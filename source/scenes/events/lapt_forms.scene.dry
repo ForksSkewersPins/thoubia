@@ -20,6 +20,8 @@ To see any longterm success, however, he will have to secure the support of the 
 - @white_collar_vote: The white-collar unions vote...
 
 @white_collar_vote
-on-arrival: new_middle_tndp += 5
+on-arrival: new_middle_tndp += 5; mp_party = "LAPT"; mp_party_number = 3
 
 Frustratingly for Aspelund, the white-collar unions deadlock and drift from his grasp. The suddenness of his departure from the <span style="color: #f5e324;">**RPT**</span> leaves the unions paralyzed and unwilling to support him, still hesitating. The <span style="color: #a86b15;">**TNDP**</span> takes advantage, campaigning amongst the new middle class.
+
+Regardless of this failure, Aspelund is quick to utilize his clout and publicity as Minister-President to campaign for the <span style="color: #e49c21;">**LAPT**</span>.

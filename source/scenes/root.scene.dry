@@ -383,7 +383,7 @@ Q.economic_records = [];
 
 
 // State of the government
-Q.minister_president = "Apselund";
+Q.minister_president = "Aspelund";
 Q.mp_party = "RPT";
 Q.mp_party_number = 4;
 Q.sapt_in_government = 1;
