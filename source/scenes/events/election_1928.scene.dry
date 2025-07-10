@@ -184,882 +184,98 @@ Hopefully, this will have some effect.
 
 @post_election_1928
 on-arrival: {!  
-    Q.pre_previous_z_last_election_votes = Q.previous_z_last_election_votes;
-    Q.z_votes_pre = Q.z_votes;
+    const TOTAL_SEATS = 351;
+const threshold = Q.electoral_threshold || 0;
 
-    Q.adjustmentFactors_votes_spd = 1.0;
-    Q.adjustmentFactors_votes_sapd = 1.0;
-    Q.adjustmentFactors_votes_kpd = 1.0;
-    Q.adjustmentFactors_votes_z = 1.0;
-    Q.adjustmentFactors_votes_ddp = 1.0;
-    Q.adjustmentFactors_votes_dvp = 1.0;
-    Q.adjustmentFactors_votes_lvp = 1.0;
-    Q.adjustmentFactors_votes_dnvp = 1.0;
-    Q.adjustmentFactors_votes_nsdap = 1.0;
-    Q.adjustmentFactors_votes_dnf = 1.0;
-    Q.adjustmentFactors_votes_kvp = 1.0;
-    Q.adjustmentFactors_votes_other = 1.0;
+for (var party of Q.parties) {
+    Q['old_'+party+'_r'] = Q[party+'_r'];
+    Q['old_'+party+'_seats'] = Q[party+'_seats'];
+}
 
-    Q.adjustmentFactors_spd = 1.0;
-    Q.adjustmentFactors_sapd = 1.0;
-    Q.adjustmentFactors_kpd = 1.0;
-    Q.adjustmentFactors_z = 1.0;
-    Q.adjustmentFactors_ddp = 1.0;
-    Q.adjustmentFactors_dvp = 1.0;
-    Q.adjustmentFactors_lvp = 1.0;
-    Q.adjustmentFactors_dnvp = 1.0;
-    Q.adjustmentFactors_nsdap = 1.0;
-    Q.adjustmentFactors_dnf = 1.0;
-    Q.adjustmentFactors_dnef = 1.0;
-    Q.adjustmentFactors_kvp = 1.0;
-    Q.adjustmentFactors_other = 0.75;
+// Step 1: Normalize votes to 100%
+let totalVotes = 0;
+Q.party_votes = {};  // Store normalized votes here
 
-    var new_party_sum = 0;
-    var total_reichstag_without = 0;  // Initialize a variable to accumulate 'reichstag_without_' values
-    var total_other_party_sum = 0;    // Initialize a variable to accumulate '_other_party_sum' values
-    if (Q.year === 1928 && Q.dnvp_leader === "Hugenberg" || Q.dnvp_westarp) {
-        Q.adjustmentFactors_other = 0.75;
-    } else if (Q.year === 1929 && Q.dnvp_leader === "Hugenberg") {
-        Q.adjustmentFactors_other = 0.85;
-    } else if (Q.year === 1930 && Q.dnvp_leader === "Hugenberg") {
-        Q.adjustmentFactors_other = 0.9;
-    } else if (Q.year === 1931 && Q.dnvp_leader === "Hugenberg") {
-        Q.adjustmentFactors_other = 0.8;
-    } else if (Q.year >= 1932 && Q.dnvp_leader === "Hugenberg") {
-        Q.adjustmentFactors_other = 0.6;
-    } else if (Q.year >= 1928 && Q.dnvp_leader === "Triumvirate") {
-        Q.adjustmentFactors_other = 0.75;
-    } else if (Q.year === 1928 && Q.dnvp_ideology === "Moderate") {
-        Q.adjustmentFactors_other = 0.65;
-    } else if (Q.year === 1929 && Q.dnvp_ideology === "Moderate") {
-        Q.adjustmentFactors_other = 0.7;
-    } else if (Q.year === 1930 && Q.dnvp_ideology === "Moderate") {
-        Q.adjustmentFactors_other = 0.75;
-    } else if (Q.year === 1931 && Q.dnvp_ideology === "Moderate") {
-        Q.adjustmentFactors_other = 0.7;
-    } else if (Q.year >= 1932 && Q.dnvp_ideology === "Moderate") {
-        Q.adjustmentFactors_other = 0.6;
-    }
-    if (Q.kvp_cnblp_sister) {
-        Q.adjustmentFactors_other += 0.05;
-    }
-    if (Q.bourgeois_parliament || Q.bourgeois_parliament_no_liberals) {
-        Q.adjustmentFactors_other += 0.05;
-    }
-    if (Q.other_votes >= 8 && Q.year >= 1931) {
-        Q.adjustmentFactors_other += 0.1;
-    }
-    if (Q.other_dnef) {
-        Q.adjustmentFactors_other = 0;
-    }
-    if (Q.cvp_formed) Q.adjustmentFactors_other = 0.6;
-    if (Q.aspd_other) Q.adjustmentFactors_other += 0.4;
-    Q.adjustmentFactors_ddp = 1.0;
-    if (!Q.bourgeois_list_ddp && !Q.dstp_dnef) {
-        if (Q.ddp_votes < 1 && Q.year >= 1930) {
-            Q.adjustmentFactors_ddp = 0.3;
-        } else if (Q.ddp_votes < 1.5 && Q.year >= 1930) {
-            Q.adjustmentFactors_ddp = 0.65;
-        } else if (Q.ddp_votes < 3 && Q.year >= 1930) {
-            Q.adjustmentFactors_ddp = 0.75;
-        } else if (Q.ddp_votes < 4 && Q.year >= 1930) {
-            Q.adjustmentFactors_ddp = 0.85;
-        }
-    }
-    if (Q.ddp_alliance) Q.adjustmentFactors_ddp = 0.8;
-    if (Q.ddp_alliance_glaze) Q.adjustmentFactors_ddp = 1.1;
-    Q.adjustmentFactors_dvp = 1.0;
-    if (!Q.hugenberg_dvp && !Q.bourgeois_list && !Q.dvp_dnef) {
-        if (Q.dvp_votes < 1.5) {
-            Q.adjustmentFactors_dvp = 0.25;
-        } else if (Q.dvp_votes < 2) {
-            Q.adjustmentFactors_dvp = 0.4;
-        } else if (Q.dvp_votes < 2.5) {
-            Q.adjustmentFactors_dvp = 0.6;            
-        } else if (Q.dvp_votes < 3) {
-            Q.adjustmentFactors_dvp = 0.8;   
-        }
-    }
-    if (Q.hugenberg_dvp) Q.adjustmentFactors_dvp = 1.0;
+for (let party of Q.parties) {
+    const rawVotes = Q[party + '_votes'] || 0;
+    Q.party_votes[party] = rawVotes;
+    totalVotes += rawVotes;
+}
 
-    if (Q.election_boycott) {
-        Q.adjustmentFactors_votes_spd = 1.0*(1-Q.spd_boycott_efficacy);
-        Q.adjustmentFactors_votes_sapd = 0.0;
-        Q.adjustmentFactors_votes_kpd = 0.0;
-        Q.adjustmentFactors_votes_z = 1.0*(1-Q.z_boycott_efficacy);
-        Q.adjustmentFactors_votes_ddp = 1.0*(1-Q.lib_boycott_efficacy);
-        Q.adjustmentFactors_votes_dvp = 1.0*(1.2-Q.lib_boycott_efficacy);
-        Q.adjustmentFactors_votes_lvp = 1.0*(1-Q.lib_boycott_efficacy);
-        Q.adjustmentFactors_votes_dnvp = 1.0;
-        if (Q.dnvp_ideology == "Radical") Q.adjustmentFactors_votes_dnvp = 0.6;
-        Q.adjustmentFactors_votes_nsdap = 1.0;
-        if (Q.nvf_exist && !Q.nvf_dnef) Q.adjustmentFactors_votes_nsdap -= 0.1;
-        Q.adjustmentFactors_votes_dnf = 1.0;
-        if (Q.dnvp_ideology == "Moderate") Q.adjustmentFactors_votes_dnf = 0.4;
-        Q.adjustmentFactors_votes_kvp = 1.0;
-        Q.adjustmentFactors_votes_other = 1.0;
+for (let party of Q.parties) {
+    Q.party_votes[party] = Math.round(Q.party_votes[party] * 1000 / totalVotes) / 10; // normalize to 100, 1 decimal
+}
 
-        Q.kpd_banned = 1;
-        Q.sapd_banned = 1;
-        Q.spd_banned = 1;
-        if (Q.z_boycott_efficacy >= 0.74) Q.z_banned = 1;
-        if (Q.lib_boycott_efficacy >= 0.74) Q.ddp_banned = 1;
-        if (Q.lib_boycott_efficacy >= 0.89) Q.dvp_banned = 1;
-        if (Q.lib_boycott_efficacy >= 0.74) Q.lvp_banned = 1;
-        if (Q.dnvp_ideology == "Radical") Q.dnvp_banned = 1;
-        if (Q.dnvp_ideology == "Moderate") Q.dnf_banned = 1;
-    } else {
-        Q.spd_banned = 0;
-        Q.z_banned = 0;
-        Q.ddp_banned = 0;
-        Q.dvp_banned = 0;
-        Q.lvp_banned = 0;
-        Q.dnvp_banned = 0;
-        Q.dnf_banned = 0;
-    }
-    let total_adjusted_votes = 0;
-    for (var party of Q.parties) {
-        let factor = Q['adjustmentFactors_votes_' + party] || 1.0;
-        Q['original_' + party + '_votes'] = Q[party + '_votes'];
-        Q[party + '_votes'] = Q[party + '_votes'] * factor;
-        total_adjusted_votes += Q[party + '_votes'];
-    }
+// Step 2: Filter valid parties
+let validParties = Q.parties.filter(party => {
+    return Q[party + '_banned'] !== 1 && Q.party_votes[party] >= threshold;
+});
 
-    let normalization_factor = 100 / total_adjusted_votes;
-    Q.boycott_effect = normalization_factor;
-    for (var party of Q.parties) {
-        Q[party + '_votes'] = Math.round(Q[party + '_votes'] * normalization_factor * 10) / 10;
-    }
-    // Step 1: Calculate adjusted values and the sum for redistribution
-    for (var party of Q.parties) {
-        let factor = Q['adjustmentFactors_' + party] || 1.0; // Default to 1.0 if not set
-        
-        Q['old_' + party + '_r'] = Q[party + '_r']; // Store the original r value for comparison
-        
-        // Handle constitutional reform logic: set the party's share to 0 based on conditions
-        if ((Q.constitutional_reform > 0 &&
-             (Q[party + '_votes'] < Q.electoral_threshold || 
-             (Q.electoral_threshold > 1 && party === 'other'))) 
-            || Q[party + '_banned']) {
-            Q[party + '_r'] = 0;
-        } else {
-            // Adjust `r` based on the adjustment factor if not affected by constitutional reform
-            Q['original_' + party + '_r'] = Math.round(Q[party + '_votes'] * 10) / 10;
-            Q[party + '_r'] = Math.round(Q[party + '_votes'] * factor * 10) / 10;
-        }
-        
-        if (Q[party + '_r'] > 0) {
-            if (factor !== 1.0) { // Only apply to parties with adjustment factors
-                // Calculate the Reichstag without the current party's share
-                Q['reichstag_without_' + party] = 100 - Q['original_' + party + '_r'];
-                total_reichstag_without += Q['reichstag_without_' + party]; // Accumulate the total of 'reichstag_without_' values
+// Step 3: D’Hondt table
+let dhondtTable = [];
 
-                // Calculate the sum of the remaining parties
-                Q[party + '_other_party_sum'] = Q['reichstag_without_' + party] - (Q[party + '_votes'] - Q[party + '_r']);
-                total_other_party_sum += Q[party + '_other_party_sum']; // Accumulate the total of '_other_party_sum' values
-            } else {
-                // For non-adjusted parties, accumulate their r value for the redistribution
-                new_party_sum += Q[party + '_r'];
-            }
-        }
+for (let party of validParties) {
+    let votes = Q.party_votes[party];
+    for (let divisor = 1; divisor <= TOTAL_SEATS; divisor++) {
+        dhondtTable.push({
+            party: party,
+            value: votes / divisor
+        });
     }
+}
+
+// Step 4: Allocate top 351 seats
+dhondtTable.sort((a, b) => b.value - a.value);
+let topSeats = dhondtTable.slice(0, TOTAL_SEATS);
+
+// Step 5: Count seats
+let seatCounts = {};
+for (let seat of topSeats) {
+    seatCounts[seat.party] = (seatCounts[seat.party] || 0) + 1;
+}
+
+// Step 6: Save seats and % of seats (_seats and _r)
+for (let party of Q.parties) {
+    const seats = seatCounts[party] || 0;
+    Q[party + '_seats'] = seats;
+    Q[party + '_r'] = Math.round((seats / TOTAL_SEATS) * 1000) / 10;  // % of seats
+}
+
+// step 7 - change over time
+for (var party of Q.parties) {
+    Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];
+    var sign = Q['change_' + party + '_r'] > 0 
+               ? '<img src="img/arrowup.png"> ' 
+               : Q['change_' + party + '_r'] < 0 
+                 ? '<img src="img/arrowdown.png"> ' 
+                 : '<img src="img/steady.png"> ';
+    Q['change_' + party + '_r'] = Math.abs(Q['change_' + party + '_r']);
+    Q['str_change_' + party] = sign + parseFloat(Q['change_' + party + '_r']).toFixed(1);
+
+    // Calculate changes in votes
+    Q['change_' + party + '_votes'] = Q[party + '_votes'] - Q['previous_' + party + '_last_election_votes'];
+    if (Q['previous_' + party + '_last_election_votes'] === undefined) {
+        Q['change_' + party + '_votes'] = Q[party + '_votes'];
+    }
+    var sign2 = Q['change_' + party + '_votes'] > 0 
+                ? '<img src="img/arrowup.png"> ' 
+                : Q['change_' + party + '_votes'] < 0 
+                  ? '<img src="img/arrowdown.png"> ' 
+                  : '<img src="img/steady.png"> ';
+    Q['str_votes_change_' + party] = sign2 + Math.abs(Q['change_' + party + '_votes']).toFixed(1);
+    Q['previous_' + party + '_last_election_votes'] = Q[party+'_votes'];
     
-console.log(Q.spd_r)
-
-// Step 2: Redistribute results among non-adjusted parties to ensure the total is 100%
-if (new_party_sum > 0) {
-    for (var party of Q.parties) {
-        let factor = Q['adjustmentFactors_' + party] || 1.0;
-
-        if (Q[party + '_r'] === 0) continue;
-
-        var total_reichstag_without_party = total_reichstag_without - (100 - Q['original_' + party + '_r']);
-        var total_other_party_sum_party = total_other_party_sum - (Q['reichstag_without_' + party] - (Q[party + '_votes'] - Q[party + '_r']));
-
-        console.log(Q.spd_r)
-
-        if (factor === 1.0) {
-            if (total_other_party_sum > 0) {
-                Q[party + '_r'] = Math.round((Q[party + '_r'] * total_reichstag_without) / total_other_party_sum * 10) / 10;
-            } else {
-                Q[party + '_r'] = Q[party + '_r'];
-            }
-        } else if (factor !== 1.0 && total_reichstag_without_party > 0 && total_other_party_sum_party > 0) {
-            let scaling_factor = total_reichstag_without_party / total_other_party_sum_party;
-            Q[party + '_r'] = Math.round(Q[party + '_r'] * scaling_factor * 10) / 10;
-        }
-    }
-
-    console.log(Q.spd_r)
-
-    // Step 3: Normalize to ensure the total sums to exactly 100%
-    let total_r_sum = 0;
-
-    // Calculate the total of all `r` values after redistribution
-    for (var party of Q.parties) {
-        total_r_sum += Q[party + '_r'];
-    }
-
-    // Adjust each party's `r` value proportionally if the total isn't 100
-    if (total_r_sum !== 100) {
-        let normalization_factor = 100 / total_r_sum;
-        for (var party of Q.parties) {
-            if (Q[party + '_r'] > 0) {
-                Q[party + '_r'] = Math.round(Q[party + '_r'] * normalization_factor * 10) / 10;
-            }
-        }
-    }
-    console.log(Q.spd_r)
-}
-if (Q.election_boycott) {
-    Q.dnef_votes += Q.spd_votes;
-    Q.spd_votes = 0;
-    if (Q.z_boycott_efficacy >= 0.74) {
-        Q.dnef_votes += Q.z_votes;
-        Q.z_votes = 0;
-    }
-    if (Q.lib_boycott_efficacy >= 0.74) { 
-        Q.dnef_votes += Q.ddp_votes;
-        Q.ddp_votes = 0;
-    }
-    if (Q.lib_boycott_efficacy >= 0.89) { 
-        Q.dnef_votes += Q.lvp_votes;
-        Q.dvp_votes = 0;
-    }
-    if (Q.lib_boycott_efficacy >= 0.74) { 
-        Q.dnef_votes += Q.dvp_votes;
-        Q.lvp_votes = 0;
-    }
-    if (Q.dnvp_ideology == "Radical") {
-        Q.dnef_votes += Q.dnvp_votes;
-        Q.dnvp_votes = 0;
-    }
-    if (Q.dnvp_ideology == "Moderate") {
-        Q.dnef_votes += Q.dnf_votes;
-        Q.dnf_votes = 0;
-    }
-}
-if (Q.dnef_formed) {
-    Q.schleicher_dnef_r = Q.dnef_r;
-    Q.schleicher_dnef_votes = Q.dnef_votes;
-    if (Q.right_dnef) Q.schleicher_dnef_votes -= Q.right_dnef_votes;
-    if (Q.left_dnef) Q.schleicher_dnef_votes -= Q.left_dnef_votes;
-
-    if (Q.ddp_r) Q.ddp_r_last = Q.ddp_r;
-    if (Q.lvp_r) Q.lvp_r_last = Q.lvp_r;
-    if (Q.kvp_r) Q.kvp_r_last = Q.kvp_r;
-    if (Q.dvp_r) Q.dvp_r_last = Q.dvp_r;
-    if (Q.z_r) Q.z_r_last = Q.z_r;
-    if (Q.bvp_r) Q.bvp_r_last = Q.bvp_r;
-    if (Q.dnvp_r) Q.dnvp_r_last = Q.dnvp_r;
-    if (Q.other_r) Q.other_r_last = Q.other_r;
-    if (Q.nvf_r) Q.nvf_r_last = Q.nvf_r;
-
-    if (Q.other_dnef) {
-        if (Q.other_r) {
-            Q.dnef_r += Q.other_r;
-            Q.other_r = 0;
-        }
-        Q.dnef_votes += Q.other_votes;
-    }
-    if (Q.dstp_dnef) {
-        if (Q.ddp_r) {
-            Q.dnef_r += Q.ddp_r;
-            Q.ddp_r = 0;
-        }
-        Q.dnef_votes += Q.ddp_votes;
-    }
-    if (Q.lvp_dnef) {
-        if (Q.lvp_r) {
-            Q.dnef_r += Q.lvp_r;
-            Q.lvp_r = 0;
-        }
-        Q.dnef_votes += Q.lvp_votes;
-    }
-    if (Q.kvp_dnef) {
-        if (Q.kvp_r) {
-            Q.dnef_r += Q.kvp_r;
-            Q.kvp_r = 0;
-        }
-        Q.dnef_votes += Q.kvp_votes;
-    }
-    if (Q.dvp_dnef) {
-        if (Q.dvp_r) {
-            Q.dnef_r += Q.dvp_r;
-            Q.dvp_r = 0;
-        }
-        Q.dnef_votes += Q.dvp_votes;
-    }
-    if (Q.z_dnef) {
-        if (Q.z_r) {
-            Q.dnef_r += Q.z_r;
-            Q.z_r = 0;
-            Q.bvp_r = 0;
-        }
-        Q.dnef_votes += Q.z_votes;
-    }
-    if (Q.dnvp_dnef) {
-        if (Q.dnvp_r) {
-            Q.dnef_r += Q.dnvp_r;
-            Q.dnvp_r = 0;
-        }
-        Q.dnef_votes += Q.dnvp_votes;
-    }
-    Q.dnef_votes = Math.round(Q.dnef_votes * 10) / 10;
-    console.log(Q.dnef_r)
-    Q.dnef_r = Math.round(Q.dnef_r * 10) / 10;
-}
-    // Step 3: Calculate changes in results
-    for (var party of Q.parties) {
-        Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];
-        var sign = Q['change_' + party + '_r'] > 0 
-                   ? '<img src="img/arrowup.png"> ' 
-                   : Q['change_' + party + '_r'] < 0 
-                     ? '<img src="img/arrowdown.png"> ' 
-                     : '<img src="img/steady.png"> ';
-        Q['change_' + party + '_r'] = Math.abs(Q['change_' + party + '_r']);
-        Q['str_change_' + party] = sign + parseFloat(Q['change_' + party + '_r']).toFixed(1);
-    
-        // Calculate changes in votes
-        Q['change_' + party + '_votes'] = Q[party + '_votes'] - Q['previous_' + party + '_last_election_votes'];
-        if (Q['previous_' + party + '_last_election_votes'] === undefined) {
-            Q['change_' + party + '_votes'] = Q[party + '_votes'];
-        }
-        var sign2 = Q['change_' + party + '_votes'] > 0 
-                    ? '<img src="img/arrowup.png"> ' 
-                    : Q['change_' + party + '_votes'] < 0 
-                      ? '<img src="img/arrowdown.png"> ' 
-                      : '<img src="img/steady.png"> ';
-        Q['str_votes_change_' + party] = sign2 + Math.abs(Q['change_' + party + '_votes']).toFixed(1);
-    }
-    
-    // Handle demographic changes for all parties
-    for (var party of Q.parties) {
-        for (var c of Q.classes) {
-            Q[c + "_change_" + party + '_display'] = Q[c + '_' + party + '_display'] - Q['old_' + c + '_' + party + '_display'];
-            var sign3 = Q[c + "_change_" + party + '_display'] > 0 ? '+' : '';
-            Q['demo_change_' + c + '_' + party + '_display'] = sign3 + parseFloat(Q[c + "_change_" + party + '_display']).toFixed(0);
-            Q['old_' + c + '_' + party + '_display'] = Q[c + '_' + party + '_display'];
-        }
-    }
-    
-    // Store current votes as previous for the next iteration
-    for (var party of Q.parties) {
-        Q[party + '_last_election_votes'] = parseFloat(Q[party + '_votes']).toFixed(1);
-        Q['previous_' + party + '_last_election_votes'] = parseFloat(parseFloat(Q[party + '_last_election_votes']).toFixed(1));
-    }    
-    
-if (Q.change_spd_votes <= 0) Q.notwendigkeit = 0;
-if (Q.year == 1928 && Q.month == 5) Q.modeerscheinung_check = Q.nsdap_votes;
-
-Q.cnblp_r = 0;
-Q.wp_r = 0;
-Q.csvd_r = 0;
-Q.aspd_r = 0;
-
-if (Q.cnblp_votes) Q.cnblp_r = Math.round(Q.cnblp_votes * Q.adjustmentFactors_other * 10) / 10;
-if (Q.wp_votes) Q.wp_r = Math.round(Q.wp_votes * Q.adjustmentFactors_other * 10) / 10;
-if (Q.csvd_votes) Q.csvd_r = Math.round(Q.csvd_votes * Q.adjustmentFactors_other * 10) / 10;
-if (Q.aspd_votes) Q.aspd_r = Math.round(Q.aspd_votes * Q.adjustmentFactors_other * 10) / 10;
-
-if (Q.dnef_formed) {
-    Q.cnblp_r = 0;
-    Q.wp_r = 0;
-    Q.csvd_r = 0;
-}
-if (Q.electoral_threshold > 1) {
-    Q.cnblp_r = 0;
-    Q.wp_r = 0;
-    Q.csvd_r = 0;
-}
-Q.true_other_r = Q.other_r - Q.cnblp_r - Q.wp_r - Q.csvd_r - Q.aspd_r;
-if (!Q.csvd_formed && !Q.aspd_other) Q.true_other_r += Q.csvd_r;
-if (!Q.aspd_other) Q.true_other_r += Q.aspd_r;
-
-if (!Q.bavaria_spd) Q.bvp_votes = Q.z_votes*0.2;
-if (Q.bavaria_spd) Q.bvp_votes = Q.z_votes*0.1;
-if (Q.election_boycott) {
-    if (!Q.bavaria_spd && Q.z_boycott_efficacy >= 0.74) Q.bvp_votes = Q.z_votes_pre*0.2;
-    if (Q.bavaria_spd && Q.z_boycott_efficacy >= 0.74) Q.bvp_votes = Q.z_votes_pre*0.1;
-}
-if (Q.bvp_votes > 3.6 && !Q.cvp_formed) {
-    Q.bvp_votes = 3.6;
-} else if (Q.bvp_votes > 3.9 && Q.cvp_formed) {
-    Q.bvp_votes = 3.9;
-}
-if (!Q.z_dnef) Q.bvp_r = Q.bvp_votes*1.05;
-if (Q.bvp_r > 3.7 && !Q.cvp_formed) {
-    Q.bvp_r = 3.7;
-} else if (Q.bvp_r > 4.0 && Q.cvp_formed) {
-    Q.bvp_r = 4.0;
-}
-
-if (!Q.z_dnef) Q.bvp_r = parseFloat(Q.bvp_r.toFixed(1));
-Q.bvp_votes = parseFloat(Q.bvp_votes.toFixed(1));
-
-Q.z_minus_bvp_votes = parseFloat((Q.z_votes - Q.bvp_votes).toFixed(1));
-Q.z_minus_bvp_r = parseFloat((Q.z_r - Q.bvp_r).toFixed(1));
-if (Q.election_boycott && Q.z_boycott_efficacy >= 0.74) {
-    Q.z_minus_bvp_votes = 0;
-    Q.z_minus_bvp_r = 0;
-    Q.z_r = Q.bvp_r;
-}
-
-console.log("z_minus_bvp_votes:", Q.z_minus_bvp_votes);
-console.log("pre_previous_z_last_election_votes:", Q.pre_previous_z_last_election_votes);
-
-Q.str_votes_change_bvp = Q.bvp_votes - Q.previous_bvp_last_election_votes;
-var sign2 = Q.str_votes_change_bvp > 0 
-? '<img src="img/arrowup.png"> ' 
-: Q.str_votes_change_bvp < 0 
-  ? '<img src="img/arrowdown.png"> ' 
-  : '<img src="img/steady.png"> ';
-Q.str_votes_change_bvp = sign2 + Math.abs(Q.str_votes_change_bvp).toFixed(1);
-
-Q.str_change_bvp = Q.bvp_r - Q.old_bvp_r;
-var sign2 = Q.str_change_bvp > 0 
-? '<img src="img/arrowup.png"> ' 
-: Q.str_change_bvp < 0 
-  ? '<img src="img/arrowdown.png"> ' 
-  : '<img src="img/steady.png"> ';
-Q.str_change_bvp = sign2 + Math.abs(Q.str_change_bvp).toFixed(1);
-
-if (Q.bvp_r) {
-    Q.pre_previous_z_last_election_votes -= Q.previous_bvp_last_election_votes;
-    Q.old_z_r -= Q.old_bvp_r;
-}
-Q.previous_bvp_last_election_votes = Q.bvp_votes;
-Q.old_bvp_r = Q.bvp_r;
-
-console.log("z_minus_bvp_votes:", Q.z_minus_bvp_votes);
-console.log("pre_previous_z_last_election_votes:", Q.pre_previous_z_last_election_votes);
-
-Q.str_votes_change_z = Q.z_minus_bvp_votes - Q.pre_previous_z_last_election_votes;
-var sign2 = Q.str_votes_change_z > 0 
-? '<img src="img/arrowup.png"> ' 
-: Q.str_votes_change_z < 0 
-  ? '<img src="img/arrowdown.png"> ' 
-  : '<img src="img/steady.png"> ';
-Q.str_votes_change_z = sign2 + Math.abs(Q.str_votes_change_z).toFixed(1);
-
-console.log(Q.dsu_votes)
-console.log(Q.nsdap_hitler_votes)
-console.log(Q.nvf_votes)
-
-if (Q.nsdap_split) {
-    if (Q.dsu_exist) {
-        Q.dsu_r = parseFloat(Q.dsu_votes.toFixed(1));
-        Q.dsu_votes = parseFloat(Q.dsu_votes.toFixed(1));
-    }
-    if (Q.nvf_exist) {
-        Q.nvf_r = parseFloat(Q.nvf_votes.toFixed(1));
-        Q.nvf_votes = parseFloat(Q.nvf_votes.toFixed(1));
-        if (Q.election_boycott && !Q.nvf_dnef) {
-            Q.nvf_r = 0;
-            Q.nvf_votes = 0;
-        }
-    }
-    if (Q.dsu_exist || Q.nvf_exist) {
-        Q.nsdap_hitler_r = parseFloat(Q.nsdap_hitler_votes.toFixed(1));
-        Q.nsdap_hitler_votes = parseFloat(Q.nsdap_hitler_votes.toFixed(1));
-    }
-    if ((Q.dsu_votes + Q.nvf_votes + Q.nsdap_hitler_votes) !== Q.nsdap_votes) {
-        let total = Q.dsu_votes + Q.nvf_votes + Q.nsdap_hitler_votes;
-        let factor = Q.nsdap_votes / total;
-
-        Q.dsu_votes = parseFloat((Q.dsu_votes * factor).toFixed(1));
-        Q.nvf_votes = parseFloat((Q.nvf_votes * factor).toFixed(1));
-        Q.nsdap_hitler_votes = parseFloat((Q.nsdap_hitler_votes * factor).toFixed(1));
-    }
-    if ((Q.dsu_r + Q.nvf_r + Q.nsdap_hitler_r) !== Q.nsdap_r) {
-        let total = Q.dsu_r + Q.nvf_r + Q.nsdap_hitler_r;
-        let factor = Q.nsdap_r / total;
-
-        Q.dsu_r = parseFloat((Q.dsu_r * factor).toFixed(1));
-        Q.nvf_r = parseFloat((Q.nvf_r * factor).toFixed(1));
-        Q.nsdap_hitler_r = parseFloat((Q.nsdap_hitler_r * factor).toFixed(1));
-    }
-    if (Q.dsu_exist) {
-        Q.str_votes_change_dsu = Q.dsu_votes - Q.previous_dsu_last_election_votes;
-        var sign2 = Q.str_votes_change_dsu > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_votes_change_dsu < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_votes_change_dsu = sign2 + Math.abs(Q.str_votes_change_dsu).toFixed(1);
-
-        Q.str_change_dsu = Q.dsu_r - Q.old_dsu_r;
-        var sign2 = Q.str_change_dsu > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_change_dsu < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_change_dsu = sign2 + Math.abs(Q.str_change_dsu).toFixed(1);
-    }
-    if (Q.nvf_exist) {
-        Q.str_votes_change_nvf = Q.nvf_votes - Q.previous_nvf_last_election_votes;
-        var sign2 = Q.str_votes_change_nvf > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_votes_change_nvf < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_votes_change_nvf = sign2 + Math.abs(Q.str_votes_change_nvf).toFixed(1);
-
-        Q.str_change_nvf = Q.nvf_r - Q.old_nvf_r;
-        var sign2 = Q.str_change_nvf > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_change_nvf < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_change_nvf = sign2 + Math.abs(Q.str_change_nvf).toFixed(1);
-    }
-    if (Q.nvf_exist || Q.dsu_exist) {
-        if (Q.previous_nsdap_hitler_last_election_votes == 0) Q.previous_nsdap_hitler_last_election_votes = Q.previous_nsdap_last_election_votes
-        if (Q.old_nsdap_hitler_r == 0) Q.old_nsdap_hitler_r = Q.old_nsdap_r
-
-        Q.str_votes_change_nsdap_hitler = Q.nsdap_hitler_votes - Q.previous_nsdap_hitler_last_election_votes;
-        var sign2 = Q.str_votes_change_nsdap_hitler > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_votes_change_nsdap_hitler < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_votes_change_nsdap_hitler = sign2 + Math.abs(Q.str_votes_change_nsdap_hitler).toFixed(1);
-
-        Q.str_change_nsdap_hitler = Q.nsdap_hitler_r - Q.old_nsdap_hitler_r;
-        var sign2 = Q.str_change_nsdap_hitler > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_change_nsdap_hitler < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_change_nsdap_hitler = sign2 + Math.abs(Q.str_change_nsdap_hitler).toFixed(1);
-    }
-    Q.previous_dsu_last_election_votes = Q.dsu_votes;
-    Q.old_dsu_r = Q.dsu_r;
-    Q.previous_nvf_last_election_votes = Q.nvf_votes;
-    Q.old_nvf_r = Q.nvf_r;
-    Q.previous_nsdap_hitler_last_election_votes = Q.nsdap_hitler_votes;
-    Q.old_nsdap_hitler_r = Q.nsdap_hitler_r;
-}
-
-if (Q.rdp_list) {
-    Q.rdp_votes = Q.new_middle_spd_normalized;
-    Q.rdp_votes *= (Q.spd_votes / 100);
-    if (Q.pro_republic >= 15) Q.rdp_votes *= (Q.pro_republic / 100);
-    if (Q.pro_republic < 15) Q.rdp_votes *= 0.15;
-    if (Q.rdp_votes < 0.5) Q.rdp_votes = 0.5;
-    Q.rdp_r = Q.rdp_votes*(Q.spd_r / Q.spd_votes);
-
-    Q.rdp_votes = Math.round(Q.rdp_votes * 10) / 10;
-
-    Q.spd_votes -= Q.rdp_votes;
-
-    // vote share
-    Q.str_votes_change_rdp = Q.rdp_votes - Q.previous_rdp_last_election_votes;
-    var sign2 = Q.str_votes_change_rdp > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_votes_change_rdp < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_votes_change_rdp = sign2 + Math.abs(Q.str_votes_change_rdp).toFixed(1);
-    Q.previous_rdp_last_election_votes = Q.rdp_votes;
-
-    Q.str_votes_change_spd = Q.spd_votes - Q.previous_spd_last_election_votes;
-    var sign2 = Q.str_votes_change_spd > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_votes_change_spd < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_votes_change_spd = sign2 + Math.abs(Q.str_votes_change_spd).toFixed(1);
-    Q.previous_spd_last_election_votes = Q.spd_votes;
-
-    // reichstag share
-
-    Q.str_change_rdp = Q.rdp_r - Q.old_rdp_r;
-    var sign2 = Q.str_change_rdp > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_change_rdp < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_change_rdp = sign2 + Math.abs(Q.str_change_rdp).toFixed(1);
-    Q.old_rdp_r = Q.rdp_r;
-
-    Q.str_change_spd = Q.spd_r - Q.old_spd_r;
-    var sign2 = Q.str_change_spd > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_change_spd < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_change_spd = sign2 + Math.abs(Q.str_change_spd).toFixed(1);
-    Q.old_spd_r = Q.spd_r;
-}
-
-if (Q.aspd_kvp) {
-    Q.true_aspd_r = Q.aspd_votes*(Q.kvp_r / Q.kvp_votes);
-    Q.kvp_votes -= Q.aspd_votes;
-    Q.aspd_r = 0;
-
-    Q.str_votes_change_aspd = Q.aspd_votes - Q.previous_aspd_last_election_votes;
-    var sign2 = Q.str_votes_change_aspd > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_votes_change_aspd < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_votes_change_aspd = sign2 + Math.abs(Q.str_votes_change_aspd).toFixed(1);
-    Q.previous_aspd_last_election_votes = Q.aspd_votes;
-
-    Q.str_votes_change_kvp = Q.kvp_votes - Q.previous_kvp_last_election_votes;
-    var sign2 = Q.str_votes_change_kvp > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_votes_change_kvp < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_votes_change_kvp = sign2 + Math.abs(Q.str_votes_change_kvp).toFixed(1);
-    Q.previous_kvp_last_election_votes = Q.kvp_votes;
-
-    // reichstag share
-
-    Q.str_change_aspd = Q.aspd_r - Q.old_aspd_r;
-    var sign2 = Q.str_change_aspd > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_change_aspd < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_change_aspd = sign2 + Math.abs(Q.str_change_aspd).toFixed(1);
-    Q.old_aspd_r = Q.aspd_r;
-
-    Q.str_change_kvp = Q.kvp_r - Q.old_kvp_r;
-    var sign2 = Q.str_change_kvp > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_change_kvp < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_change_kvp = sign2 + Math.abs(Q.str_change_kvp).toFixed(1);
-    Q.old_kvp_r = Q.kvp_r;
-}
-
-if (Q.aspd_other) {
-    Q.true_aspd_r = Q.aspd_votes*(Q.other_r / Q.other_votes);
-    Q.other_votes -= Q.aspd_votes;
-    Q.aspd_r = 0;
-
-    Q.str_votes_change_aspd = Q.aspd_votes - Q.previous_aspd_last_election_votes;
-    var sign2 = Q.str_votes_change_aspd > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_votes_change_aspd < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_votes_change_aspd = sign2 + Math.abs(Q.str_votes_change_aspd).toFixed(1);
-    Q.previous_aspd_last_election_votes = Q.aspd_votes;
-
-    Q.str_votes_change_other = Q.other_votes - Q.previous_other_last_election_votes;
-    var sign2 = Q.str_votes_change_other > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_votes_change_other < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_votes_change_other = sign2 + Math.abs(Q.str_votes_change_other).toFixed(1);
-    Q.previous_other_last_election_votes = Q.other_votes;
-
-    // reichstag share
-
-    Q.str_change_aspd = Q.aspd_r - Q.old_aspd_r;
-    var sign2 = Q.str_change_aspd > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_change_aspd < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_change_aspd = sign2 + Math.abs(Q.str_change_aspd).toFixed(1);
-    Q.old_aspd_r = Q.aspd_r;
-
-    Q.str_change_other = Q.other_r - Q.old_other_r;
-    var sign2 = Q.str_change_other > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_change_other < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_change_other = sign2 + Math.abs(Q.str_change_other).toFixed(1);
-    Q.old_other_r = Q.other_r;
-}
-
-if (Q.dnef_formed && Q.nvf_exist) {
-    if (Q.nvf_dnef) {
-        if (Q.nvf_r) {
-            Q.dnef_r += Q.nvf_r;
-            Q.nvf_r = 0;
-        }
-        Q.dnef_votes += Q.nvf_votes;
-    }
-    Q.dnef_votes = Math.round(Q.dnef_votes * 10) / 10;
-    Q.dnef_r = Math.round(Q.dnef_r * 10) / 10;
-}
-
-if (Q.dnef_formed) {
-    Q.true_dnef_r = Math.round(Q.dnef_r * 10) / 10;
-    Q.right_dnef_r = 0;
-    Q.left_dnef_r = 0;
-    Q.str_votes_change_schleicher_dnef = Q.schleicher_dnef_votes - Q.previous_schleicher_dnef_last_election_votes;
-    
-    var sign2 = Q.str_votes_change_schleicher_dnef > 0 ?
-        '<img src="img/arrowup.png"> ' :
-        Q.str_votes_change_schleicher_dnef < 0 ?
-        '<img src="img/arrowdown.png"> ' :
-        '<img src="img/steady.png"> ';
-    Q.str_votes_change_schleicher_dnef = sign2 + Math.abs(Q.str_votes_change_schleicher_dnef).toFixed(1);
-    Q.previous_schleicher_dnef_last_election_votes = Q.schleicher_dnef_votes;
-
-    if (Q.right_dnef) {
-        Q.right_dnef_r = Q.right_dnef_votes*(Q.dnef_r / Q.dnef_votes);
-        Q.schleicher_dnef_r -= Q.right_dnef_r;
-
-        Q.str_votes_change_right_dnef = Q.right_dnef_votes - Q.previous_right_dnef_last_election_votes;
-        var sign2 = Q.str_votes_change_right_dnef > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_votes_change_right_dnef < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_votes_change_right_dnef = sign2 + Math.abs(Q.str_votes_change_right_dnef).toFixed(1);
-        Q.previous_right_dnef_last_election_votes = Q.right_dnef_votes;
-
-        Q.str_votes_change_schleicher_dnef = Q.schleicher_dnef_votes - Q.previous_schleicher_dnef_last_election_votes;
-        var sign2 = Q.str_votes_change_schleicher_dnef > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_votes_change_schleicher_dnef < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_votes_change_schleicher_dnef = sign2 + Math.abs(Q.str_votes_change_schleicher_dnef).toFixed(1);
-        Q.previous_schleicher_dnef_last_election_votes = Q.schleicher_dnef_votes;
-
-        // reichstag share
-
-        Q.str_change_right_dnef = Q.right_dnef_r - Q.old_right_dnef_r;
-        var sign2 = Q.str_change_right_dnef > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_change_right_dnef < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_change_right_dnef = sign2 + Math.abs(Q.str_change_right_dnef).toFixed(1);
-        Q.old_right_dnef_r = Q.right_dnef_r;
-
-        Q.str_change_schleicher_dnef = Q.schleicher_dnef_r - Q.old_schleicher_dnef_r;
-        var sign2 = Q.str_change_schleicher_dnef > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_change_schleicher_dnef < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_change_schleicher_dnef = sign2 + Math.abs(Q.str_change_schleicher_dnef).toFixed(1);
-        Q.old_schleicher_dnef_r = Q.schleicher_dnef_r;
-        Q.true_dnef_r = Q.dnef_r - Q.right_dnef_r;
-        Q.true_dnef_r = Math.round(Q.dnef_r * 10) / 10;
-        Q.right_dnef_r = Math.round(Q.right_dnef_r * 10) / 10;
-    } else if (Q.left_dnef) {
-        Q.left_dnef_r = Q.left_dnef_votes*(Q.dnef_r / Q.dnef_votes);
-        Q.schleicher_dnef_r -= Q.left_dnef_r;
-
-        Q.str_votes_change_left_dnef = Q.left_dnef_votes - Q.previous_left_dnef_last_election_votes;
-        var sign2 = Q.str_votes_change_left_dnef > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_votes_change_left_dnef < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_votes_change_left_dnef = sign2 + Math.abs(Q.str_votes_change_left_dnef).toFixed(1);
-        Q.previous_left_dnef_last_election_votes = Q.left_dnef_votes;
-
-        Q.str_votes_change_schleicher_dnef = Q.schleicher_dnef_votes - Q.previous_schleicher_dnef_last_election_votes;
-        var sign2 = Q.str_votes_change_schleicher_dnef > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_votes_change_schleicher_dnef < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_votes_change_schleicher_dnef = sign2 + Math.abs(Q.str_votes_change_schleicher_dnef).toFixed(1);
-        Q.previous_schleicher_dnef_last_election_votes = Q.schleicher_dnef_votes;
-
-        // reichstag share
-
-        Q.str_change_left_dnef = Q.left_dnef_r - Q.old_left_dnef_r;
-        var sign2 = Q.str_change_left_dnef > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_change_left_dnef < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_change_left_dnef = sign2 + Math.abs(Q.str_change_left_dnef).toFixed(1);
-        Q.old_left_dnef_r = Q.left_dnef_r;
-
-        Q.str_change_schleicher_dnef = Q.schleicher_dnef_r - Q.old_schleicher_dnef_r;
-        var sign2 = Q.str_change_schleicher_dnef > 0 ?
-            '<img src="img/arrowup.png"> ' :
-            Q.str_change_schleicher_dnef < 0 ?
-            '<img src="img/arrowdown.png"> ' :
-            '<img src="img/steady.png"> ';
-        Q.str_change_schleicher_dnef = sign2 + Math.abs(Q.str_change_schleicher_dnef).toFixed(1);
-        Q.old_schleicher_dnef_r = Q.schleicher_dnef_r;
-        Q.true_dnef_r = Q.dnef_r - Q.left_dnef_r;
-        Q.true_dnef_r = Math.round(Q.dnef_r * 10) / 10;
-        Q.left_dnef_r = Math.round(Q.left_dnef_r * 10) / 10;
-    }
-    Q.schleicher_dnef_r = Math.round(Q.schleicher_dnef_r * 10) / 10;
-}
-
-if ((Q.time - Q.marxist_malus_time >= 10 || !Q.marxist_malus_time) && (Q.left_strength >= Q.reformist_strength + Q.labor_strength)) {
-    if (Q.spd_votes >= 50) {
-        Q.z_relation -= 12;
-        Q.ddp_relation -= 12;
-        Q.lvp_relation -= 12;
-        Q.dvp_relation -= 12;
-        Q.lvp_right += 6;
-        Q.dvp_right += 6;
-        Q.ddp_right += 5;
-        Q.ddp_cohesion -= 4;
-    } else if (Q.spd_votes >= 45) {
-        Q.z_relation -= 9;
-        Q.ddp_relation -= 9;
-        Q.lvp_relation -= 9;
-        Q.dvp_relation -= 9;
-        Q.lvp_right += 4;
-        Q.dvp_right += 4;
-        Q.ddp_right += 3;
-        Q.ddp_cohesion -= 3;
-    } else if (Q.spd_votes >= 40) {
-        Q.z_relation -= 6;
-        Q.ddp_relation -= 6;
-        Q.lvp_relation -= 6;
-        Q.dvp_relation -= 6;
-        Q.lvp_right += 3;
-        Q.dvp_right += 3;
-        Q.ddp_right += 2;
-        Q.ddp_cohesion -= 2;
-    } else if (Q.spd_votes >= 35) {
-        Q.z_relation -= 4;
-        Q.ddp_relation -= 4;
-        Q.lvp_relation -= 4;
-        Q.dvp_relation -= 4;
-        Q.lvp_right += 2;
-        Q.dvp_right += 2;
-        Q.ddp_right += 1;
-        Q.ddp_cohesion -= 1;
-    }
-    Q.marxist_malus_time = Q.time;
+    // --- NEW: Calculate change in seats
+    Q['change_' + party + '_seats'] = Q[party + '_seats'] - (Q['old_' + party + '_seats'] || 0);
+    let sign3 = Q['change_' + party + '_seats'] > 0
+                ? '<img src="img/arrowup.png"> '
+                : Q['change_' + party + '_seats'] < 0
+                  ? '<img src="img/arrowdown.png"> '
+                  : '<img src="img/steady.png"> ';
+    Q['str_seats_change_' + party] = sign3 + Math.abs(Q['change_' + party + '_seats']);
 }
 
 Q.last_election_time = Q.time;
-
-if (Q.election_boycott && Q.boycott_effect) {
-    Q.workers_schleicher_bonus -= 1;
-    Q.republicans_schleicher_bonus -= 1;
-    Q.industrialists_schleicher_bonus -= 0.5;
-    Q.nationalists_schleicher_bonus -= 0.5;
-    if (Q.boycott_effect >= 1.05) {
-        Q.workers_schleicher_bonus -= 1;
-        Q.republicans_schleicher_bonus -= 1;
-        Q.industrialists_schleicher_bonus -= 0.5;
-        Q.nationalists_schleicher_bonus -= 0.5;
-    }
-    if (Q.boycott_effect >= 1.1) {
-        Q.workers_schleicher_bonus -= 1;
-        Q.republicans_schleicher_bonus -= 1;
-        Q.industrialists_schleicher_bonus -= 0.5;
-        Q.nationalists_schleicher_bonus -= 0.5;
-    }
-}
 
 // The largest party can only be the NSDAP or the SPD.
 Q.largest_party = 'SPD';
@@ -1330,35 +546,6 @@ Q.old_other_lippe_elections_vote = Q.other_votes * lippe_adjustment_factors.othe
 Q.old_kvp_lippe_elections_vote = Q.kvp_votes * lippe_adjustment_factors.kvp;
 Q.old_dnf_lippe_elections_vote = Q.dnf_votes * lippe_adjustment_factors.dnf;
 
-if (Q.year < 1929) {
-    Q.reichstag_size = 4.91;
-} else if (Q.year < 1930) {
-    Q.reichstag_size = 5.2;
-} else if (Q.year < 1931) {
-    Q.reichstag_size = 5.77;
-    if (Q.unemployed < 8) Q.reichstag_size -= 0.1;
-} else if (Q.year < 1932) {
-    Q.reichstag_size = 5.95;
-    if (Q.unemployed < 20) Q.reichstag_size -= 0.1;
-    if (Q.unemployed < 25) Q.reichstag_size -= 0.1;
-    if (Q.unemployed < 30) Q.reichstag_size -= 0.1;
-} else if (Q.year < 1933) {
-    Q.reichstag_size = 6.08;
-    if (Q.unemployed < 20) Q.reichstag_size -= 0.1;
-    if (Q.unemployed < 25) Q.reichstag_size -= 0.1;
-    if (Q.unemployed < 30) Q.reichstag_size -= 0.1;
-} else if (Q.year < 1934) {
-    Q.reichstag_size = 5.95;
-    if (Q.unemployed < 20) Q.reichstag_size -= 0.1;
-    if (Q.unemployed < 25) Q.reichstag_size -= 0.1;
-    if (Q.unemployed < 30) Q.reichstag_size -= 0.1;
-} else {
-    Q.reichstag_size = 5.5;
-    if (Q.unemployed < 20) Q.reichstag_size -= 0.1;
-    if (Q.unemployed < 25) Q.reichstag_size -= 0.1;
-    if (Q.unemployed < 30) Q.reichstag_size -= 0.1;
-}
-
 var election_result = {'date': new Date(Q.year, Q.month - 1)};
 for (var party of Q.parties_graph) {
     election_result[party] = Q[party + '_r'];
@@ -1421,82 +608,109 @@ go-to: achievement_check_e
 = Election results
 
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
-[? if dnef_formed: Reichstag mandates for the other parties in the <span style="color: #BFC8CC;">German National Unity Front</span> organization are counted toward the party itself for simplicity's sake. ?]
 {!<table>!} 
-{!<tr><td>Party</td><td>Vote share</td><td>% Change</td><td>Reichstag Seats</td><td>% Change</td></tr>!}
-[? if not dnef_formed: {!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_votes +]%** {!</td><td>!} **[+ str_votes_change_spd +]** {!</td><td>!} **[+ spd_r +]%** {!</td><td>!} **[+ str_change_spd +]** {!</td></tr>!} ?][? if dnef_formed: {!<tr><td><div class="box" style='background-color:#BFC8CC; outline: 2px; outline-style: solid;'> </div> !} **DNEF:** {!</td><td>!} **[+ dnef_votes +]%** {!</td><td>!} **[+ str_votes_change_dnef +]** {!</td><td>!} **[+ true_dnef_r +]%** {!</td><td>!} **[+ str_change_dnef +]** {!</td></tr>!} ?]
+<tr><td>Party</td><td>Vote share</td><td>% Change</td><td>Seats</td><td>% Change</td></tr>
 
-[? if dnef_formed and not (right_dnef or left_dnef): {!<tr><td><div class="box2" style='background-color:#BFC8CC'> </div> !} DNEF: {!</td><td>!} [+ schleicher_dnef_votes +]% {!</td><td>!} [+ str_votes_change_schleicher_dnef +] {!</td><td>!} [+ schleicher_dnef_r +]% {!</td><td>!} [+ str_change_dnef +] {!</td></tr>!} ?]
+[? if kpt_seats: 
+<tr>
+  <td><div class="box" style='background-color:#990000;'> </div> KPT:</td>
+  <td>[+ kpt_votes +]%</td>
+  <td>[+ str_votes_change_kpt +]</td>
+  <td>[+ kpt_seats +] ([+ kpt_r +]%)</td>
+  <td>[+ str_change_kpt +]</td>
+</tr>
+?]
 
-[? if dnef_formed and (right_dnef or left_dnef): {!<tr><td><div class="box3" style='background-color:#BFC8CC'> </div> !} DNEF: {!</td><td>!} [+ schleicher_dnef_votes +]% {!</td><td>!} [+ str_votes_change_schleicher_dnef +] {!</td><td>!} [+ schleicher_dnef_r +]% {!</td><td>!} [+ str_change_dnef +] {!</td></tr>!} ?]
+[? if sapt_seats: 
+<tr>
+  <td><div class="box" style='background-color:#d4130c;'> </div> SAPT:</td>
+  <td>[+ sapt_votes +]%</td>
+  <td>[+ str_votes_change_sapt +]</td>
+  <td>[+ sapt_r +]%</td>
+  <td>[+ str_change_sapt +]</td>
+</tr>
+?]
 
-[? if dnef_formed and left_dnef: {!<tr><td><div class="box2" style='background-color:#B86558'> </div> !} DNEF-SB: {!</td><td>!} [+ left_dnef_votes +]% {!</td><td>!} [+ str_votes_change_left_dnef +] {!</td><td>!} [+ left_dnef_r +]% {!</td><td>!} [+ str_change_left_dnef +] {!</td></tr>!} ?]
+[? if lapt_seats: 
+<tr>
+  <td><div class="box" style='background-color:#e49c21;'> </div> LAPT:</td>
+  <td>[+ lapt_votes +]%</td>
+  <td>[+ str_votes_change_lapt +]</td>
+  <td>[+ lapt_r +]%</td>
+  <td>[+ str_change_lapt +]</td>
+</tr>
+?]
 
-[? if dnef_formed and right_dnef: {!<tr><td><div class="box2" style='background-color:#5F7278'> </div> !} DNEF-VLB: {!</td><td>!} [+ right_dnef_votes +]% {!</td><td>!} [+ str_votes_change_right_dnef +] {!</td><td>!} [+ right_dnef_r +]% {!</td><td>!} [+ str_change_right_dnef +] {!</td></tr>!} ?]
+[? if rpt_seats: 
+<tr>
+  <td><div class="box" style='background-color:#f5e324;'> </div> RPT:</td>
+  <td>[+ rpt_votes +]%</td>
+  <td>[+ str_votes_change_rpt +]</td>
+  <td>[+ rpt_r +]%</td>
+  <td>[+ str_change_rpt +]</td>
+</tr>
+?]
 
-[? if dnef_formed and (right_dnef or left_dnef): <tr><td colspan="5" style="text-align: center;"><hr id="read-marker"></td></tr> ?]
+[? if tndp_seats: 
+<tr>
+  <td><div class="box" style='background-color:#a86b15;'> </div> TNDP:</td>
+  <td>[+ tndp_votes +]%</td>
+  <td>[+ str_votes_change_tndp +]</td>
+  <td>[+ tndp_r +]%</td>
+  <td>[+ str_change_tndp +]</td>
+</tr>
+?]
 
-[? if not lvp_formed and dstp_dnef: {!<tr><td><div class="box2" style='background-color:#A79A3F'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes +]% {!</td><td>!} [+ str_votes_change_ddp +] {!</td><td>!} [+ ddp_r +]% {!</td><td>!} [+ str_change_ddp +] {!</td></tr>!} ?]
+[? if avpt_seats: 
+<tr>
+  <td><div class="box" style='background-color:#4e9933;'> </div> AVPT:</td>
+  <td>[+ avpt_votes +]%</td>
+  <td>[+ str_votes_change_avpt +]</td>
+  <td>[+ avpt_r +]%</td>
+  <td>[+ str_change_avpt +]</td>
+</tr>
+?]
 
-[? if lvp_formed and lvp_dnef: {!<tr><td><div class="box2" style='background-color:#CC9900'> </div> !} LVP: {!</td><td>!} [+ lvp_votes +]% {!</td><td>!} [+ str_votes_change_lvp +] {!</td><td>!} [+ lvp_r +]% {!</td><td>!} [+ str_change_lvp +] {!</td></tr>!} ?]
+[? if ntap_seats: 
+<tr>
+  <td><div class="box" style='background-color:#a22561;'> </div> NTAP:</td>
+  <td>[+ ntap_votes +]%</td>
+  <td>[+ str_votes_change_ntap +]</td>
+  <td>[+ ntap_r +]%</td>
+  <td>[+ str_change_ntap +]</td>
+</tr>
+?]
 
-[? if z_dnef: {!<tr><td><div class="box2" style='background-color:#1A0000'> </div> !} [+ z_party_name +]: {!</td><td>!} [+ z_minus_bvp_votes +]% {!</td><td>!} [+ str_votes_change_z +] {!</td><td>!} [+ z_minus_bvp_r +]% {!</td><td>!} [+ str_change_z +] {!</td></tr>!} ?]
+[? if fk_seats: 
+<tr>
+  <td><div class="box" style='background-color:#2f387f;'> </div> FK:</td>
+  <td>[+ fk_votes +]%</td>
+  <td>[+ str_votes_change_fk +]</td>
+  <td>[+ fk_r +]%</td>
+  <td>[+ str_change_fk +]</td>
+</tr>
+?]
 
-[? if z_dnef: {!<tr><td><div class="box2" style='background-color:#7aa7af'> </div> !} BVP: {!</td><td>!} [+ bvp_votes +]% {!</td><td>!} [+ str_votes_change_bvp +] {!</td><td>!} [+ bvp_r +]% {!</td><td>!} [+ str_change_bvp +] {!</td></tr>!} ?]
+[? if vp_seats: 
+<tr>
+  <td><div class="box" style='background-color:#a08464;'> </div> VP:</td>
+  <td>[+ vp_votes +]%</td>
+  <td>[+ str_votes_change_vp +]</td>
+  <td>[+ vp_r +]%</td>
+  <td>[+ str_change_vp +]</td>
+</tr>
+?]
 
-[? if not lvp_formed and dvp_exist and dvp_dnef: {!<tr><td><div class="box2" style='background-color:#AA861F'> </div> !} DVP: {!</td><td>!} [+ dvp_votes +]% {!</td><td>!} [+ str_votes_change_dvp +] {!</td><td>!} [+ dvp_r +]% {!</td><td>!} [+ str_change_dvp +] {!</td></tr>!} ?]
+[? if nt_seats: 
+<tr>
+  <td><div class="box" style='background-color:#441796;'> </div> NT:</td>
+  <td>[+ nt_votes +]%</td>
+  <td>[+ str_votes_change_nt +]</td>
+  <td>[+ nt_r +]%</td>
+  <td>[+ str_change_nt +]</td>
+</tr>
+?]
 
-[? if other_dnef: {!<tr><td><div class="box2" style='background-color:#707070'> </div> !} Others: {!</td><td>!} [+ other_votes +]% {!</td><td>!} [+ str_votes_change_other +] {!</td><td>!} [+ other_r +]% {!</td><td>!} [+ str_change_other +] {!</td></tr>!} ?]
-
-[? if kvp_formed and not cvp_kvp_formed and kvp_dnef: {!<tr><td><div class="box2" style='background-color:#0072C0'> </div> !}KVP: {!</td><td>!} [+ kvp_votes +]% {!</td><td>!} [+ str_votes_change_kvp +] {!</td><td>!} [+ kvp_r +]% {!</td><td>!} [+ str_change_kvp +] {!</td></tr>!} ?]
-
-[? if not cvp_formed and dnvp_dnef: {!<tr><td><div class="box2" style='background-color:#316B8F'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes +]% {!</td><td>!} [+ str_votes_change_dnvp +] {!</td><td>!} [+ dnvp_r +]% {!</td><td>!} [+ str_change_dnvp +] {!</td></tr>!}?]
-
-[? if nvf_exist and nvf_dnef: {!<tr><td><div class="box2" style='background-color:#0F2116'> </div> !} NVF: {!</td><td>!} [+ nvf_votes +]% {!</td><td>!} [+ str_votes_change_nvf +] {!</td><td>!} [+ nvf_r +]% {!</td><td>!} [+ str_change_nvf +] {!</td></tr>!} ?]
-
-[? if dnef_formed: <tr><td colspan="5" style="text-align: center;"><hr id="read-marker"></td></tr> ?]
-
-[? if dnef_formed: {!<tr><td><div class="box" style='background-color:#E3000F;'> </div> !} SPD: {!</td><td>!} [+ spd_votes +]% {!</td><td>!} [+ str_votes_change_spd +] {!</td><td>!} [+ spd_r +]% {!</td><td>!} [+ str_change_spd +] {!</td></tr>!} ?]
-
-[? if lvp_formed and rdp_list: {!<tr><td><div class="box2" style='background-color:#E0B0FF'> </div> !} RDP: {!</td><td>!} [+ rdp_votes +]% {!</td><td>!} [+ str_votes_change_rdp +] {!</td><td>!} [+ rdp_r +]% {!</td><td>!} [+ str_change_rdp +] {!</td></tr>!} ?]
-
-[? if not cvp_formed and not dnvp_dnef and not dnvp_defunct and dnvp_wholesome: {!<tr><td><div class="box" style='background-color:#3E88B3'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes +]% {!</td><td>!} [+ str_votes_change_dnvp +] {!</td><td>!} [+ dnvp_r +]% {!</td><td>!} [+ str_change_dnvp +] {!</td></tr>!}?]
-
-[? if sapd_formed : {!<tr><td><div class="box" style='background-color:#9B0000'> </div> !}SAPD: {!</td><td>!} [+ sapd_votes +]% {!</td><td>!} [+ str_votes_change_sapd +] {!</td><td>!} [+ sapd_r +]% {!</td><td>!} [+ str_change_sapd +] {!</td></tr>!} ?]
-
-{!<tr><td><div class="box" style='background-color:#700000'> </div> !}KPD: {!</td><td>!} [+ kpd_votes +]% {!</td><td>!} [+ str_votes_change_kpd +] {!</td><td>!} [+ kpd_r +]% {!</td><td>!} [+ str_change_kpd +] {!</td></tr>!}
-
-[? if not lvp_formed and not dstp_dnef: {!<tr><td><div class="box" style='background-color:#D3C24D'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes +]% {!</td><td>!} [+ str_votes_change_ddp +] {!</td><td>!} [+ ddp_r +]% {!</td><td>!} [+ str_change_ddp +] {!</td></tr>!} ?]
-
-[? if lvp_formed and not lvp_dnef: {!<tr><td><div class="box" style='background-color:#FFCC00'> </div> !} LVP: {!</td><td>!} [+ lvp_votes +]% {!</td><td>!} [+ str_votes_change_lvp +] {!</td><td>!} [+ lvp_r +]% {!</td><td>!} [+ str_change_lvp +] {!</td></tr>!} ?]
-
-[? if not z_dnef: {!<tr><td><div class="box" style='background-color:#000'> </div> !} [+ z_party_name +]: {!</td><td>!} [+ z_minus_bvp_votes +]% {!</td><td>!} [+ str_votes_change_z +] {!</td><td>!} [+ z_minus_bvp_r +]% {!</td><td>!} [+ str_change_z +] {!</td></tr>!} ?]
-
-[? if not z_dnef: {!<tr><td><div class="box" style='background-color:#A2D8E0'> </div> !} BVP: {!</td><td>!} [+ bvp_votes +]% {!</td><td>!} [+ str_votes_change_bvp +] {!</td><td>!} [+ bvp_r +]% {!</td><td>!} [+ str_change_bvp +] {!</td></tr>!} ?]
-
-[? if not lvp_formed and dvp_exist and not dvp_dnef: {!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP: {!</td><td>!} [+ dvp_votes +]% {!</td><td>!} [+ str_votes_change_dvp +] {!</td><td>!} [+ dvp_r +]% {!</td><td>!} [+ str_change_dvp +] {!</td></tr>!} ?]
- 
-[? if not other_dnef: {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_votes +]% {!</td><td>!} [+ str_votes_change_other +] {!</td><td>!} [+ other_r +]% {!</td><td>!} [+ str_change_other +] {!</td></tr>!} ?]
-
-[? if aspd_other: {!<tr><td><div class="box2" style='background-color:#fe9e00'> </div> !} ASPD: {!</td><td>!} [+ aspd_votes +]% {!</td><td>!} [+ str_votes_change_aspd +] {!</td><td>!} [+ aspd_r +]% {!</td><td>!} [+ str_change_aspd +] {!</td></tr>!} ?]
-
-[? if dnvp_dvp_formed and not kvp_dnef: {!<tr><td><div class="box" style='background-color:#00C0FF'> </div> !}FKP: {!</td><td>!} [+ kvp_votes +]% {!</td><td>!} [+ str_votes_change_kvp +] {!</td><td>!} [+ kvp_r +]% {!</td><td>!} [+ str_change_kvp +] {!</td></tr>!} ?]
-
-[? if kvp_formed and not dnvp_dvp_formed and not cvp_kvp_formed and not kvp_dnef: {!<tr><td><div class="box" style='background-color:#0087DC'> </div> !}KVP: {!</td><td>!} [+ kvp_votes +]% {!</td><td>!} [+ str_votes_change_kvp +] {!</td><td>!} [+ kvp_r +]% {!</td><td>!} [+ str_change_kvp +] {!</td></tr>!} ?]
-
-[? if aspd_kvp: {!<tr><td><div class="box2" style='background-color:#fe9e00'> </div> !} ASPD: {!</td><td>!} [+ aspd_votes +]% {!</td><td>!} [+ str_votes_change_aspd +] {!</td><td>!} [+ aspd_r +]% {!</td><td>!} [+ str_change_aspd +] {!</td></tr>!} ?]
-
-[? if not cvp_formed and not dnvp_dnef and not dnvp_defunct and not dnvp_wholesome: {!<tr><td><div class="box" style='background-color:#3E88B3'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes +]% {!</td><td>!} [+ str_votes_change_dnvp +] {!</td><td>!} [+ dnvp_r +]% {!</td><td>!} [+ str_change_dnvp +] {!</td></tr>!}?]
-
-[? if dnf_formed : {!<tr><td><div class="box" style='background-color:#003755'> </div> !}DNF: {!</td><td>!} [+ dnf_votes +]% {!</td><td>!} [+ str_votes_change_dnf +] {!</td><td>!} [+ dnf_r +]% {!</td><td>!} [+ str_change_dnf +] {!</td></tr>!} ?]
-
-[? if dsu_exist: {!<tr><td><div class="box" style='background-color:#6A1E1E'> </div> !} DSU: {!</td><td>!} [+ dsu_votes +]% {!</td><td>!} [+ str_votes_change_dsu +] {!</td><td>!} [+ dsu_r +]% {!</td><td>!} [+ str_change_dsu +] {!</td></tr>!} ?]
-
-[? if not nsdap_split: {!<tr><td><div class="box" style='background-color:#7A3C00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes +]% {!</td><td>!} [+ str_votes_change_nsdap +] {!</td><td>!} [+ nsdap_r +]% {!</td><td>!} [+ str_change_nsdap +] {!</td></tr>!} ?]
-
-[? if nsdap_split: {!<tr><td><div class="box" style='background-color:#7A3C00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_hitler_votes +]% {!</td><td>!} [+ str_votes_change_nsdap_hitler +] {!</td><td>!} [+ nsdap_hitler_r +]% {!</td><td>!} [+ str_change_nsdap_hitler +] {!</td></tr>!} ?]
-
-[? if nvf_exist and not nvf_dnef: {!<tr><td><div class="box" style='background-color:#142e20'> </div> !} NVF: {!</td><td>!} [+ nvf_votes +]% {!</td><td>!} [+ str_votes_change_nvf +] {!</td><td>!} [+ nvf_r +]% {!</td><td>!} [+ str_change_nvf +] {!</td></tr>!} ?]
 {!</table>!}
 
 {!<button class="tab_button" id="demographics_tab" onclick="window.toggleDem();">Demographic Results</button>!}
