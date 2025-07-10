@@ -1,0 +1,25 @@
+title: Birth of the <span style="color: #e49c21;">**LAPT**</span>
+subtitle: Minister-President Aspelund forms a new party following his defection
+view-if: month = 5
+max-visits: 1
+tags: event
+new-page: true
+on-arrival: {!
+Q.parties.push('lapt');
+Q.lapt_formed = 1;
+Q.rpt_seats -= 1;
+Q.lapt_seats = 1;
+!}
+
+= Birth of the <span style="color: #e49c21;">**LAPT**</span>
+
+When compelled by party discipline to resign from and dissolve his government, Aspelund instead chose to cross the floor and become an independent republican, many saw it as the sign of a coming split. And indeed there has come to be a split, with Aspelund's base following him to form a party, the <span style="color: #e49c21;">**Liberal Workers' Party**</span>.
+
+To see any longterm success, however, he will have to secure the support of the white-collar unions for this new party.
+
+- @white_collar_vote: The white-collar unions vote...
+
+@white_collar_vote
+on-arrival: new_middle_tndp += 5
+
+Frustratingly for Aspelund, the white-collar unions deadlock and drift from his grasp. The suddenness of his departure from the <span style="color: #f5e324;">**RPT**</span> leaves the unions paralyzed and unwilling to support him, still hesitating. The <span style="color: #a86b15;">**TNDP**</span> takes advantage, campaigning amongst the new middle class.
