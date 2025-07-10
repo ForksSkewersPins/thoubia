@@ -1,7 +1,7 @@
 title: The Prussian Bulwark
 new-page: true
 is-card: true
-view-if: in_spd_majority_prussia and (prussian_affairs_timer <= 0 or (prussian_affairs_timer <= 3 and rubicon))
+view-if: in_sapt_majority_prussia and (prussian_affairs_timer <= 0 or (prussian_affairs_timer <= 3 and rubicon))
 on-arrival: prussian_affairs_timer += 6; prussian_affairs_timer += 6 if prussia_leader != "Braun"; month_actions += 1
 tags: govt_affairs
 card-image: img/braun.jpg
@@ -45,7 +45,7 @@ on-arrival: prussian_police_strength += 35
 We have increased the size of the Prussian police.
 
 @bureaucracy
-on-arrival: prussian_police_loyalty += 0.08; nationalism -= 4; pacifism += 1; democratization += 1; pro_republic += 4*(1-dissent); new_middle_spd += 3*(1-dissent) if democratization >= 3
+on-arrival: prussian_police_loyalty += 0.08; nationalism -= 4; pacifism += 1; democratization += 1; pro_republic += 4*(1-dissent); new_middle_sapt += 3*(1-dissent) if democratization >= 3
 
 The bureaucracy is deeply <span style="color: #808080;">reactionary</span>, and many abuse their power to favor the <span style="color: #3E88B3;">political right</span>. By removing the <span style="color: #3E88B3;">pro-monarchy</span> and <span style="color: #7A3C00;">pro-dictatorship</span> elements, we can democratize it. Some of our opponents claim that we are infringing on individual freedoms, but perhaps the security of the republic requires it.
 
@@ -104,7 +104,7 @@ We are making progress towards negotiating a concordat between Prussia and the C
 
 @sign_concordat
 view-if: (prussian_concordat_progress >= 2 and not z_leader = "Kaas") or (prussian_concordat_progress >= 1 and z_leader = "Kaas") and prussian_concordat = 0
-on-arrival: prussian_concordat = 1; z_relation += 8; catholics_spd += 3*(1-dissent); catholics_dnvp -= 2 if dnvp_ideology == "Radical"; ddp_relation -= 2; ddp_cohesion -= 0.5; lvp_relation -= 2
+on-arrival: prussian_concordat = 1; z_relation += 8; catholics_sapt += 3*(1-dissent); catholics_dnvp -= 2 if dnvp_ideology == "Radical"; ddp_relation -= 2; ddp_cohesion -= 0.5; lvp_relation -= 2
 
 We have signed a Concordat between the Free State of Prussia and the Roman Catholic Church, guaranteeing religious freedom for Catholics in Prussia. This sets the stage for the negotiation of a national Concordat covering all of Germany.
 

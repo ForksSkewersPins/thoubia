@@ -22,7 +22,7 @@ title: Organizing workers
 subtitle: Improve our standing among the workers.
 choose-if: advisor_action_timer <= 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 6; workers_spd += 4*(1-dissent); workers_spd += 3*(1-dissent) if wtb_adopted == 1; labor_strength += 2;
+on-arrival: advisor_action_timer = 6; workers_sapt += 4*(1-dissent); workers_sapt += 3*(1-dissent) if wtb_adopted == 1; labor_strength += 2;
 
 We have increased our organizing among the workers.
 
@@ -41,7 +41,7 @@ subtitle: Leipart will attempt to convince the <span style="color: #c00000;">**S
 view-if: red_general_unlock and rubicon
 choose-if: advisor_action_timer <= 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 6; red_general_timer -= 4 if not schleicher_spd_adopted; red_general_timer -= 6 if schleicher_spd_adopted; last_advisor_action = 1
+on-arrival: advisor_action_timer = 6; red_general_timer -= 4 if not schleicher_sapt_adopted; red_general_timer -= 6 if schleicher_sapt_adopted; last_advisor_action = 1
 go-to: red_general
 
 

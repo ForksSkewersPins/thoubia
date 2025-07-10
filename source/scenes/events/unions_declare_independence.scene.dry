@@ -7,8 +7,8 @@ on-arrival: {!
 Q.unions_independent = 1; 
 
 if (Q.labor_strength < 10) {
-    Q.workers_spd -= 16;
-    Q.unemployed_spd -= 8;
+    Q.workers_sapt -= 16;
+    Q.unemployed_sapt -= 8;
     if (Q.sapd_formed) {
         Q.workers_sapd += 8;
         Q.unemployed_sapd += 4;
@@ -19,8 +19,8 @@ if (Q.labor_strength < 10) {
     Q.workers_nsdap += 4;
     Q.rb_strength -= 400;
 } else if (Q.labor_strength < 25) {
-    Q.workers_spd -= 20;
-    Q.unemployed_spd -= 10;
+    Q.workers_sapt -= 20;
+    Q.unemployed_sapt -= 10;
     if (Q.sapd_formed) {
         Q.workers_sapd += 10;
         Q.unemployed_sapd += 6;
@@ -31,8 +31,8 @@ if (Q.labor_strength < 10) {
     Q.workers_nsdap += 5;
     Q.rb_strength -= 500;
 } else if (Q.labor_strength < 40) {
-    Q.workers_spd -= 22;
-    Q.unemployed_spd -= 12;
+    Q.workers_sapt -= 22;
+    Q.unemployed_sapt -= 12;
     if (Q.sapd_formed) {
         Q.workers_sapd += 12;
         Q.unemployed_sapd += 8;
@@ -43,8 +43,8 @@ if (Q.labor_strength < 10) {
     Q.workers_nsdap += 6;
     Q.rb_strength -= 600;
 } else if (Q.labor_strength < 60) {
-    Q.workers_spd -= 24;
-    Q.unemployed_spd -= 14;
+    Q.workers_sapt -= 24;
+    Q.unemployed_sapt -= 14;
     if (Q.sapd_formed) {
         Q.workers_sapd += 15;
         Q.unemployed_sapd += 10;
@@ -55,8 +55,8 @@ if (Q.labor_strength < 10) {
     Q.workers_nsdap += 7;
     Q.rb_strength -= 700;
 } else {
-    Q.workers_spd -= 26;
-    Q.unemployed_spd -= 16;
+    Q.workers_sapt -= 26;
+    Q.unemployed_sapt -= 16;
     if (Q.sapd_formed) {
         Q.workers_sapd += 18;
         Q.unemployed_sapd += 12;

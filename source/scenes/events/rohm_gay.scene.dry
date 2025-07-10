@@ -1,6 +1,6 @@
 title: <span style="color: #7A3C00;">**SA**</span> Leader Ernst Röhm's <span style="color: red;">Ho</span><span style="color: orange;">mo</span><span style="color: yellow;">se</span><span style="color: green;">xu</span><span style="color: blue;">al</span><span style="color: purple;">ity</span> Exposed
 subtitle: The Prussian Ministry of the Interior uncovers shocking revelations about the <span style="color: #7A3C00;">Nazi</span> leader...
-view-if: year == 1932 and month == 3 and not hindenburg_term_extended and spd_prussia and not repealed_175
+view-if: year == 1932 and month == 3 and not hindenburg_term_extended and sapt_prussia and not repealed_175
 priority: 3
 max-visits: 1
 tags: event
@@ -24,7 +24,7 @@ What shall be our next move regarding these letters?
 - @no_expose_rohm: The <span style="color: #c00000;">**SPD**</span> is nominally in favor of <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> rights, and it would be in poor taste to expose such a personal matter.
 
 @expose_rohm
-on-arrival: hindenburg_angry_bruning -= 10; old_middle_nsdap -= 2; rural_nsdap -= 2; catholics_nsdap -= 2; new_middle_spd -= 0.01; z_relation += 3; left_dissent += 5
+on-arrival: hindenburg_angry_bruning -= 10; old_middle_nsdap -= 2; rural_nsdap -= 2; catholics_nsdap -= 2; new_middle_sapt -= 0.01; z_relation += 3; left_dissent += 5
 
 We have published the Röhm letters under the title *Der Fall Röhm* (The Röhm Affair), distributing the pamphlet across all corners of Germany. This has damaged the <span style="color: #7A3C00;">Nazi</span> Party’s appeal among its more socially reactionary supporters and has even sparked a plot among some <span style="color: #7A3C00;">Nazi</span> members to murder Röhm.
 
