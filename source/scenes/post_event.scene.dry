@@ -1657,6 +1657,33 @@ if ((Q.month_actions >= 1 && !Q.rubicon) || (Q.month_actions >= 4 && Q.rubicon))
     }
 
     ////////////////////////// annual support changes
+    if (Q.year == 1928) {
+        Q.unemployed += 8/12;
+        Q.workers -= 5/12;
+        Q.new_middle -= 2/12;
+        Q.old_middle -= 1/12;
+        Q.unemployed_kpt += 3/12;
+        Q.workers_kpt += 1/12;
+        Q.new_middle_tndp += 2/12;
+        Q.old_middle_tndp += 2/12;
+        Q.rural_tndp += 2/12;
+        Q.unemployed_tndp += 1/12;
+        Q.unemployed_ntap += 1/12;
+        Q.rural_avpt -= 6/12;
+        Q.rural_fk += 3/12;
+        Q.workers_fk -= 2/12;
+        Q.workers_ntap += 2/12;
+        Q.new_middle_rpt -= 3/12;
+        Q.old_middle_rpt -= 3/12;
+        Q.new_middle_lapt += 3/12;
+        if (Q.sapt_in_government) {
+            Q.workers_sapt -= 2/12;
+            Q.new_middle_sapt -= 2/12;
+            Q.old_middle_sapt -= 2/12;
+            Q.rural_sapt -= 1/12;
+            Q.unemployed_sapt -= 2/12;
+        }
+    } 
     if (Q.year == 1929) {
         Q.unemployed += 3/12;
         Q.inflation -= 1/12;

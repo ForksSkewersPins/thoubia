@@ -267,8 +267,8 @@ Q.workers_vp = 0;
 // New Middle Class
 Q.new_middle_kpt = 1;
 Q.new_middle_sapt = 9;
-Q.new_middle_lapt = 4;
-Q.new_middle_rpt = 50;
+Q.new_middle_lapt = 2;
+Q.new_middle_rpt = 52;
 Q.new_middle_tndp = 5;
 Q.new_middle_ntap = 16;
 Q.new_middle_avpt = 0;
