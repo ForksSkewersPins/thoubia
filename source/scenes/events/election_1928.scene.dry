@@ -613,7 +613,7 @@ go-to: achievement_check_e
   <td>[+ kpt_votes +]%</td>
   <td>[+ str_votes_change_kpt +]</td>
   <td>[+ kpt_seats +] ([+ kpt_r +]%)</td>
-  <td>[+ str_seats_change_kpt +] ([+ str_change_kpt +]%)</td>
+  <td>[+ str_seats_change_kpt +] ([+ str_change_kpt +] pp.)</td>
 </tr>
 ?]
 
@@ -623,7 +623,7 @@ go-to: achievement_check_e
   <td>[+ sapt_votes +]%</td>
   <td>[+ str_votes_change_sapt +]</td>
   <td>[+ sapt_seats +] ([+ sapt_r +]%)</td>
-  <td>[+ str_seats_change_sapt +] ([+ str_change_sapt +]%)</td>
+  <td>[+ str_seats_change_sapt +] ([+ str_change_sapt +] pp.)</td>
 </tr>
 ?]
 
@@ -633,7 +633,7 @@ go-to: achievement_check_e
   <td>[+ lapt_votes +]%</td>
   <td>[+ str_votes_change_lapt +]</td>
   <td>[+ lapt_seats +] ([+ lapt_r +]%)</td>
-  <td>[+ str_seats_change_lapt +] ([+ str_change_lapt +]%)</td>
+  <td>[+ str_seats_change_lapt +] ([+ str_change_lapt +] pp.)</td>
 </tr>
 ?]
 
@@ -643,7 +643,7 @@ go-to: achievement_check_e
   <td>[+ rpt_votes +]%</td>
   <td>[+ str_votes_change_rpt +]</td>
   <td>[+ rpt_seats +] ([+ rpt_r +]%)</td>
-  <td>[+ str_seats_change_rpt +] ([+ str_change_rpt +]%)</td>
+  <td>[+ str_seats_change_rpt +] ([+ str_change_rpt +] pp.)</td>
 </tr>
 ?]
 
@@ -653,7 +653,7 @@ go-to: achievement_check_e
   <td>[+ tndp_votes +]%</td>
   <td>[+ str_votes_change_tndp +]</td>
   <td>[+ tndp_seats +] ([+ tndp_r +]%)</td>
-  <td>[+ str_seats_change_tndp +] ([+ str_change_tndp +]%)</td>
+  <td>[+ str_seats_change_tndp +] ([+ str_change_tndp +] pp.)</td>
 </tr>
 ?]
 
@@ -663,7 +663,7 @@ go-to: achievement_check_e
   <td>[+ avpt_votes +]%</td>
   <td>[+ str_votes_change_avpt +]</td>
   <td>[+ avpt_seats +] ([+ avpt_r +]%)</td>
-  <td>[+ str_seats_change_avpt +] ([+ str_change_avpt +]%)</td>
+  <td>[+ str_seats_change_avpt +] ([+ str_change_avpt +] pp.)</td>
 </tr>
 ?]
 
@@ -673,7 +673,7 @@ go-to: achievement_check_e
   <td>[+ ntap_votes +]%</td>
   <td>[+ str_votes_change_ntap +]</td>
   <td>[+ ntap_seats +] ([+ ntap_r +]%)</td>
-  <td>[+ str_seats_change_ntap +] ([+ str_change_ntap +]%)</td>
+  <td>[+ str_seats_change_ntap +] ([+ str_change_ntap +] pp.)</td>
 </tr>
 ?]
 
@@ -683,7 +683,7 @@ go-to: achievement_check_e
   <td>[+ fk_votes +]%</td>
   <td>[+ str_votes_change_fk +]</td>
   <td>[+ fk_seats +] ([+ fk_r +]%)</td>
-  <td>[+ str_seats_change_fk +] ([+ str_change_fk +]%)</td>
+  <td>[+ str_seats_change_fk +] ([+ str_change_fk +] pp.)</td>
 </tr>
 ?]
 
@@ -693,7 +693,7 @@ go-to: achievement_check_e
   <td>[+ vp_votes +]%</td>
   <td>[+ str_votes_change_vp +]</td>
   <td>[+ vp_seats +] ([+ vp_r +]%)</td>
-  <td>[+ str_seats_change_vp +] ([+ str_change_vp +]%)</td>
+  <td>[+ str_seats_change_vp +] ([+ str_change_vp +] pp.)</td>
 </tr>
 ?]
 
@@ -703,7 +703,7 @@ go-to: achievement_check_e
   <td>[+ nt_votes +]%</td>
   <td>[+ str_votes_change_nt +]</td>
   <td>[+ nt_seats +] ([+ nt_r +]%)</td>
-  <td>[+ str_seats_change_nt +] ([+ str_change_nt +]%)</td>
+  <td>[+ str_seats_change_nt +] ([+ str_change_nt +] pp.)</td>
 </tr>
 ?]
 
