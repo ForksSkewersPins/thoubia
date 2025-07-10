@@ -345,6 +345,16 @@ Q.tndp_seats = 0;
 Q.nt_seats = 0;
 Q.vp_seats = 0;
 
+Q.sapt_leftist = 20;
+Q.rpt_leftist = -1;
+Q.fk_leftist = -15;
+Q.ntap_leftist = -10;
+Q.avpt_leftist = -6;
+Q.kpt_leftist = 50;
+Q.tndp_leftist = -3;
+Q.nt_leftist = -25;
+Q.vp_leftist = -20;
+
 // old election votes
 Q.previous_kpt_last_election_votes = 0.4;     // Communist Party of Thoubia
 Q.previous_sapt_last_election_votes = 29.3;    // Socialist Labor Party of Thoubia
