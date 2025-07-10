@@ -932,8 +932,29 @@ go-to: coalition_menu
 
 @coalition_menu
 
-- @ministries: wow.
+- @mp_election_1: And now, the elections for Minister-President.
 
+@mp_election_1
+subtitle: Aspelund's future is uncertain
+
+Following constitutional procedure, the Minister-President is elected from the parliament in a multi-stage process, wherein first any candidate able to get 20 signatures behind him is added to the ballot and from there a multi-round election held by the parliament to determine the Minister-President, who will appoint the ministers of his government with parliamentary confidence.
+
+With only [+ lapt_seats +] pledged behind him, Aspelund's future as Minister-President is uncertain. He could likely only win with our endorsement.
+
+- @run: We should run our own candidate.
+- @back_aspelund: Endorse Aspelund.
+
+@run
+choose-if: sapt_seats >= 20
+unavailable-subtitle: What
+
+With [+ sapt_seats +] behind us, we can easily afford to run a candidate in the race. The only question is - who?
+
+- @posse: Theodor Posse, reformist socialist and former trade unionist.
+- @palmgren: Johan Palmgren, revolutionary socialist and academic.
+
+@posse
+subtitle: A constructive campaign
 
 @ministries
 
