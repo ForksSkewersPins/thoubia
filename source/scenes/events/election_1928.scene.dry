@@ -244,7 +244,7 @@ for (let party of Q.parties) {
 // step 7 - change over time
 for (var party of Q.parties) {
     Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];
-    var sign = Q['change_' + party + '_r'] > 0 ? '+' : '';
+    var sign = Q['change_' + party + '_r'] > 0 ? '+' : < 0 ? '-' : '';
     Q['change_' + party + '_r'] = Math.abs(Q['change_' + party + '_r']);
     Q['str_change_' + party] = sign + parseFloat(Q['change_' + party + '_r']).toFixed(1);
 
