@@ -695,46 +695,77 @@ th {
 }
 
 /* Styles for parties */
-.seat.kpd {
-  fill: #700000;
-}
 
-.seat.spd {
-  fill: #E3000F;
-  stroke: var(--border-color);
+
+/* (..1) <span style="color: #990000;">**KPT**</span>
+(2..2) <span style="color: #d4130c;">**SAPT**</span>
+(3..3) <span style="color: #e49c21;">**LAPT**</span>
+(4..4) <span style="color: #f5e324;">**RPT**</span>
+(5..5) <span style="color: #a86b15;">**TNDP**</span>
+(6..6) <span style="color: #4e9933;">**AVPT**</span>
+(7..7) <span style="color: #a22561;">**NTAP**</span>
+(8..8) <span style="color: #2f387f;">**FK**</span>
+(9..9) <span style="color: #a08464;">**VP**</span>
+(10..) <span style="color: #441796;">**NT**</span> */
+
+.seat.kpt {
+  fill: #990000;
+  stroke: #800000;
   stroke-width: 1.5px;
 }
 
-.seat.ddp {
-  fill: #D3C24D;
+.seat.sapt {
+  fill: #d4130c;
+  stroke: #bf110b;
+  stroke-width: 1.5px;
 }
 
-.seat.z {
-  fill: #000;
+.seat.lapt {
+  fill: #e49c21;
+  stroke: #cb8b1d;
+  stroke-width: 1.5px;
 }
 
-.seat.bvp {
-  fill: #A2D8E0;
+.seat.rpt {
+  fill: #f5e324;
+  stroke: #dccd20;
+  stroke-width: 1.5px;
 }
 
-.seat.dvp {
-  fill: #D5AC27;
+.seat.tndp {
+  fill: #a86b15;
+  stroke: #965f13;
+  stroke-width: 1.5px;
 }
 
-.seat.other {
-  fill: #909090;
+.seat.avpt {
+  fill: #4e9933;
+  stroke: #44862d;
+  stroke-width: 1.5px;
 }
 
-.seat.dnvp {
-  fill: #3E88B3;
+.seat.ntap {
+  fill: #a22561;
+  stroke: #901f56;
+  stroke-width: 1.5px;
 }
 
-.seat.nsdap {
-  fill: #7A3C00;
+.seat.fk {
+  fill: #2f387f;
+  stroke: #292f6f;
+  stroke-width: 1.5px;
 }
 
-.seat.dsu {
-  fill: #6A1E1E;
+.seat.vp {
+  fill: #a08464;
+  stroke: #8e7659;
+  stroke-width: 1.5px;
+}
+
+.seat.nt {
+  fill: #441796;
+  stroke: #3c1485;
+  stroke-width: 1.5px;
 }
 
 .seat.nvf {
