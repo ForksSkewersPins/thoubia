@@ -244,7 +244,11 @@ for (let party of Q.parties) {
 // step 7 - change over time
 for (var party of Q.parties) {
     Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];
-    var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';
+    var sign = Q['change_' + party + '_r'] > 0 
+                   ? '+' 
+                   : Q['change_' + party + '_r'] < 0 
+                     ? '-' 
+                     : '';
     Q['change_' + party + '_r'] = Math.abs(Q['change_' + party + '_r']);
     Q['str_change_' + party] = sign + parseFloat(Q['change_' + party + '_r']).toFixed(1);
 
@@ -556,7 +560,7 @@ data = Q.parties
         id: party,
         legend: party.toUpperCase(),
         name: party.toUpperCase(),
-        seats: Math.round(Q[party + '_r'] * 5),
+        seats: Q[party+'_seats'],
         leftist: Q[party + '_leftist'] || 0 // default to 0 if undefined
     }))
     .sort((a, b) => b.leftist - a.leftist) // sort from most to least left-wing
