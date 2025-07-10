@@ -19,7 +19,7 @@ The <span style="color: #c00000;">**SPD**</span> cannot govern by itself yet. Be
 - @kpd: Work towards repairing relationships with the <span style="color: #700000;">Communist Party</span>.
 - @dnvp: Open dialogue with [? if dnvp_leader != "Lambach": Treviranus and the <span style="color: #0087DC;">People's Conservatives</span>?][? if dnvp_leader == "Lambach": Lambach and the <span style="color: #6D5298;">Christian Socialists</span>?] of the <span style="color: #3E88B3;">**DNVP**</span>.
 - @nsdap: Establish contact with Strasser and the <span style="color: #7A3C00;">Nazi Party</span>'s left wing.
-- @sapt_alone: The <span style="color: #c00000;">SPD</span> can stand alone for now.
+- @spd_alone: The <span style="color: #c00000;">SPD</span> can stand alone for now.
 - @easy_discard
 
 
@@ -186,23 +186,23 @@ Q.wholesome_point += 1;
 Q.new_middle_ddp += 20;
 Q.new_middle_lvp += 20;
 
-Q.workers_dnvp = Q.workers_sapt;
-Q.workers_sapt = Q.workers_dnvp;
+Q.workers_dnvp = Q.workers_spd;
+Q.workers_spd = Q.workers_dnvp;
 
-Q.new_middle_dnvp = Q.new_middle_sapt;
-Q.new_middle_sapt = Q.new_middle_dnvp;
+Q.new_middle_dnvp = Q.new_middle_spd;
+Q.new_middle_spd = Q.new_middle_dnvp;
 
-Q.old_middle_dnvp = Q.old_middle_sapt;
-Q.old_middle_sapt = Q.old_middle_dnvp;
+Q.old_middle_dnvp = Q.old_middle_spd;
+Q.old_middle_spd = Q.old_middle_dnvp;
 
-Q.rural_dnvp = Q.rural_sapt;
-Q.rural_sapt = Q.rural_dnvp;
+Q.rural_dnvp = Q.rural_spd;
+Q.rural_spd = Q.rural_dnvp;
 
-Q.catholics_dnvp = Q.catholics_sapt;
-Q.catholics_sapt = Q.catholics_dnvp;
+Q.catholics_dnvp = Q.catholics_spd;
+Q.catholics_spd = Q.catholics_dnvp;
 
-Q.unemployed_dnvp = Q.unemployed_sapt;
-Q.unemployed_sapt = Q.unemployed_dnvp;
+Q.unemployed_dnvp = Q.unemployed_spd;
+Q.unemployed_spd = Q.unemployed_dnvp;
 
 Q.z_minus_bvp_votes = parseFloat((Q.z_votes - Q.bvp_votes).toFixed(1));
 Q.z_minus_bvp_r = parseFloat((Q.z_r - Q.bvp_r).toFixed(1));
@@ -225,12 +225,12 @@ if (Q.sapd_formed && Q.sapd_r) {
     });
 }
 
-if (Q.sapt_r) {
+if (Q.spd_r) {
     data.push({
         "id": "SAPT",
         "legend": "SAPT",
         "name": "SAPT",
-        "seats": Math.round(Q.sapt_r * Q.reichstag_size),
+        "seats": Math.round(Q.spd_r * Q.reichstag_size),
     });
 }
 
@@ -427,7 +427,7 @@ on-arrival: rb_strength += sa_strength; rb_strength += sh_strength; rb_militancy
 
 The <span style="color: #3E88B3;">**Stahlhelm**</span> and <span style="color: #7A3C00;">**SA**</span> has dissolved and joined the Reichsbanner!
 
-@sapt_alone
+@spd_alone
 
 Whether it is because we *cannot* or *will not*, we do not make ties with other parties at this moment.
 

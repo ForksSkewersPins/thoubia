@@ -96,20 +96,20 @@ if ((Q.dynamic_mode || Q.historical_mode || Q.difficulty == 1) && !((Q.year == 1
   // Die Rote Fahne - join the KPD in the May Day march.
   // Mehrheitspartei - form an <span style="color: #c00000;">**SPD**</span> majority government in the Reichstag.
   // Panik im Mittelstand - have over 50% of New Middle Class support.
-  if (Q.new_middle_sapt_normalized && Q.new_middle_sapt_normalized >= 50) {
+  if (Q.new_middle_spd_normalized && Q.new_middle_spd_normalized >= 50) {
       this.achieve('panik_im_mittelstand');
   }
   // Bauernrevolution - have over 50% rural support.
-  if (Q.rural_sapt_normalized && Q.rural_sapt_normalized >= 50) {
+  if (Q.rural_spd_normalized && Q.rural_spd_normalized >= 50) {
       this.achieve('bauernrevolution');
   }
-  if (Q.catholics_sapt_normalized && Q.catholics_sapt_normalized >= 50) {
+  if (Q.catholics_spd_normalized && Q.catholics_spd_normalized >= 50) {
       this.achieve('katholischer_sozialismus');
   }
-  if (Q.workers_sapt_normalized >= 80 && Q.new_middle_sapt_normalized <= 20 && Q.old_middle_sapt_normalized <= 20 && Q.rural_sapt_normalized <= 20) {
+  if (Q.workers_spd_normalized >= 80 && Q.new_middle_spd_normalized <= 20 && Q.old_middle_spd_normalized <= 20 && Q.rural_spd_normalized <= 20) {
       this.achieve('klassenkampf');
   }
-  if (Q.workers_sapt_normalized >= 40 && Q.new_middle_sapt_normalized >= 40 && Q.old_middle_sapt_normalized >= 40 && Q.rural_sapt_normalized >= 40) {
+  if (Q.workers_spd_normalized >= 40 && Q.new_middle_spd_normalized >= 40 && Q.old_middle_spd_normalized >= 40 && Q.rural_spd_normalized >= 40) {
       this.achieve('grosse_volkspartei');
   }
   // Räterepublik - begin the transformation to a socialist economy.
@@ -139,7 +139,7 @@ if ((Q.dynamic_mode || Q.historical_mode || Q.difficulty == 1) && !((Q.year == 1
   if (Q.chancellor == "Adenauer" && Q.president == "Heuss") {
       this.achieve('traumteam');
   }
-  if ((Q.president != "Hammerstein" && Q.president != "Hitler" && Q.president != "Göring" && Q.president != "Seldte" && Q.chancellor != "Hitler" && !Q.hammerstein_win) && (Q.return_to_normalcy || Q.sapt_votes >= 50 || Q.sapt_r >= 50 && Q.pro_republic >= 80 || Q.nsdap_votes < 8) && (Q.sapt_votes >= 50 || Q.sapt_r >= 50) && !Q.civil_war_seen && !Q.rubicon) {
+  if ((Q.president != "Hammerstein" && Q.president != "Hitler" && Q.president != "Göring" && Q.president != "Seldte" && Q.chancellor != "Hitler" && !Q.hammerstein_win) && (Q.return_to_normalcy || Q.spd_votes >= 50 || Q.spd_r >= 50 && Q.pro_republic >= 80 || Q.nsdap_votes < 8) && (Q.spd_votes >= 50 || Q.spd_r >= 50) && !Q.civil_war_seen && !Q.rubicon) {
       this.achieve('ldp');
   }
   if (Q.civil_war_seen && Q.long_war && Q.west_aid) {
@@ -148,7 +148,7 @@ if ((Q.dynamic_mode || Q.historical_mode || Q.difficulty == 1) && !((Q.year == 1
 
   const partySupport = {
     NSDAP: Q.nsdap_r,
-    SPD: Q.sapt_r,
+    SPD: Q.spd_r,
     KPD: Q.kpd_r,
     Z: Q.z_r,
     DNVP: Q.dnvp_r,
@@ -181,7 +181,7 @@ if ((Q.dynamic_mode || Q.historical_mode || Q.difficulty == 1) && !((Q.year == 1
       this.achieve('schwarze_null');
   }
 
-  if (Q.dnvp_leader == "Lambach" && Q.dnvp_r >= 20 && Q.workers_dnvp_normalized >= Q.workers_sapt_normalized && Q.workers_dnvp_normalized >= Q.workers_kpd_normalized && Q.workers_dnvp_normalized >= Q.workers_z_normalized && Q.workers_dnvp_normalized >= Q.workers_nsdap_normalized) {
+  if (Q.dnvp_leader == "Lambach" && Q.dnvp_r >= 20 && Q.workers_dnvp_normalized >= Q.workers_spd_normalized && Q.workers_dnvp_normalized >= Q.workers_kpd_normalized && Q.workers_dnvp_normalized >= Q.workers_z_normalized && Q.workers_dnvp_normalized >= Q.workers_nsdap_normalized) {
       this.achieve('neue_arbeiterpartei');
   }
 
@@ -197,7 +197,7 @@ if ((Q.dynamic_mode || Q.historical_mode || Q.difficulty == 1) && !((Q.year == 1
       this.achieve('warum_kampfen_wir_immer_noch');
   }
 
-  if (Q.gov_burden_fail >= 10 && Q.in_sapt_majority) {
+  if (Q.gov_burden_fail >= 10 && Q.in_spd_majority) {
       this.achieve('leere_parolen');
   }
 
@@ -205,7 +205,7 @@ if ((Q.dynamic_mode || Q.historical_mode || Q.difficulty == 1) && !((Q.year == 1
       this.achieve('weltfrieden');
   }
 
-  if (Q.bavaria_sapt && Q.wurttemberg_sapt && (Q.thuringia_sapt || Q.red_thuringia) && (Q.saxony_sapt || Q.red_saxony) && Q.sapt_prussia) {
+  if (Q.bavaria_spd && Q.wurttemberg_spd && (Q.thuringia_spd || Q.red_thuringia) && (Q.saxony_spd || Q.red_saxony) && Q.spd_prussia) {
       this.achieve('staatspolitiker');
   }
 
@@ -257,7 +257,7 @@ if ((Q.dynamic_mode || Q.historical_mode || Q.difficulty == 1) && !((Q.year == 1
       this.achieve('die_rote_republik');
   }
 
-  if (Q.old_middle_sapt_normalized >= 40 && Q.old_middle_sapt_normalized > Q.workers_sapt_normalized) {
+  if (Q.old_middle_spd_normalized >= 40 && Q.old_middle_spd_normalized > Q.workers_spd_normalized) {
       this.achieve('champagner_sozialisten');
   }
 
@@ -295,13 +295,13 @@ if ((Q.dynamic_mode || Q.historical_mode || Q.difficulty == 1) && !((Q.year == 1
         Q.kpd_points_calc += 2;
         Q.kpd_points_calc += Q.sapd_votes;
       }
-      if (Q.sapt_votes < 26) Q.kpd_points_calc += 5;
+      if (Q.spd_votes < 26) Q.kpd_points_calc += 5;
       if (Q.eu) Q.kpd_points_calc -= 10;
-      if (Q.sapt_votes >= 36) Q.kpd_points_calc -= 5;
-      if (Q.sapt_votes >= 40) Q.kpd_points_calc -= 5;
+      if (Q.spd_votes >= 36) Q.kpd_points_calc -= 5;
+      if (Q.spd_votes >= 40) Q.kpd_points_calc -= 5;
 
       if (Q.kpd_points_calc >= 50) {
-        this.achieve('nach_der_sapt_wir');
+        this.achieve('nach_der_spd_wir');
       } else {
         this.achieve('1919_geracht');
       }
@@ -445,17 +445,17 @@ Albert Einstein, possibly the most famous scientist in the world, has been elect
 
 
 
-@sapt_victorious
+@spd_victorious
 title: <span style="color: #c00000;">**SPD**</span> still in government
-view-if: sapt_in_government == 1 and chancellor_party == "SAPT" and total_defeat == 0 and long_war == 0 and not schleicher_sapt
+view-if: sapt_in_government == 1 and chancellor_party == "SAPT" and total_defeat == 0 and long_war == 0 and not schleicher_spd
 tags: endings
 go-to: eg_menu
 
 The <span style="color: #c00000;">**SPD**</span> is still in government, under Chancellor [+ chancellor +]. Given the circumstances, this is a substantial accomplishment.
 
-@sapt_victorious_2
+@spd_victorious_2
 title: The <span style="color: #c00000;">**SPD**</span> is victorious?
-view-if: total_defeat == 0 and long_war == 0 and schleicher_sapt and wtb_implemented
+view-if: total_defeat == 0 and long_war == 0 and schleicher_spd and wtb_implemented
 tags: endings
 go-to: eg_menu
 
@@ -668,7 +668,7 @@ const achievements = [
   "achievement_neue_geschaftsfuhrung",
   "achievement_rotes_bayern",
   "achievement_1919_geracht",
-  "achievement_nach_der_sapt_wir"
+  "achievement_nach_der_spd_wir"
 ];
 
 Q.unlockedCount = achievements.filter(key => Q[key] === 1).length;
@@ -2403,10 +2403,10 @@ All achievements require <span style="color: #0077FF;">dynamic</span>, <span sty
 {!</tr>!}
 ?]
 
-[? if game_achievement_nach_der_sapt_wir: 
+[? if game_achievement_nach_der_spd_wir: 
 {!<tr>!}
   {!<td style="width: 60px; height: 60px; vertical-align: middle; text-align: center; border: 2px solid #0077FF; background-color: rgba(192, 0, 0, 0.1);">!}
-    <img src="img/achievement/nach_der_sapt_wir.png" alt="Nach der SPD wir Icon"
+    <img src="img/achievement/nach_der_spd_wir.png" alt="Nach der SPD wir Icon"
          style="width: 100%; height: 100%; object-fit: cover; display: block;">
   {!</td>!}
   {!<td style="border: 2px solid #0077FF; background-color: rgba(97, 24, 19, 0.2);">!}
@@ -4044,10 +4044,10 @@ All achievements require <span style="color: #0077FF;">dynamic</span>, <span sty
 {!</tr>!}
 ?]
 
-[? if achievement_nach_der_sapt_wir: 
+[? if achievement_nach_der_spd_wir: 
 {!<tr>!}
   {!<td style="width: 60px; height: 60px; vertical-align: middle; text-align: center; border: 2px solid #0077FF; background-color: rgba(192, 0, 0, 0.1);">!}
-    <img src="img/achievement/nach_der_sapt_wir.png" alt="Nach der SPD wir Icon"
+    <img src="img/achievement/nach_der_spd_wir.png" alt="Nach der SPD wir Icon"
          style="width: 100%; height: 100%; object-fit: cover; display: block;">
   {!</td>!}
   {!<td style="border: 2px solid #0077FF; background-color: rgba(97, 24, 19, 0.2);">!}
@@ -5684,10 +5684,10 @@ All achievements require <span style="color: #0077FF;">dynamic</span>, <span sty
 {!</tr>!}
 ?]
 
-[? if not achievement_nach_der_sapt_wir: 
+[? if not achievement_nach_der_spd_wir: 
 {!<tr>!}
   {!<td style="width: 60px; height: 60px; vertical-align: middle; text-align: center; border: 2px solid #0077FF; background-color: rgba(192, 0, 0, 0.1);">!}
-    <img src="img/achievement/nach_der_sapt_wir.png" alt="Nach der SPD wir Icon"
+    <img src="img/achievement/nach_der_spd_wir.png" alt="Nach der SPD wir Icon"
          style="width: 100%; height: 100%; object-fit: cover; display: block;">
   {!</td>!}
   {!<td style="border: 2px solid #0077FF; background-color: rgba(97, 24, 19, 0.2);">!}
