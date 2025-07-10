@@ -685,7 +685,7 @@ if (Q.hindenburg_run) {
         Q.hindenburg_funds += Q.industrial_dvp_backing;
         Q.hindenburg_funds += Q.industrial_dnvp_backing;
         Q.hindenburg_funds += ((100 - Q.nsdap_votes) / 25);
-        if (Q.spd_in_government) Q.hindenburg_funds += ((100 - Q.kpd_votes) / 10);
+        if (Q.sapt_in_government) Q.hindenburg_funds += ((100 - Q.kpd_votes) / 10);
     }
 
     if (Q.hindenburg_funds >= 5) {
@@ -775,7 +775,7 @@ if (!Q.hindenburg_run) {
         if (Q.dnvp_choice == Q.spd_choice) Q.reactionary_funds += Q.industrial_dnvp_backing;
         if (Q.kvp_choice == Q.spd_choice) Q.reactionary_funds += Q.industrial_kvp_backing;
         Q.reactionary_funds += ((100 - Q.nsdap_votes) / 25);
-        if (Q.spd_in_government) Q.reactionary_funds += ((100 - Q.kpd_votes) / 10);
+        if (Q.sapt_in_government) Q.reactionary_funds += ((100 - Q.kpd_votes) / 10);
     }
     if (Q.reactionary_funds >= 5 && !Q.industrial_reactionary) {
         Q.new_middle_kvp += Q.reactionary_funds / 2;

@@ -113,7 +113,7 @@ if ((Q.dynamic_mode || Q.historical_mode || Q.difficulty == 1) && !((Q.year == 1
       this.achieve('grosse_volkspartei');
   }
   // Räterepublik - begin the transformation to a socialist economy.
-  if (Q.spd_in_government && ((Q.nationalization_progress >= 2 && Q.economic_democracy >= 3) || (Q.nationalization_progress >= 1 && Q.economic_democracy >= 4))) {
+  if (Q.sapt_in_government && ((Q.nationalization_progress >= 2 && Q.economic_democracy >= 3) || (Q.nationalization_progress >= 1 && Q.economic_democracy >= 4))) {
       this.achieve('raterepublik');
   }
   // Polykrise - survive both a fascist coup and a capital strike.
@@ -253,7 +253,7 @@ if ((Q.dynamic_mode || Q.historical_mode || Q.difficulty == 1) && !((Q.year == 1
       this.achieve('kommunistische_alternative');
   }
 
-  if (Q.labor_minister_party == "SPD" && Q.interior_minister_party == "SPD" && Q.finance_minister_party == "SPD" && Q.economic_minister_party == "SPD" && Q.foreign_minister_party == "SPD" && Q.justice_minister_party == "SPD" && Q.agriculture_minister_party == "SPD" && Q.reichswehr_minister_party == "SPD" && (Q.prussia_leader == "Braun" || Q.prussia_leader == "Rosenfeld") && Q.chancellor_party == "SPD" && (Q.president == "Braun" || Q.president == "Rosenfeld" && !Q.left_split || Q.president == "Schumacher" || Q.president == "Wels" || Q.president == "Grzesinski" || Q.president == "Juchacz" || (Q.president == "Rosenfeld" && !Q.left_split))) {
+  if (Q.labor_minister_party == "SAPT" && Q.interior_minister_party == "SAPT" && Q.finance_minister_party == "SAPT" && Q.economic_minister_party == "SAPT" && Q.foreign_minister_party == "SAPT" && Q.justice_minister_party == "SAPT" && Q.agriculture_minister_party == "SAPT" && Q.reichswehr_minister_party == "SAPT" && (Q.prussia_leader == "Braun" || Q.prussia_leader == "Rosenfeld") && Q.chancellor_party == "SAPT" && (Q.president == "Braun" || Q.president == "Rosenfeld" && !Q.left_split || Q.president == "Schumacher" || Q.president == "Wels" || Q.president == "Grzesinski" || Q.president == "Juchacz" || (Q.president == "Rosenfeld" && !Q.left_split))) {
       this.achieve('die_rote_republik');
   }
 
@@ -447,7 +447,7 @@ Albert Einstein, possibly the most famous scientist in the world, has been elect
 
 @spd_victorious
 title: <span style="color: #c00000;">**SPD**</span> still in government
-view-if: spd_in_government == 1 and chancellor_party == "SPD" and total_defeat == 0 and long_war == 0 and not schleicher_spd
+view-if: sapt_in_government == 1 and chancellor_party == "SAPT" and total_defeat == 0 and long_war == 0 and not schleicher_spd
 tags: endings
 go-to: eg_menu
 

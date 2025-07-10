@@ -37,7 +37,7 @@ if (Q.spd_votes >= 30) {
     Q.dingeldey_points += 1;
 }
 
-if (Q.chancellor == "Brüning" && Q.spd_toleration) {
+if (Q.chancellor == "Brüning" && Q.sapt_toleration) {
     Q.dingeldey_points += 1;
     Q.lvp_right += 3;
 }

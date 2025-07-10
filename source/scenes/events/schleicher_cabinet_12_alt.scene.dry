@@ -125,9 +125,9 @@ if (Q.sapd_formed && Q.sapd_r) {
 
 if (Q.spd_r) {
     data.push({
-        "id": "spd",
-        "legend": "SPD",
-        "name": "SPD",
+        "id": "SAPT",
+        "legend": "SAPT",
+        "name": "SAPT",
         "seats": Math.round(Q.spd_r * Q.reichstag_size),
     });
 }

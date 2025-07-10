@@ -321,9 +321,9 @@ if (Q.sapd_formed && Q.sapd_r_saxony) {
 }
 
 data = data.concat([{
-    "id": "spd",
-    "legend": "SPD",
-    "name": "SPD",
+    "id": "SAPT",
+    "legend": "SAPT",
+    "name": "SAPT",
     "seats": Math.round(Q.spd_r_saxony * 0.96),
 }]);
 

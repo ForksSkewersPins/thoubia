@@ -73,7 +73,7 @@ view-if: not cvp_formed
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; z_relation += 2 if z_ideology == "Left"
-go-to: center_op if not spd_in_government and chancellor != "Brüning" and ((chancellor != "Papen" and chancellor != "Schleicher") or z_in_gov); center_op_2 if not spd_in_government and (chancellor == "Papen" or chancellor == "Schleicher") and not z_in_gov; center_coalition if spd_in_government; center_bruning if chancellor = "Brüning" and not spd_in_government
+go-to: center_op if not sapt_in_government and chancellor != "Brüning" and ((chancellor != "Papen" and chancellor != "Schleicher") or z_in_gov); center_op_2 if not sapt_in_government and (chancellor == "Papen" or chancellor == "Schleicher") and not z_in_gov; center_coalition if sapt_in_government; center_bruning if chancellor = "Brüning" and not sapt_in_government
 
 @center_op
 on-arrival: z_relation += 5*(1 - dissent)
@@ -227,9 +227,9 @@ if (Q.sapd_formed && Q.sapd_r) {
 
 if (Q.spd_r) {
     data.push({
-        "id": "spd",
-        "legend": "SPD",
-        "name": "SPD",
+        "id": "SAPT",
+        "legend": "SAPT",
+        "name": "SAPT",
         "seats": Math.round(Q.spd_r * Q.reichstag_size),
     });
 }

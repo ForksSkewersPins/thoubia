@@ -1,7 +1,7 @@
 title: Education & Science
 new-page: true
 is-card: true
-view-if: spd_in_government and (prussia_leader == "Braun" or prussia_leader == "Rosenfeld") and chancellor_party = "SPD" and education_science_timer = 0 and (black_thursday_seen = 0 or return_to_normalcy = 1)
+view-if: sapt_in_government and (prussia_leader == "Braun" or prussia_leader == "Rosenfeld") and chancellor_party = "SAPT" and education_science_timer = 0 and (black_thursday_seen = 0 or return_to_normalcy = 1)
 on-arrival: education_science_timer += 9; month_actions += 1
 card-image: img/portraits/EinsteinAlbert.jpg
 go-to: ed_menu
@@ -43,7 +43,7 @@ view-if: not last_advisor_action
 
 @increase_science
 title: Increase funding for scientific research.
-choose-if: economic_minister_party = "SPD"
+choose-if: economic_minister_party = "SAPT"
 unavailable-subtitle: This requires the Economic Ministry.
 
 <span style="color: #9b0000;">Socialism</span> has always stood for science and rationality. Despite the setbacks of the Great War, hyperinflation, and the politicized and <span style="color: #808080;">reactionary</span> attitudes of many academics, science in the German Republic is still the envy of the world. With a great expansion of funding, we hope to keep it that way, and expand on our achievements. 

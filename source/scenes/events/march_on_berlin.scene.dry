@@ -1,10 +1,10 @@
 title: March on Berlin
 subtitle: Right-wing militants are taking action...
-view-if: ((spd_in_government = 1 and coup_progress >= 10 and year >= 1930 and (sa_banned=0 or sh_banned=0 or far_right_force >= 40)) or (year >= 1933 and month >= 2 and nsdap_normalized + dnvp_normalized >= 0.5)) and march_on_berlin_timer = 0
+view-if: ((sapt_in_government = 1 and coup_progress >= 10 and year >= 1930 and (sa_banned=0 or sh_banned=0 or far_right_force >= 40)) or (year >= 1933 and month >= 2 and nsdap_normalized + dnvp_normalized >= 0.5)) and march_on_berlin_timer = 0
 new-page: true
 max-visits: 4
 on-arrival: march_on_berlin_seen += 1; sa_strength += 80; sh_strength += 80; strife += 2; march_on_berlin_timer += 8
-go-to: ask_resign if spd_in_government and (president_ideology == "Right" or president == "Hindenburg"); govt_menu if president_ideology == "Left"; presidential_glaze if president_ideology == "Moderate"; non_govt_menu if spd_in_government = 0 and (president_ideology == "Right" or president == "Hindenburg")
+go-to: ask_resign if sapt_in_government and (president_ideology == "Right" or president == "Hindenburg"); govt_menu if president_ideology == "Left"; presidential_glaze if president_ideology == "Moderate"; non_govt_menu if sapt_in_government = 0 and (president_ideology == "Right" or president == "Hindenburg")
 tags: event
 
 = March on Berlin
@@ -31,7 +31,7 @@ President [+ president +] has called for emergency elections, to be held next mo
 
 
 @accept_hitler
-on-arrival: chancellor = "Hitler"; chancellor_party = "NSDAP"; spd_in_government = 0
+on-arrival: chancellor = "Hitler"; chancellor_party = "NSDAP"; sapt_in_government = 0
 
 After the resignation of the chancellor, Hitler has been appointed chancellor[? if hitler_deported: , after being made a citizen again ?].
 
@@ -52,12 +52,12 @@ President [+ president +] has asked our government to resign.
 
 @fight
 title: Deploy the Reichsbanner and call a general strike to resist the <span style="color: #7A3C00;">fascists</span>!
-on-arrival: defense_strength = rb_strength*rb_militancy*(1-dissent/2); defense_strength += prussian_police_strength*prussian_police_militancy*prussian_police_loyalty if spd_prussia; enemy_strength = sa_strength*sa_militancy + sh_strength*sh_militancy; defense_strength += workers_spd_normalized*(2 - dissent)*(2 - unemployed/100); defense_strength += reichswehr_strength*reichswehr_loyalty*reichswehr_militancy if president_ideology == "Left" and spd_in_government
+on-arrival: defense_strength = rb_strength*rb_militancy*(1-dissent/2); defense_strength += prussian_police_strength*prussian_police_militancy*prussian_police_loyalty if spd_prussia; enemy_strength = sa_strength*sa_militancy + sh_strength*sh_militancy; defense_strength += workers_spd_normalized*(2 - dissent)*(2 - unemployed/100); defense_strength += reichswehr_strength*reichswehr_loyalty*reichswehr_militancy if president_ideology == "Left" and sapt_in_government
 go-to: fight_2_win if defense_strength >= enemy_strength and march_on_berlin_seen <= 1; fight_2_win_2 if defense_strength >= enemy_strength and march_on_berlin_seen > 1; fight_2_pre_civil_war if defense_strength < enemy_strength
 
 The Reichsbanner number at [+ rb_strength +] thousand; many are in Berlin to counter the <span style="color: #7A3C00;">fascist</span> demonstration.
 
-[? if spd_prussia: The Prussian police has been deployed against the <span style="color: #7A3C00;">fascists</span>. ?] [? if spd_in_government and president == "Braun" : The portions of the Reichswehr that are loyal are also deployed. ?]
+[? if spd_prussia: The Prussian police has been deployed against the <span style="color: #7A3C00;">fascists</span>. ?] [? if sapt_in_government and president == "Braun" : The portions of the Reichswehr that are loyal are also deployed. ?]
 
 
 @fight_2_win
@@ -165,7 +165,7 @@ unavailable-subtitle: The <span style="color: #7A3C00;">fascists</span> are conf
 title: Resign our positions in the government.
 choose-if: president != "Braun"
 unavailable-subtitle: President Braun cannot resign.
-on-arrival: chancellor = "Goerdeler"; chancellor_party = "I"; spd_in_government = 0;
+on-arrival: chancellor = "Goerdeler"; chancellor_party = "I"; sapt_in_government = 0;
 go-to: accept
 
 We have resigned our positions in the government. We are replaced by the <span style="color: #808080;">reactionary</span> Goerdeler, who aims to bring the <span style="color: #7A3C00;">national</span> <span style="color: #3E88B3;">opposition</span> into government.
@@ -175,7 +175,7 @@ title: We cannot do anything but appoint Hitler chancellor.
 view-if: president_ideology == "Left"
 choose-if: (nsdap_normalized >= 0.5 or largest_party == "NSDAP") and president != "Rosenfeld"
 unavailable-subtitle: There is no way President [+ president +] could do such a blatantly undemocratic act. [? if president == "Rosenfeld": Rosenfeld would never do this, no matter the circumstances. ?]
-on-arrival: chancellor = "Hitler"; chancellor_party = "NSDAP"; spd_in_government = 0
+on-arrival: chancellor = "Hitler"; chancellor_party = "NSDAP"; sapt_in_government = 0
 
 Threatened with a civil war, and unwilling to fight anymore, President [+ president +] dismisses the current government and appoints Hitler of the <span style="color: #7A3C00;">**NSDAP**</span> as chancellor.
 
@@ -184,7 +184,7 @@ title: We cannot do anything but appoint Strasser chancellor.
 view-if: president_ideology == "Left" and president == "Rosenfeld"
 choose-if: time >= hitler_explode and hitler_explode
 unavailable-subtitle: There is no way President [+ president +] could do such a blatantly undemocratic act.
-on-arrival: chancellor = "Strasser"; chancellor_party = "NSDAP"; spd_in_government = 0
+on-arrival: chancellor = "Strasser"; chancellor_party = "NSDAP"; sapt_in_government = 0
 
 Threatened with a civil war, and unwilling to fight anymore, President [+ president +] dismisses the current government and appoints Strasser of the <span style="color: #7A3C00;">**NSDAP**</span> as chancellor.
 

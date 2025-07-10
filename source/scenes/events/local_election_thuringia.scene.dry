@@ -296,9 +296,9 @@ if (Q.sapd_formed && Q.sapd_r_thuringia) {
 }
 
 data = data.concat([{
-    "id": "spd",
-    "legend": "SPD",
-    "name": "SPD",
+    "id": "SAPT",
+    "legend": "SAPT",
+    "name": "SAPT",
     "seats": Math.round(Q.spd_r_thuringia * 0.53),
 }]);
 
@@ -510,7 +510,7 @@ face-image: img/portraits/frick.jpg
 
 Wilhelm Frick, a convicted Beer Hall Putsch participant, becomes the first <span style="color: #7A3C00;">Nazi</span> to hold a ministerial-level post in Germany. He is given control of the Interior and Education Ministries, and by passing an "Enabling Act" through a simple majority as an emergency decree, granting him the power to radically transform Thuringia.
 
-Gone are the days of <span style="color: #c00000;">Red</span> Thuringia. Suspected <span style="color: #c00000;">socialists</span> and <span style="color: #D3C24D;">democrats</span> are purged en masse from the civil service. A state police force is established, with Frick preferentially employing <span style="color: #7A3C00;">Nazi</span> officials. All <span style="color: #700000;">communist</span> teachers and mayors are dismissed, and newspapers critical of government policy are banned. [? if prussia_leader == "Braun" and interior_minister_party == "SPD": Fortunately, Carl Severing is able to halt the recruitment of <span style="color: #7A3C00;">Nazis</span> into the police force by suspending state subsidies, effectively ending the practice. ?]
+Gone are the days of <span style="color: #c00000;">Red</span> Thuringia. Suspected <span style="color: #c00000;">socialists</span> and <span style="color: #D3C24D;">democrats</span> are purged en masse from the civil service. A state police force is established, with Frick preferentially employing <span style="color: #7A3C00;">Nazi</span> officials. All <span style="color: #700000;">communist</span> teachers and mayors are dismissed, and newspapers critical of government policy are banned. [? if prussia_leader == "Braun" and interior_minister_party == "SAPT": Fortunately, Carl Severing is able to halt the recruitment of <span style="color: #7A3C00;">Nazis</span> into the police force by suspending state subsidies, effectively ending the practice. ?]
 
 With control of the Education Ministry, Frick appoints racial researchers and known <span style="color: #7A3C00;">Nazis</span> to top positions at many universities and bans the anti-war book *All Quiet on the Western Front* from being read or played. His attempts to grant Hitler German citizenship have so far failed, forcing Hitler to look elsewhere.
 

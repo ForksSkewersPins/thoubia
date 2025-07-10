@@ -47,7 +47,7 @@ on-arrival: wtb_adopted = 1; labor_dissent -= 20; reformist_dissent -= 15; labor
 
 An internal vote within the <span style="color: #c00000;">**SPD**</span>'s leadership is called to finally settle the matter. After a contentious debate, the majority of the party is convinced by Woytinsky's reasonings, and outnumbered, the Centrists under Hilferding are defeated.
 
-With our hard work, we have finally convinced the majority of the party to adopt the WTB plan! [? if spd_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic and Finance ministries. ?][? if spd_in_government = 0 : We should emphasize the plan in our electoral propaganda. ?]
+With our hard work, we have finally convinced the majority of the party to adopt the WTB plan! [? if sapt_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic and Finance ministries. ?][? if sapt_in_government = 0 : We should emphasize the plan in our electoral propaganda. ?]
 
 @labor_influence
 title: Use the ADGB and the Labor faction's influence to force the party to accept the plan.
@@ -58,7 +58,7 @@ on-arrival: wtb_adopted = 1; labor_dissent -= 15; reformist_dissent -= 10; labor
 
 An internal vote within the <span style="color: #c00000;">**SPD**</span>'s leadership is called to finally settle the matter. After a contentious debate, the majority of the party is convinced by Woytinsky's reasonings, and outnumbered, the Centrists under Hilferding are defeated.
 
-With our hard work, we have finally convinced the majority of the party to adopt the WTB plan! [? if spd_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic and Finance ministries. ?][? if spd_in_government = 0 : We should emphasize the plan in our electoral propaganda. ?]
+With our hard work, we have finally convinced the majority of the party to adopt the WTB plan! [? if sapt_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic and Finance ministries. ?][? if sapt_in_government = 0 : We should emphasize the plan in our electoral propaganda. ?]
 
 @situation
 title: Point out the gains of the <span style="color: #7A3C00;">**NSDAP**</span>, who have capitalized on our lack of a program.
@@ -68,4 +68,4 @@ on-arrival: wtb_adopted = 1; labor_dissent -= 15; reformist_dissent -= 10; labor
 
 The collapse in our electoral performance and loss of voters to the <span style="color: #700000;">**KPD**</span> and <span style="color: #7A3C00;">**NSDAP**</span> have opened the party's eyes, and they are now ready to support our plan as a means to present a solution for the workers.
 
-With our hard work, we have finally convinced the majority of the party to adopt the WTB plan! [? if spd_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic and Finance ministries. ?][? if spd_in_government = 0 : We should emphasize the plan in our electoral propaganda. ?]
+With our hard work, we have finally convinced the majority of the party to adopt the WTB plan! [? if sapt_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic and Finance ministries. ?][? if sapt_in_government = 0 : We should emphasize the plan in our electoral propaganda. ?]

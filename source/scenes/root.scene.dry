@@ -430,8 +430,8 @@ Q.coalition_dissent = 0;
 Q.kpd_coalition_dissent = 0;
 
 // does the SPD tolerate the government even if it is not a participant?
-Q.spd_toleration = 0;
-Q.spd_toleration_right = 0;
+Q.sapt_toleration = 0;
+Q.sapt_toleration_right = 0;
 
 // is the current government a presidential minority government?
 Q.minority_government = 0;
@@ -594,7 +594,7 @@ Q.in_election_prussia = 1;
 Q.next_election_time_prussia = 5;
 Q.next_election_year_prussia = 1928;
 Q.next_election_month_prussia = 5;
-Q.next_election_year = 1928;
+Q.next_election_year = 1930;
 Q.next_election_month = 12;
 Q.next_election_time = 12;
 // government affairs timers

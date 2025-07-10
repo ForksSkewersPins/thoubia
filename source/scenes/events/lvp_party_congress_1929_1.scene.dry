@@ -17,11 +17,11 @@ if (Q.in_grand_coalition || Q.in_weimar_coalition) {
     Q.lvp_relation -= 8;
 }
 
-if (Q.agriculture_minister_party == "LVP" || Q.economic_minister_party == "LVP" || (Q.chancellor == "Brüning" && !Q.spd_in_government)) {
+if (Q.agriculture_minister_party == "LVP" || Q.economic_minister_party == "LVP" || (Q.chancellor == "Brüning" && !Q.sapt_in_government)) {
     Q.dietrich_points += 2;
 }
 
-if (Q.foreign_minister_party == "LVP" || (Q.chancellor == "Brüning" && !Q.spd_in_government)) {
+if (Q.foreign_minister_party == "LVP" || (Q.chancellor == "Brüning" && !Q.sapt_in_government)) {
     Q.curtius_points += 2;
 }
 
@@ -29,7 +29,7 @@ if (Q.spd_votes >= 30) {
     Q.dingeldey_points += 2;
 }
 
-if (Q.chancellor == "Brüning" && Q.spd_toleration) {
+if (Q.chancellor == "Brüning" && Q.sapt_toleration) {
     Q.dietrich_points += 1;
     Q.curtius_points -= 1;
     Q.luther_points -= 1;
@@ -143,7 +143,7 @@ new-page: true
 
 The merger of two notoriously factionalized parties has unsurprisingly introduced great dysfunction into the internal politics of the <span style="color: #FFCC00;">**LVP**</span>. Not even a unifying figure like Hans Luther has been able to quell the endless bickering among the party's factions. The economic depression has only deepened these divisions, with disagreements arising even on broadly supported issues like parliamentary government, making unified action nearly impossible.
 
-[? if chancellor == "Brüning" and not spd_in_government: The <span style="color: #FFCC00;">**LVP**</span> has shifted significantly to the right due to their participation in [? if in_right_coalition: Brüning's center-right coalition?][? if not in_right_coalition: Brüning's emergency government?]. This election will be pivotal in determining their policy of cooperation with us in the foreseeable future.?] While Hans Luther is expected to secure re-election, scattered candidates from across the party could emerge if the majority loses confidence in Luther's leadership.
+[? if chancellor == "Brüning" and not sapt_in_government: The <span style="color: #FFCC00;">**LVP**</span> has shifted significantly to the right due to their participation in [? if in_right_coalition: Brüning's center-right coalition?][? if not in_right_coalition: Brüning's emergency government?]. This election will be pivotal in determining their policy of cooperation with us in the foreseeable future.?] While Hans Luther is expected to secure re-election, scattered candidates from across the party could emerge if the majority loses confidence in Luther's leadership.
 
 - @luther: The party votes...
 - @luther_fail: The party votes...
@@ -246,7 +246,7 @@ choose-if: dietrich_lead
 on-arrival: lvp_relation += 3; lvp_left += 1; lvp_leader = "Dietrich"; pro_republic += 3; old_middle_lvp += 3; rural_lvp += 3; new_middle_lvp -= 3; dietrich_lvp_explode_time = time + 8; dietrich_election_time = time
 face-image: img/portraits/dietrich.jpg
 
-Hermann Dietrich, formerly affiliated with the business wing of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>, has been elected chairman of the <span style="color: #FFCC00;">**LVP**</span>. Dietrich is mainly supported by smaller businesses and ruralites, and [? if chancellor == "Brüning" and not spd_in_government: is known for formulating Brüning's emergency decrees during his tenure as Finance Minister.?][? if not (chancellor == "Brüning" and not spd_in_government): is known for his fiscal conservatism.?]
+Hermann Dietrich, formerly affiliated with the business wing of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>, has been elected chairman of the <span style="color: #FFCC00;">**LVP**</span>. Dietrich is mainly supported by smaller businesses and ruralites, and [? if chancellor == "Brüning" and not sapt_in_government: is known for formulating Brüning's emergency decrees during his tenure as Finance Minister.?][? if not (chancellor == "Brüning" and not sapt_in_government): is known for his fiscal conservatism.?]
 
 Despite this, Dietrich is not as extreme as the industrialists on the right of the party and remains open to cooperation with us if there is no other majority. However, his leadership has been quite uninspiring, to say the least. [? if agriculture_minister_party == "LVP" or economic_minister_party == "LVP": The responsibilities of his ministry prevent him from being involved in the day-to-day running of his party, which is now delegated to a group of his associates in the business wing. ?]
 

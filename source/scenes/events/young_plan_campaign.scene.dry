@@ -9,16 +9,16 @@ max-visits: 1
 
 While the Young Plan seems to be a positive development for the country, the Right are gathering signatures to initiate a referendum this December. While the referendum itself is likely to fail, their propaganda is striking a chord with many, especially amid the ongoing depression. 
 
-It comes down to us to campaign against the rhetoric of those that seek to destroy our republic. [? if spd_in_government: We are able to use government resources for this campaign, lowering the cost for our party. ?]
+It comes down to us to campaign against the rhetoric of those that seek to destroy our republic. [? if sapt_in_government: We are able to use government resources for this campaign, lowering the cost for our party. ?]
 
 - @pro_plan: Campaign in favor of the Young Plan and against the referendum.
 - @no_plan: Do not campaign on the Young Plan, one way or another.
 
 @pro_plan
-subtitle: [? if spd_in_government: -1 resources ?][? if not spd_in_government: -2 resources ?]
-choose-if: (resources >= 1 and spd_in_government = 1) or (resources >= 2 and spd_in_government = 0)
+subtitle: [? if sapt_in_government: -1 resources ?][? if not sapt_in_government: -2 resources ?]
+choose-if: (resources >= 1 and sapt_in_government = 1) or (resources >= 2 and sapt_in_government = 0)
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1 if spd_in_government; resources -= 2 if not spd_in_government;
+on-arrival: resources -= 1 if sapt_in_government; resources -= 2 if not sapt_in_government;
 
 How should we campaign in favor of the Plan?
 

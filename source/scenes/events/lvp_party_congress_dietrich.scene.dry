@@ -23,7 +23,7 @@ if (Q.spd_votes >= 30) {
     Q.dingeldey_points += 2;
 }
 
-if (Q.chancellor == "Brüning" && Q.spd_toleration) {
+if (Q.chancellor == "Brüning" && Q.sapt_toleration) {
     Q.dingeldey_points += 2;
     Q.lvp_right += 3;
 } else if (Q.in_right_coalition || Q.in_center_right_coalition) {

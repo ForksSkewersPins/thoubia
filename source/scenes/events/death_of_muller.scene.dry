@@ -22,20 +22,20 @@ Chancellor Hermann Müller has died while in office. He will be greatly missed. 
 - @wirth_chancellor: Joseph Wirth of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] should be Chancellor.
 
 @braun_chancellor
-on-arrival: chancellor = "Braun"; chancellor_party = "SPD"; z_relation -= 3; dvp_relation -= 3; ddp_relation -= 3; lvp_relation -= 3; z_relation -= 3 if prussia_leader == "Braun"; dvp_relation -= 3 if prussia_leader == "Braun"; ddp_relation -= 3 if prussia_leader == "Braun"; lvp_relation -= 3 if prussia_leader == "Braun"
+on-arrival: chancellor = "Braun"; chancellor_party = "SAPT"; z_relation -= 3; dvp_relation -= 3; ddp_relation -= 3; lvp_relation -= 3; z_relation -= 3 if prussia_leader == "Braun"; dvp_relation -= 3 if prussia_leader == "Braun"; ddp_relation -= 3 if prussia_leader == "Braun"; lvp_relation -= 3 if prussia_leader == "Braun"
 subtitle: The [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] is worried about having so much power in one man.
 
 Our coalition partners are reluctant to accept the new Chancellor, but they do not make loud objections.
 
 
 @wels_chancellor
-on-arrival: chancellor = "Wels"; chancellor_party = "SPD"; z_relation -= 3; dvp_relation -= 3; ddp_relation -= 3; lvp_relation -= 3
+on-arrival: chancellor = "Wels"; chancellor_party = "SAPT"; z_relation -= 3; dvp_relation -= 3; ddp_relation -= 3; lvp_relation -= 3
 subtitle: He is a good organizer, but is he also a good chancellor?
 
 Our coalition partners are reluctant to accept the new Chancellor, but they do not make loud objections.
 
 @breitscheid_chancellor
-on-arrival: chancellor = "Breitscheid"; chancellor_party = "SPD"; z_relation -= 5; dvp_relation -= 5; ddp_relation -= 5; lvp_relation -= 5; kpd_relation += 3
+on-arrival: chancellor = "Breitscheid"; chancellor_party = "SAPT"; z_relation -= 5; dvp_relation -= 5; ddp_relation -= 5; lvp_relation -= 5; kpd_relation += 3
 subtitle: The [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] is worried about his left-leaning tendencies.
 
 Our coalition partners are reluctant to accept the new Chancellor, but they do not make loud objections.

@@ -2,7 +2,7 @@ title: The <span style="color: #3E88B3;">**DNVP**</span> Rejoins Government
 new-page: true
 subtitle: The center-right coalition is restored.
 tags: event
-view-if: year = 1930 and young_plan_ratified and was_in_center_right_coalition and spd_toleration and dnvp_ideology == "Moderate" and center_right_coalition >= 50
+view-if: year = 1930 and young_plan_ratified and was_in_center_right_coalition and sapt_toleration and dnvp_ideology == "Moderate" and center_right_coalition >= 50
 on-arrival: still_in_center_right_coalition = 1
 max-visits: 1
 
@@ -14,6 +14,6 @@ The Young Plan has been ratified, and the controversy surrounding it has largely
 
 @center_right_coalition
 title: The <span style="color: #3E88B3;">**DNVP**</span> replaces us in government.
-on-arrival: spd_toleration = 0; in_right_coalition = 0; in_center_right_coalition = 1
+on-arrival: sapt_toleration = 0; in_right_coalition = 0; in_center_right_coalition = 1
 
 There is nothing we can do. Well actually, you, the player, could've done something. Why did you do this?

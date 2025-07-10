@@ -1,0 +1,23 @@
+title: <span style="color: #f5e324;">**RPT**</span> Congress
+subtitle: Oscar Grönblom has become unpopular
+view-if: month = 2
+max-visits: 1
+tags: event
+new-page: true
+
+= <span style="color: #f5e324;">**RPT**</span> Party Congress
+
+As the economic crisis worsens, the provisional government has naturally taken the blame in the eyes of many in the population for this crisis. 
+
+Seeking to bring it down, regardless of the threat doing so may pose to the fledgling republic, the <span style="color: #f5e324;">**RPT**</span>'s right-wing has agitated against the government, and seeks to either force Grönblom to turn on us or remove him altogether.
+
+Meanwhile, on the party's left-wing, Minister-President Aspelund has attempted to turn the white-collar unions that he leads against Grönblom, viewing him as a weak leader not enough devoted to support of him and his government and too likely to capitulate to industrialist interests.
+
+- @vote: The party votes...
+
+@vote
+on-arrival: rpt_relation -= 10; coalition_dissent += 1
+
+The motion of no confidence against him is narrowly defeated, but only through his support for the industrialist motion, one which emphasizes support for Orthaland-type laissez-faire economics and one that heralds it as the key to the depression, the depression that it caused.
+
+Our relations with the party has worsened, as the rift between us grows. Grönblom may turn against the provisional government in time - rumors are that the <span style="color: #f5e324;">republican</span> ministers are planning to resign.

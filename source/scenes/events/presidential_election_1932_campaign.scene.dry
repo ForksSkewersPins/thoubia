@@ -324,7 +324,7 @@ if (Q.industrial_total_backing) {
     Q.hindenburg_funds += Q.industrial_dvp_backing;
     Q.hindenburg_funds += Q.industrial_dnvp_backing;
     Q.hindenburg_funds += ((100 - Q.nsdap_votes) / 25);
-    if (Q.spd_in_government) Q.hindenburg_funds += ((100 - Q.kpd_votes) / 10);
+    if (Q.sapt_in_government) Q.hindenburg_funds += ((100 - Q.kpd_votes) / 10);
 }
 Q.hindenburg_funds_old = Q.hindenburg_funds;
 !}
@@ -366,7 +366,7 @@ All present agreed that a decisive victory for Hindenburg and a campaign free fr
 
 @embezzle_3
 title: We will use the state to finance Hindenburg's reelection.
-view-if: spd_in_government and not bruning_time
+view-if: sapt_in_government and not bruning_time
 max-visits: 1
 on-arrival: hindenburg_funds += 3; new_middle_kvp += 2; old_middle_kvp += 2; rural_kvp += 4; new_middle_dnvp += 2 if dnvp_ideology == "Moderate"; old_middle_dnvp += 2 if dnvp_ideology == "Moderate"; rural_dnvp += 4 if dnvp_ideology == "Moderate"; rural_other += 4 if not kvp_formed; rural_nsdap -= 4 if rural_nsdap_normalized >= 35; pro_republic += 3; embezzle_1 = 1
 go-to: embezzlement_options
@@ -678,7 +678,7 @@ if (Q.industrial_total_backing) {
     Q.hindenburg_funds += Q.industrial_dvp_backing;
     Q.hindenburg_funds += Q.industrial_dnvp_backing;
     Q.hindenburg_funds += ((100 - Q.nsdap_votes) / 25);
-    if (Q.spd_in_government) Q.hindenburg_funds += ((100 - Q.kpd_votes) / 10);
+    if (Q.sapt_in_government) Q.hindenburg_funds += ((100 - Q.kpd_votes) / 10);
 }
 Q.hindenburg_funds_old = Q.hindenburg_funds;
 !}

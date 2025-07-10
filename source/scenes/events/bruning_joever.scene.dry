@@ -1,6 +1,6 @@
 title: Brüning's Race against Time
 subtitle: Hindenburg's inner circle is conspiring against him...
-view-if: chancellor = "Brüning" and (year = 1932 and month >= 5) and president = "Hindenburg" and spd_in_government = 0 and (hindenburg_angry_bruning >= 200 or (hindenburg_angry_bruning >= 175 and hindenburg_sacked)) and not presidential_powers and not cvp_formed and not reparations_resolved
+view-if: chancellor = "Brüning" and (year = 1932 and month >= 5) and president = "Hindenburg" and sapt_in_government = 0 and (hindenburg_angry_bruning >= 200 or (hindenburg_angry_bruning >= 175 and hindenburg_sacked)) and not presidential_powers and not cvp_formed and not reparations_resolved
 on-arrival: bruning_joever = 1
 new-page: true
 tags: event
@@ -58,7 +58,7 @@ Even when Hindenburg was reduced to tears, a strategy that had worked on Brünin
 @papen
 title: Franz von Papen?
 subtitle: An relatively unknown Catholic Conservative from the <span style="color: #000000;">Center Party</span>. Schleicher's preferred candidate.
-on-arrival: spd_toleration = 0; spd_toleration_right = 0; chancellor = "Papen"; chancellor_party = "I"; schleicher_papen_r -= 1
+on-arrival: sapt_toleration = 0; sapt_toleration_right = 0; chancellor = "Papen"; chancellor_party = "I"; schleicher_papen_r -= 1
 view-if: westarp_seen and goerdeler_seen
 face-image: img/portraits/PapenFranz.jpg
 

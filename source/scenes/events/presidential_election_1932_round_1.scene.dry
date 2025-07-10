@@ -1263,7 +1263,7 @@ go-to: achievement_check_1
 Duesterberg is too ashamed to accept the Presidency, and out of the kindness of his heart, has given it to Otto Braun. 
 
 @achievement_check_1
-on-arrival: neue_geschaftsfuhrung = 1 if chancellor == "Brüning" and spd_toleration
+on-arrival: neue_geschaftsfuhrung = 1 if chancellor == "Brüning" and sapt_toleration
 go-to: neue_geschaftsfuhrung if neue_geschaftsfuhrung
 
 @neue_geschaftsfuhrung

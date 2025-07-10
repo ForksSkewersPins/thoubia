@@ -66,7 +66,7 @@ Q.agriculture_minister_party = "Z";
 
 if (Q.president_ideology == "Left") {
     Q.chancellor = "Wels"; 
-    Q.chancellor_party = "SPD";
+    Q.chancellor_party = "SAPT";
     Q.spd_caretaker = 1;
     Q.foreign_minister_party = "I"; 
     Q.interior_minister_party = "I"; 
