@@ -13,12 +13,9 @@ go-to: menu if chancellor != "Wirth"; wirth_resign_hindenburg if chancellor == "
 Chancellor [+ chancellor +] has announced his intentions to President [+ president +] to reshuffle the cabinet, sacking and replacing all current <span style="color: #c00000;">**SPD**</span> ministers and replacing them with bourgeois ones. [? if bourgeois_coalition < 50 and (right_coalition < 50 or dnvp_ideology == "Radical" and not dnvp_westarp) and (center_right_coalition < 50 or dnvp_ideology == "Radical") : Luckily, they lack a majority without us, so we can bring them down with a simple motion of no confidence. ?]
 
 - @try_assuage: Try to assuage our partners.
-- @right_coalition: The <span style="color: #3E88B3;">**DNVP**</span> replaces us in government.
-- @center_right_coalition: The <span style="color: #3E88B3;">**DNVP**</span> replaces us in government.
 - @minority_bruning: Brüning's cabinet survives as a minority government.
 - @breitscheid_vonc: Call a constructive motion of no confidence with the <span style="color: #700000;">**KPD**</span>!
 - @sack_bruning: President [+ president +] will call snap elections.
-- @bourgeois_coalition: The bourgeois have a lone majority.
 - @bruning_chain: What's next?
 - @tolerate: Let the reshuffle happen, and tolerate the new minority government.
 - @no_tolerate: Bring down this new backstabbing government!
@@ -65,25 +62,6 @@ subtitle: -3 resources
 on-arrival: resources -= 3; coalition_dissent -= 1
 
 By transferring resources to our coalition partners, we can reduce their dissent against our policies. This is a crude, but effective solution.
-
-@right_coalition
-view-if: right_coalition >= 50 and bourgeois_coalition < 50
-choose-if: (dnvp_ideology == "Moderate" or dnvp_westarp) and not (year = 1929 and month >= 7)
-on-arrival: center_dissent += 5; reformist_dissent += 5; sapt_in_government = 0; grand_coalition_collapsed = 1 if in_grand_coalition; in_grand_coalition = 0; in_weimar_coalition = 0; coalition_dissent = 0
-unavailable-subtitle: The <span style="color: #3E88B3;">DNVP</span> isn't willing to enter government.
-go-to: election_1928.right_coalition_2
-
-@center_right_coalition
-view-if: right_coalition < 50 and center_right_coalition >= 50 and bourgeois_coalition < 50 and dnvp_ideology == "Moderate"
-choose-if: not (year = 1929 and month >= 7)
-on-arrival: center_dissent += 5; reformist_dissent += 5; sapt_in_government = 0; grand_coalition_collapsed = 1 if in_grand_coalition; in_grand_coalition = 0; in_weimar_coalition = 0; coalition_dissent = 0
-unavailable-subtitle: The <span style="color: #3E88B3;">DNVP</span> isn't willing to enter government.
-go-to: election_1928.center_right_coalition_2
-
-@bourgeois_coalition
-view-if: bourgeois_coalition >= 50
-on-arrival: sapt_in_government = 0; grand_coalition_collapsed = 1 if in_grand_coalition; in_grand_coalition = 0; in_weimar_coalition = 0; coalition_dissent = 0
-go-to: election_1928.bourgeois_coalition
 
 @minority_bruning
 view-if: constructive_vonc and not (right_coalition >= 50 and bourgeois_coalition < 50 and (dnvp_ideology == "Moderate" or dnvp_westarp) and not (year = 1929 and month >= 7)) and not (right_coalition < 50 and center_right_coalition >= 50 and bourgeois_coalition < 50 and dnvp_ideology == "Moderate" and not (year = 1929 and month >= 7))
