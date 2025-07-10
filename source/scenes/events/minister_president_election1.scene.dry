@@ -1,0 +1,48 @@
+title: First Round of Minister-Presidential Elections
+subtitle: The parties present their candidates for voting...
+view-if: time = mp_election_time
+max-visits: 1
+tags: event
+new-page: true
+on-arrival: {!
+
+if (Q.kpt_seats >= 20) {
+    Q.island_campaign = 1;
+    Q.island_votes = Q.kpt_seats;
+    if (Q.palmgren_campaign) {
+        Q.palmgren_votes = Math.round(Q.sapt_seats*(Q.left_strength/100));
+    }
+} else if (Q.palmgren_campaign) {
+    Q.palmgren_votes = Q.kpt_seats;
+    Q.palmgren_votes += Math.round(Q.sapt_seats*(Q.left_strength/100));
+}
+
+if (Q.posse_campaign) {
+    Q.posse_votes = Q.sapt_seats;
+    Q.posse_votes += Q.lapt_seats;
+} else if (Q.aspelund_campaign) {
+    Q.aspelund_votes = Q.sapt_seats;
+    Q.aspelund_votes += Q.lapt_seats;
+    Q.aspelund_votes += Math.round(Q.rpt_seats*(Q.pro_republic/500));
+}
+
+Q.hellqvist_votes = Q.rpt_seats;
+if (Q.aspelund_campaign) {
+    Q.hellqvist_votes -= (Q.aspelund_votes-(Q.sapt_seats+Q.lapt_seats));
+}
+
+Q.dahlin_votes = Q.fk_seats;
+Q.dahlin_votes += Math.round(Q.ntap_seats*0.95);
+Q.dahlin_votes += Q.vp_seats;
+Q.dahlin_votes += Math.round(Q.nt_seats*0.9);
+Q.dahlin_votes = Math.round(Q.dahlin_votes*0.95);
+
+Q.haavik_votes = Q.avpt_seats;
+
+Q.sloth_votes = Q.tndp_seats;
+
+!}
+
+After a long-anticipated month, the date of the elections for the office of Minister-President has finally come. On the right, the <span style="color: #a86b15;">**TNDP**</span> runs party bureaucrat Oliver Sloth, while the <span style="color: #4e9933;">**AVPT**</span> too attempts to play it inoffensive and cautious, running a longtime party official of the center - cooperative with the junta before the republic, but also the new republic. Even further, the anti-republican parties of the <span style="color: #a22561;">**NTAP**</span>, <span style="color: #2f387f;">**FK**</span> and <span style="color: #441796;">**NT**</span> seem to have coalesced around the candidacy of war hero and veteran Tron Dahlin of the <span style="color: #a08464;">**VP**</span>.
+
+Over on our side of the aisle, things are more splintered. We 

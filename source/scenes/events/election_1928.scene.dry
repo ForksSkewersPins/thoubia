@@ -942,7 +942,7 @@ Following constitutional procedure, the Minister-President is elected from the p
 With only [+ lapt_seats +] pledged behind him, Aspelund's future as Minister-President is uncertain. He could likely only win with our endorsement.
 
 - @run: We should run our own candidate.
-- @back_aspelund: Endorse Aspelund.
+- @aspelund: Endorse Aspelund.
 
 @run
 choose-if: sapt_seats >= 20
@@ -954,7 +954,34 @@ With [+ sapt_seats +] behind us, we can easily afford to run a candidate in the 
 - @palmgren: Johan Palmgren, revolutionary socialist and academic.
 
 @posse
-subtitle: A constructive campaign
+subtitle: A constructive campaign.
+on-arrival: posse_campaign = 1
+
+We have chosen to run former trade unionist turned reformist functionary Theodor Posse, roughly of the party's right-wing. Despite his trade union roots, he is just as deeply committed to ideology, supporting a state-socialist and republican ideology. Now, we will have to hope he can win.
+
+- @soon_1: The first round is next month.
+
+@palmgren
+subtitle: An agitatory campaign.
+on-arrival: palmgren_campaign = 1; workers_sapt += 2*(1-dissent); unemployed_sapt += 2*(1-dissent)
+
+We have chosen to run Johan Palmgren of the party's left-wing in the election. Quite unlikely to win within parliament, he instead focuses on the race outside of parliament, giving firey speeches to workers to drum up support for <span style="color: #d4130c;">Socialist Labor</span>.
+
+- @soon_1: The first round is next month.
+
+
+@aspelund
+subtitle: Republic over socialism.
+on-arrival: aspelund_campaign = 1; lapt_relation += 10; left_dissent += 5; kpt_relation -= 5
+
+We have chosen to endorse Aspelund, bringing him up to over 20 endorsements in the election and allowing him to run his campaign. He is grateful, and his party indebted.
+
+- @soon_1: The first round is next month.
+
+@soon_1
+on-arrival: mp_election_time = time+1
+
+The first round will be held next month, as parties decide which candidates to run and which to support.
 
 @ministries
 
