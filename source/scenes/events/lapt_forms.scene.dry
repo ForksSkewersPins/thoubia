@@ -9,6 +9,13 @@ Q.parties.push('lapt');
 Q.lapt_formed = 1;
 Q.rpt_seats -= 1;
 Q.lapt_seats = 1;
+if (Q.in_emergency_government) {
+    Q.workers_lapt += 5;
+    Q.new_middle_lapt += 5;
+    Q.new_middle_rpt -= 5;
+    Q.workers_sapt -= 2;
+    Q.old_middle_rpt += 3;
+}
 !}
 
 = Birth of the <span style="color: #e49c21;">**LAPT**</span>

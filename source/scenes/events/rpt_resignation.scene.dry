@@ -35,7 +35,7 @@ However, there are many factors to dissuade us from this:
 choose-if: resources >= 2
 unavailable-subtitle: -2 resources - without them, he is not willing to budge.
 subtitle: -2 resources
-on-arrival: resources -= 2; new_middle_sapt -= 5; old_middle_sapt -= 5; rural_sapt -= 5; workers_sapt -= 5; rpt_relation -= 15; coup_progress += 5; capital_strike_progress += 5; interior_minister_party = "SAPT"; finance_minister_party = "SAPT"; foreign_minister_party = "SAPT"; agriculture_minister_party = "SAPT"; reichswehr_minister_party = "SAPT"
+on-arrival: in_emergency_government = 1; resources -= 2; new_middle_sapt -= 5; old_middle_sapt -= 5; rural_sapt -= 5; workers_sapt -= 5; rpt_relation -= 15; coup_progress += 5; capital_strike_progress += 5; interior_minister_party = "SAPT"; finance_minister_party = "SAPT"; foreign_minister_party = "SAPT"; agriculture_minister_party = "SAPT"; reichswehr_minister_party = "SAPT"
 
 We manage to persuade Aspelund that to enable a <span style="color: #d4130c;">socialist</span> government to rule by decree could not possible go wrong. He remains skeptical, but we have his ear for now.
 
