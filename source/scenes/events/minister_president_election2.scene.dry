@@ -1,6 +1,6 @@
 title: Second Round of Minister-Presidential Elections
 subtitle: The parties present their candidates for voting...
-view-if: time = mp_election_time
+view-if: time = second_round_time
 max-visits: 1
 tags: event
 new-page: true
@@ -11,37 +11,52 @@ Q.candidates = [];
 if (Q.island_campaign) {
     Q.candidates.push('island');
     Q.island_votes = Q.kpt_seats;
-    if (Q.palmgren_campaign) {
-        Q.palmgren_votes = Math.round(Q.sapt_seats*(Q.left_strength/100));
-        Q.sapt_candidate = "Palmgren";
-        Q.candidates.push('palmgren');
+    if (Q.sapt_back_island) {
+        Q.island_votes += Math.round(Q.sapt_seats*(Q.left_strength/100));
     }
-} else if (Q.palmgren_campaign) {
+}
+if (Q.palmgren_campaign) {
+    Q.palmgren_votes = Math.round(Q.sapt_seats*((100-Q.reformist_strength)/100));
     Q.sapt_candidate = "Palmgren";
     Q.candidates.push('palmgren');
-    Q.palmgren_votes = Q.kpt_seats;
-    Q.palmgren_votes += Math.round(Q.sapt_seats*(Q.left_strength/100));
-}
-
-if (Q.posse_campaign) {
+    if (Q.kpt_back_candidate) {
+        Q.palmgren_votes += Q.kpt_seats;
+    }
+} else if (Q.posse_campaign) {
     Q.posse_votes = Q.sapt_seats;
     Q.posse_votes += Q.lapt_seats;
     Q.sapt_candidate = "Posse";
     Q.candidates.push('posse');
+    if (Q.kpt_back_candidate) {
+        Q.posse_votes += Q.kpt_seats;
+    }
+    if (Q.rpt_back_candidate) {
+        Q.posse_votes += Math.round(Q.rpt_seats*(Q.rpt_relation/100));
+    }
 } else if (Q.aspelund_campaign) {
     Q.aspelund_votes = Q.sapt_seats;
     Q.aspelund_votes += Q.lapt_seats;
     Q.sapt_candidate = "Aspelund";
     Q.candidates.push('aspelund');
-    Q.aspelund_votes += Math.round(Q.rpt_seats*(Q.pro_republic/500));
+    if (Q.kpt_back_candidate) {
+        Q.aspelund_votes += Math.round(Q.kpt_seats*(Q.kpt_relation/100));
+    }
+    if (Q.rpt_back_candidate) {
+        Q.aspelund_votes += Q.rpt_seats;
+    } else if (!Q.hellqvist_campaign) {
+        Q.aspelund_votes += Math.round(Q.rpt_seats*(Q.pro_republic/100));
+    }
+    if (Q.aspelund_avpt_backing) {
+        Q.aspelund_votes += Q.avpt_seats;
+    }
 }
 
 if (Q.hellqvist_campaign) {
-   Q.candidates.push('hellqvist');
-   Q.hellqvist_votes = Q.rpt_seats;
-   if (Q.aspelund_campaign) {
-       Q.hellqvist_votes -= (Q.aspelund_votes-(Q.sapt_seats+Q.lapt_seats));
-   }
+    Q.candidates.push('hellqvist');
+    Q.hellqvist_votes = Q.rpt_seats;
+    if (Q.hellqvist_avpt_backing) {
+       Q.hellqvist_votes += Math.round(Q.avpt_seats/2);
+    }
 }
 
 Q.candidates.push('dahlin');
@@ -52,16 +67,13 @@ Q.dahlin_votes += Q.nt_seats;
 if (Q.dahlin_avpt_backing) {
     Q.dahlin_votes += Q.avpt_seats
 }
-if (!Q.sloth_avpt_backing) {
+if (!Q.sloth_avpt_backing && Q.tndp_relation < 50) {
     Q.dahlin_votes += Q.tndp_seats;
+} else if (Q.sloth_avpt_backing) {
+    Q.candidates.push('sohlmann');
+    Q.sohlmann_votes = Q.tndp_seats;
+    Q.sohlmann_votes += Q.avpt_seats;
 }
-
-Q.candidates.push('haavik');
-Q.haavik_votes = Q.avpt_seats;
-
-Q.candidates.push('sloth');
-Q.sloth_votes = Q.tndp_seats;
-
 
 var highest_support = 0;
 for (var can of Q.candidates) {
@@ -76,16 +88,15 @@ for (var can of Q.candidates) {
 
 
 !}
+go-to: aspelund_avpt if aspelund_avpt_backing; hellqvist_avpt if hellqvist_avpt_backing; dahlin_avpt if dahlin_avpt_backing; sloth_avpt if sloth_avpt_backing; abstain_avpt if avpt_abstain
 
-= First Round of Minister-Presidential Elections
+= Second Round of Minister-Presidential Elections
 
-After a long-anticipated month, the date of the elections for the office of Minister-President has finally come. On the right, the <span style="color: #a86b15;">**TNDP**</span> runs party bureaucrat Oliver Sloth, while the <span style="color: #4e9933;">**AVPT**</span> too attempts to play it inoffensive and cautious, running a longtime party official of the center Paul Haavik - cooperative with both the republic and the junta before it. Even further, the anti-republican parties of the <span style="color: #a22561;">**NTAP**</span>, <span style="color: #2f387f;">**FK**</span> and <span style="color: #441796;">**NT**</span> seem to have coalesced around the candidacy of war hero and veteran Tron Dahlin of the <span style="color: #a08464;">**VP**</span>.
+The second round of the Minister-Presidential elections is finally to be held, after much backdoor conspiring and scheming. The presumptive candidate, Dahlin, continues to lead ahead, his backing parties now whipping fully behind him, while the left struggles to mobilize against him.
 
-Over on our side of the aisle, things are more splintered. We have backed the candidacy of [+ sapt_candidate +]. [? if palmgren_campaign : Palmgren's candidacy has been met with disdain on our party's right-wing and trade unionist wings, as well as the <span style="color: #e49c21;">**LAPT**</span>. [? if kpt_votes < 20 : It has, however, been backed by the <span style="color: #990000;">communists</span>. ?] ?][? if posse_campaign : Posse's campaign has been backed somewhat reluctantly by the <span style="color: #e49c21;">**LAPT**</span>, as well as the whole of our party. ?][? if aspelund_campaign : Aspelund's campaign has been backed by the <span style="color: #e49c21;">**LAPT**</span>, naturally, as well as components of the <span style="color: #f5e324;">**RPT**</span>'s left dissatisfied by their choice of candidate. ?]
+@aspelund_avpt
 
-The <span style="color: #f5e324;">**RPT**</span> has endorsed Matteo Hellqvist, a businessman and media mogul who has been known to look strongly to Orthaland for inspiration. Though Grönblom was expected to run, it seems he has been forced to further concede to the industrialists.
-
-[? if island_campaign : The <span style="color: #990000;">**KPT**</span>, finally, has also just barely qualified to run a candidate, and has such run their leader, Ernst Island, for the position. ?]
+The
 
 - @vote_tallied: The votes are tallied...
 

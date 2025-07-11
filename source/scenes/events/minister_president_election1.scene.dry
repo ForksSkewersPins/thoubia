@@ -176,6 +176,8 @@ on-arrival: palmgren_campaign = 0; posse_campaign = 0; aspelund_campaign = 0
 We have withdrawn from the race, urging our deputies to abstain from the second round of voting.
 
 @voting
+choose-if: sapt_candidate != "Palmgren" or kpt_back_candidate
+unavailable-subtitle: Ask the <span style="color: #990000;">**KPT**</span> for help dumbass
 on-arrival: second_round_time = time+2
 
 The second round approaches.
