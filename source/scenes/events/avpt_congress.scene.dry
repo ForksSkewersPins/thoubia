@@ -1,0 +1,44 @@
+title: <span style="color: #4e9933;">**AVPT**</span> Congress
+subtitle: The <span style="color: #4e9933;">**AVPT**</span> decides which way to turn...
+view-if: month = 2
+max-visits: 1
+tags: event
+new-page: true
+
+= <span style="color: #4e9933;">**AVPT**</span> Party Congress
+
+As the second round of the Minister-Presidential election approaches, the <span style="color: #4e9933;">**AVPT**</span> has called for a congress amongst its parliamentary delegation and party leadership to decide which way to turn and what government to enter, and, as kingmakers in the center, this congress is particularly important, with the party having already received a flurry of offers from Hellqvist, Sloth, Dahlin and even Aspelund.
+
+Paul Haavik, one of their leaders, has already stepped aside. Seeking to maintain his broad appeal on the left and the right, he is not intervening in the congress' decision, at least not publicly or to our knowledge.
+
+- @party_vote: The party votes...
+
+@party_vote
+on-arrival: {!
+var aspelund_points = 0;
+var hellqvist_points = 0;
+var dahlin_points = 0;
+var sloth_points = 0;
+
+if (Q.aspelund_votes) {
+    aspelund_points += Q.aspelund_votes;
+}
+aspelund_points += Q.pro_republic/5;
+aspelund_points += (Q.rural_sapt_normalized);
+aspelund_points += (Q.avpt_relation-50);
+
+hellqvist_points += (100-Q.socialism)/10;
+hellqvist_points += Q.hellqvist_votes;
+
+dahlin_points += Q.nationalism/5;
+dahlin_points += (Q.rural_fk_normalized);
+dahlin_points += (50-Q.avpt_relation);
+dahlin_points += Q.dahlin_votes;
+
+sloth_points += Q.sloth_votes;
+sloth_points += (100-Q.pro_republic)/10;
+sloth_points += (100-Q.nationalism)/10;
+sloth_points += Q.socialism/20;
+sloth_points += (Q.rural_tndp_normalized);
+
+!}
