@@ -4,17 +4,22 @@ view-if: time = mp_election_time
 max-visits: 1
 tags: event
 new-page: true
-on-arrival: {!
+on-arrival: first_round_seen = 1; {!
+
+Q.candidates = [];
 
 if (Q.kpt_seats >= 20) {
     Q.island_campaign = 1;
+    Q.candidates.push('island');
     Q.island_votes = Q.kpt_seats;
     if (Q.palmgren_campaign) {
         Q.palmgren_votes = Math.round(Q.sapt_seats*(Q.left_strength/100));
         Q.sapt_candidate = "Palmgren";
+        Q.candidates.push('palmgren');
     }
 } else if (Q.palmgren_campaign) {
     Q.sapt_candidate = "Palmgren";
+    Q.candidates.push('palmgren');
     Q.palmgren_votes = Q.kpt_seats;
     Q.palmgren_votes += Math.round(Q.sapt_seats*(Q.left_strength/100));
 }
@@ -23,31 +28,52 @@ if (Q.posse_campaign) {
     Q.posse_votes = Q.sapt_seats;
     Q.posse_votes += Q.lapt_seats;
     Q.sapt_candidate = "Posse";
+    Q.candidates.push('posse');
 } else if (Q.aspelund_campaign) {
     Q.aspelund_votes = Q.sapt_seats;
     Q.aspelund_votes += Q.lapt_seats;
     Q.sapt_candidate = "Aspelund";
+    Q.candidates.push('aspelund');
     Q.aspelund_votes += Math.round(Q.rpt_seats*(Q.pro_republic/500));
 }
 
+Q.candidates.push('hellqvist');
 Q.hellqvist_votes = Q.rpt_seats;
 if (Q.aspelund_campaign) {
     Q.hellqvist_votes -= (Q.aspelund_votes-(Q.sapt_seats+Q.lapt_seats));
 }
 
+Q.candidates.push('dahlin');
 Q.dahlin_votes = Q.fk_seats;
 Q.dahlin_votes += Math.round(Q.ntap_seats*0.95);
 Q.dahlin_votes += Q.vp_seats;
 Q.dahlin_votes += Math.round(Q.nt_seats*0.9);
 Q.dahlin_votes = Math.round(Q.dahlin_votes*0.95);
 
+Q.candidates.push('haavik');
 Q.haavik_votes = Q.avpt_seats;
 
+Q.candidates.push('sloth');
 Q.sloth_votes = Q.tndp_seats;
+
+
+var highest_support = 0;
+for (var can of Q.candidates) {
+    if (Q[can+'_votes'] >= highest_support) {
+        Q[can+'_plurality'] = 1;
+        highest_support = Q[can+'_votes'];
+        if (Q[can+'_votes'] >= 176) {
+            Q[can+'_majority'] = 1;
+        }
+    }
+}
+
 
 !}
 
-After a long-anticipated month, the date of the elections for the office of Minister-President has finally come. On the right, the <span style="color: #a86b15;">**TNDP**</span> runs party bureaucrat Oliver Sloth, while the <span style="color: #4e9933;">**AVPT**</span> too attempts to play it inoffensive and cautious, running a longtime party official of the center - cooperative with the junta before the republic, but also the new republic. Even further, the anti-republican parties of the <span style="color: #a22561;">**NTAP**</span>, <span style="color: #2f387f;">**FK**</span> and <span style="color: #441796;">**NT**</span> seem to have coalesced around the candidacy of war hero and veteran Tron Dahlin of the <span style="color: #a08464;">**VP**</span>.
+= First Round of Minister-Presidential Elections
+
+After a long-anticipated month, the date of the elections for the office of Minister-President has finally come. On the right, the <span style="color: #a86b15;">**TNDP**</span> runs party bureaucrat Oliver Sloth, while the <span style="color: #4e9933;">**AVPT**</span> too attempts to play it inoffensive and cautious, running a longtime party official of the center Paul Haavik - cooperative with both the republic and the junta before it. Even further, the anti-republican parties of the <span style="color: #a22561;">**NTAP**</span>, <span style="color: #2f387f;">**FK**</span> and <span style="color: #441796;">**NT**</span> seem to have coalesced around the candidacy of war hero and veteran Tron Dahlin of the <span style="color: #a08464;">**VP**</span>.
 
 Over on our side of the aisle, things are more splintered. We have backed the candidacy of [+ sapt_candidate +]. [? if palmgren_campaign : Palmgren's candidacy has been met with disdain on our party's right-wing and trade unionist wings, as well as the <span style="color: #e49c21;">**LAPT**</span>. [? if kpt_votes < 20 : It has, however, been backed by the <span style="color: #990000;">communists</span>. ?] ?][? if posse_campaign : Posse's campaign has been backed somewhat reluctantly by the <span style="color: #e49c21;">**LAPT**</span>, as well as the whole of our party. ?][? if aspelund_campaign : Aspelund's campaign has been backed by the <span style="color: #e49c21;">**LAPT**</span>, naturally, as well as components of the <span style="color: #f5e324;">**RPT**</span>'s left dissatisfied by their choice of candidate. ?]
 
@@ -58,6 +84,7 @@ The <span style="color: #f5e324;">**RPT**</span> has endorsed Matteo Hellqvist, 
 - @vote_tallied: The votes are tallied...
 
 @vote_tallied
+go-to: dahlin_plurality if dahlin_plurality; sapt_plurality if not dahlin_plurality
 
 [? if island_campaign : Island: [+ island_votes +] ?]
 
@@ -74,3 +101,81 @@ Haavik: [+ haavik_votes +]
 Sloth: [+ sloth_votes +]
 
 Dahlin: [+ dahlin_votes +]
+
+There is no majority in the first round of voting.
+
+@sapt_plurality
+
+Sigma sigma on the wall who's the skibidiest of them all
+
+@dahlin_plurality
+on-arrival: hellqvist_campaign = 1 if hellqvist_votes >= 50; island_campaign = 0
+go-to: menu
+
+In first place is Dahlin, with [+ dahlin_votes +] votes. Since he falls short of 176 - a majority - there will be a second round. There is no fundamental difference between the first and second rounds, except that for the second round, the first place candidate will win and become Minister-President, majority or not, and in the second round, 50 rather than 20 seats is required for a candidate to make it onto the ballot, including those already on the first ballot.
+
+How the second round will unfold is heavily dependent on which candidates drop out, and who they back. The <span style="color: #4e9933;">**AVPT**</span> and <span style="color: #a86b15;">**TNDP**</span>, squashed in the center, will be forced to withdraw. Which way they will consolidate remains to be seen - some suspect they will back Dahlin and enter into a center-right government.
+
+The <span style="color: #f5e324;">**RPT**</span> seems reluctant to withdraw Hellqvist, meanwhile. With their only options being to betray either their liberalism or their republicanism, they have chosen neither, even should it mean political isolation and the defeat of both. There is some talk that they will seek to have Hellqvist be the candidate of the center, backed by the <span style="color: #4e9933;">agrarians</span> and <span style="color: #a86b15;">national democrats</span>, though this seems unlikely due to the inevitable failure of such a coalition as well as the political disagreements between the blocs.
+
+@menu
+
+- @convince_rpt: Convince the <span style="color: #f5e324;">**RPT**</span> to back [+ sapt_candidate +].
+- @convince_kpt: Convince the <span style="color: #990000;">**KPT**</span> to back [+ sapt_candidate +].
+- @back_hellqvist: We will back Hellqvist.
+- @back_island: We will back Island.
+- @withdraw: Withdraw our candidate from the race and abstain.
+- @voting: We await the second round.
+
+@convince_rpt
+choose-if: hellqvist_votes < 50 and sapt_candidate != "Palmgren" and sapt_candidate != "Island" and (sapt_candidate != "Posse" or rpt_relation >= 65) and rpt_relation >= 55 and resources >= 2
+subtitle: -2 resources
+max-visits: 1
+go-to: menu
+unavailable-subtitle: -2 resources - without these resources, the <span style="color: #f5e324;">**RPT**</span> delegation will never be united behind [+ sapt_candidate +].
+on-arrival: resources -= 2; rpt_back_candidate = 1; workers_rpt += 2; old_middle_rpt -= 5; old_middle_rpt -= 3 if sapt_candidate == "Posse"; new_middle_rpt -= 2 if sapt_candidate == "Posse"; rural_rpt -= 2 if sapt_candidate == "Posse"; left_dissent += 5; pro_republic += 10
+
+Somehow, we have managed to convince the <span style="color: #f5e324;">**RPT**</span> to back [+ sapt_candidate +] as the candidate of the <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> front. Hellqvist is incensed by his own party's betrayal, however, and the <span style="color: #f5e324;">**RPT**</span> will likely in practice be quite split.
+
+@convince_kpt
+choose-if: (sapt_candidate == "Palmgren" or kpt_relation >= 50) and (sapt_candidate != "Posse" or kpt_relation >= 55) and (sapt_candidate != "Aspelund" or (kpt_relation >= 60 and resources >= 1)) and sapt_candidate != "Hellqvist"
+subtitle: [? if sapt_candidate == "Aspelund" : -1 resource ?]
+unavailable-subtitle: [? if sapt_candidate == "Aspelund" : -1 resource - ?] They are unwilling.
+on-arrival: kpt_back_candidate = 1; rpt_relation -= 5; kpt_relation += 5; workers_kpt -= 1 if sapt_candidate == "Posse"; workers_kpt -= 2 if sapt_candidate == "Aspelund"; socialism += 5
+max-visits: 1
+go-to: menu
+
+We have managed to convince the <span style="color: #990000;">**KPT**</span> to stand by their fellow workers' party and back [+ sapt_candidate +]. 
+
+@back_hellqvist
+choose-if: reformist_strength >= 50
+unavailable-subtitle: The party is incensed at the very thought.
+subtitle: Our deputies may rebel.
+max-visits: 1
+go-to: menu
+view-if: not rpt_back_candidate and not sapt_back_island
+on-arrival: kpt_back_candidate = 0; left_dissent += 15; labor_dissent += 10; hellqvist_campaign = 1; sapt_back_hellqvist = 1; rpt_relation += 10; workers_sapt -= 5; new_middle_sapt -= 3; unemployed_sapt -= 5
+
+We have managed to convince the party to back Hellqvist, in spite of his laissez-faire beliefs, noting that the <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> front must remain united even at the expense of our own goals if it is necessary to defend the republic. How much of our delegation will actually back him is questionable.
+
+@back_island
+choose-if: left_strength >= (reformist_strength+center_strength)
+unavailable-subtitle: The party is reluctant to back a communist less popular than us.
+subtitle: The right-wing of our party is unlikely to follow.
+max-visits: 1
+view-if: not kpt_back_candidate and not sapt_back_hellqvist
+go-to: menu
+on-arrival: rpt_back_candidate = 0; reformist_dissent += 10; center_dissent += 5; island_campaign = 1; sapt_back_island = 1; kpt_relation += 10; new_middle_sapt -= 3; rural_sapt -= 3; old_middle_sapt -= 3; workers_kpt += 5; workers_sapt -= 3; unemployed_kpt += 5; unemployed_sapt -= 3
+
+We have managed to convince the party to back Island, in spite of his Lenyoist alignments, noting that the unity of the working class will in the long run pay off handsomely.
+
+@withdraw
+view-if: not sapt_back_hellqvist and not sapt_back_island and not kpt_back_candidate and not rpt_back_candidate
+on-arrival: palmgren_campaign = 0; posse_campaign = 0; aspelund_campaign = 0
+
+We have withdrawn from the race, urging our deputies to abstain from the second round of voting.
+
+@voting
+on-arrival: second_round_time = time+2
+
+The second round approaches.

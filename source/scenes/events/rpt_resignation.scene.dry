@@ -4,7 +4,7 @@ view-if: month = 4
 max-visits: 1
 tags: event
 new-page: true
-on-arrival: interior_minister_party = "N/A"; finance_minister_party = "N/A"; foreign_minister_party = "N/A"; agriculture_minister_party = "N/A"; reichswehr_minister_party = "N/A"; mp_party = "I"; mp_party_number = 11
+on-arrival: old_middle_rpt += 5; new_middle_rpt -= 2; workers_rpt -= 1; interior_minister_party = "N/A"; finance_minister_party = "N/A"; foreign_minister_party = "N/A"; agriculture_minister_party = "N/A"; reichswehr_minister_party = "N/A"; mp_party = "I"; mp_party_number = 11
 
 = The <span style="color: #f5e324;">**Republicans**</span> Resign!
 

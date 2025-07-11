@@ -963,7 +963,7 @@ We have chosen to run former trade unionist turned reformist functionary Theodor
 
 @palmgren
 subtitle: An agitatory campaign.
-on-arrival: palmgren_campaign = 1; workers_sapt += 2*(1-dissent); unemployed_sapt += 2*(1-dissent)
+on-arrival: palmgren_campaign = 1; workers_sapt += 2*(1-dissent); unemployed_sapt += 2*(1-dissent); left_strength += 10
 
 We have chosen to run Johan Palmgren of the party's left-wing in the election. Quite unlikely to win within parliament, he instead focuses on the race outside of parliament, giving firey speeches to workers to drum up support for <span style="color: #d4130c;">Socialist Labor</span>.
 
