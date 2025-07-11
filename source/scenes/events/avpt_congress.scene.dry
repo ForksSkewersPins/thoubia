@@ -1,6 +1,6 @@
 title: <span style="color: #4e9933;">**AVPT**</span> Congress
 subtitle: The <span style="color: #4e9933;">**AVPT**</span> decides which way to turn...
-view-if: month = 2
+view-if: first_round_seen and time = (second_round_time-1)
 max-visits: 1
 tags: event
 new-page: true
@@ -41,4 +41,55 @@ sloth_points += (100-Q.nationalism)/10;
 sloth_points += Q.socialism/20;
 sloth_points += (Q.rural_tndp_normalized);
 
+// Determine the highest scorer
+var pointsMap = {
+    aspelund: aspelund_points,
+    hellqvist: hellqvist_points,
+    dahlin: dahlin_points,
+    sloth: sloth_points
+};
+
+var sortedCandidates = Object.entries(pointsMap).sort((a, b) => b[1] - a[1]);
+var topCandidate = sortedCandidates[0][0];
+var topScore = sortedCandidates[0][1];
+var secondScore = sortedCandidates[1][1];
+
+// Check margin
+if ((topScore - secondScore) / topScore <= 0.10) {
+    // Margin too close: abstain
+    Q.avpt_abstain = 1;
+} else {
+    // Clear winner
+    Q[topCandidate + '_avpt_backing'] = 1;
+}
+
+// Set the backing for the top candidate
+Q[topCandidate + '_avpt_backing'] = 1;
+
 !}
+go-to: aspelund_avpt if aspelund_avpt_backing; hellqvist_avpt if hellqvist_avpt_backing; dahlin_avpt if dahlin_avpt_backing; sloth_avpt if sloth_avpt_backing; abstain if avpt_abstain
+
+@aspelund_avpt
+on-arrival: avpt_relation += 5; rural_avpt -= 5; rural_fk += 5; pro_republic += 5
+
+The <span style="color: #4e9933;">**AVPT**</span> has chosen to back Aspelund's candidacy in an unexpected reaffirming of the republic by the farmers! It seems the party's democratic roots have not been entirely forgotten. This is a promising development that could propel the <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> front back into power.
+
+@hellqvist_avpt
+on-arrival: rural_rpt += 3; rural_avpt -= 3; old_middle_avpt += 3; old_middle_rpt -= 3
+
+Surprisingly, the firm disagreements in economic policy between the mainstream <span style="color: #4e9933;">**AVPT**</span> and Hellqvist have been reconciled, and the former has backed the latter's candidacy. At the same time, the latter has walked back on some former statements, asceding to some agricultural subsidies funded by some small tariffs on foodstuffs. Still, the <span style="color: #4e9933;">**AVPT**</span> is skeptical, and it is uncertain how many will truly vote for Hellqvist.
+
+@dahlin_avpt
+on-arrival: rural_avpt -= 5; rural_rpt += 2; rural_lapt += 2; avpt_relation -= 5; nationalism += 5
+
+As we feared, the <span style="color: #4e9933;">**AVPT**</span> has backed Dahlin. It seems increasingly likely that he will win, and a center-right government will form, one dangerously close to military interests.
+
+@sloth_avpt
+on-arrival: rural_tndp += 5; old_middle_avpt += 3
+
+The <span style="color: #a86b15;">**TNDP**</span> and <span style="color: #4e9933;">**AVPT**</span> continue their drift towards each other, it seems, as the latter has decided to run a candidate together with the former in the second round of voting. Who this candidate will be remains to be seen, but it is highly unlikely they will win.
+
+@abstain
+on-arrival: rural_avpt -= 3
+
+Fraught with disagreement, the <span style="color: #4e9933;">**AVPT**</span> has chosen to abstain from the second round altogether. This will certainly reduce their leverage in whatever government is formed, and is a waste of their position as kingmaker.
