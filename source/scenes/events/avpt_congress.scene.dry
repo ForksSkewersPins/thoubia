@@ -96,9 +96,6 @@ if ((topScore - secondScore) / topScore <= 0.10) {
     Q[topCandidate + '_avpt_backing'] = 1;
 }
 
-// Set the backing for the top candidate
-Q[topCandidate + '_avpt_backing'] = 1;
-
 !}
 go-to: aspelund_avpt if aspelund_avpt_backing; hellqvist_avpt if hellqvist_avpt_backing; dahlin_avpt if dahlin_avpt_backing; sloth_avpt if sloth_avpt_backing; abstain if avpt_abstain
 
