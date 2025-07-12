@@ -295,9 +295,9 @@ Q.rural_lapt = 0;
 Q.rural_rpt = 10;
 Q.rural_tndp = 5;
 Q.rural_ntap = 15;
-Q.rural_avpt = 30;
+Q.rural_avpt = 31;
 Q.rural_fk = 25;
-Q.rural_nt = 10;
+Q.rural_nt = 9;
 Q.rural_vp = 0;
 
 // Unemployed
