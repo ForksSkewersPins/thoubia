@@ -184,11 +184,11 @@ Q.reichswehr_loyalty = 0.2;
 // popular opinion
 // national ideology - on a binary scale
 // nationalism vs internationalism or pacifism or non-nationalism
-Q.nationalism = 60;
+Q.nationalism = 59;
 // socialism vs capitalism
-Q.socialism = 40;
+Q.socialism = 34;
 // pro-republic vs anti-republic
-Q.pro_republic = 59;
+Q.pro_republic = 62;
 
 Q.emergency_rule = 0;
 
@@ -253,10 +253,10 @@ Q.lapt_formed = 0;
 // Support for party by social group
 // they don't have to sum to 100 since the electoral calculations will be normalized.
 // Workers
-Q.workers_kpt = 6;
+Q.workers_kpt = 5;
 Q.workers_sapt = 39;
 Q.workers_lapt = 1;
-Q.workers_rpt = 10;
+Q.workers_rpt = 11;
 Q.workers_tndp = 10;
 Q.workers_ntap = 34;
 Q.workers_avpt = 0;

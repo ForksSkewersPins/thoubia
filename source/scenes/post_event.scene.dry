@@ -1662,8 +1662,7 @@ if ((Q.month_actions >= 1 && !Q.rubicon) || (Q.month_actions >= 4 && Q.rubicon))
         Q.workers -= 5/12;
         Q.new_middle -= 2/12;
         Q.old_middle -= 1/12;
-        Q.unemployed_kpt += 3/12;
-        Q.workers_kpt += 1/12;
+        Q.unemployed_kpt += 2/12;
         Q.new_middle_tndp += 2/12;
         Q.old_middle_tndp += 2/12;
         Q.rural_tndp += 2/12;
