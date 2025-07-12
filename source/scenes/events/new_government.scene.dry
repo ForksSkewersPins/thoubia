@@ -25,6 +25,7 @@ With Aspelund once again serving at the helm, the presumptive coalition is a <sp
 - @failure: No government can be formed.
 
 @social_republican
+view-if: not socrep_failed
 subtitle: <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span> ([+ social_republican_r +]%)
 choose-if: social_republican_r >= 50
 on-arrival: rpt_willingness = rpt_relation; rpt_willingness += reformist_strength; rpt_willingness -= left_strength; rpt_willingness += pro_republic/2; rpt_willingness -= nationalism/2; rpt_willingness -= socialism/2
@@ -32,8 +33,30 @@ on-arrival: rpt_willingness = rpt_relation; rpt_willingness += reformist_strengt
 Thankfully, the simple option of another <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> government remains open, and we will not need to do much negotiating beyond that. However, simple does not mean easy, and we will still have to find a better way to reconcile the major differences between our parties that led to the previous government's collapse.
 
 - @rpt_agree: The <span style="color: #f5e324;">**RPT**</span> concedes.
-- @rpt_bribe: We will work hard to convince the <span style="color: #f5e324;">**RPT**</span>.
+- @rpt_bribe: We will influence the <span style="color: #f5e324;">**RPT**</span> in favor.
 - @rpt_refuse: The <span style="color: #f5e324;">**RPT**</span> refuses.
+
+@rpt_agree
+choose-if: rpt_willingness > 0
+unavailable-subtitle: The <span style="color: #f5e324;">**RPT**</span> is unwilling.
+on-arrival: old_middle_rpt -= 2; rural_rpt -= 2; pro_republic += 3
+
+Despite the protests of Hellqvist, the radicals of the <span style="color: #f5e324;">**RPT**</span> have retained significant influence and managed to beat Hellqvist's wing in a vote, convincing Grönblom to back the government's formation.
+
+@rpt_bribe
+view-if: rpt_willingness < 0
+choose-if: rpt_willingness >= -10 and resources >= 1
+subtitle: -1 resources[? if rpt_willingness < -10 : The <span style="color: #f5e324;">**RPT**</span> is unwilling. ?]
+on-arrival: resources -= 1; coalition_dissent += 1; rural_rpt -= 2; old_middle_rpt -= 2
+
+Despite the protests of Hellqvist, his wing is narrowly outmaneuvered, thanks to the influence of our local party chapters. Grönblom remains skeptical, however, and unless removed from leadership the <span style="color: #f5e324;">**RPT**</span> is likely to remain an unreliable partner.
+
+@rpt_refuse
+view-if: rpt_willingness < 0
+on-arrival: rpt_relation -= 3; pro_republic -= 2; socrep_failed = 1
+go-to: coalition_menu
+
+Negotiations for a <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> government have unfortunately fallen through. Another government will have to be tried - but what other options are there?
 
 @popular_front
 subtitle: <span style="color: #990000;">**KPT**</span> + <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span>[? if not dahlin_avpt_backing : + <span style="color: #4e9933;">**AVPT**</span> ?]
