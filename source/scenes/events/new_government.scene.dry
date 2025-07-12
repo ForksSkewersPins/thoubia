@@ -11,7 +11,7 @@ go-to: aspelund if minister_president == "Aspelund"; dahlin if minister_presiden
 Following his election, [+ minister_president +] has worked to prepare a list of ministers for his cabinet that will be able to survive any motions of no confidence thrown its way. Now, it seems, he will present this list and confirm his appointments.
 
 @aspelund
-on-arrival: social_republican_r = sapt_r+lapt_r+rpt_r; grand_popular_front_r = kpt_r+sapt_r+lapt_r+rpt_r+avpt_r; popular_front_r = kpt_r+sapt_r+lapt_r+rpt_r; tower_r = sapt_r+lapt_r+rpt_r+avpt_r; economic_r = sapt_r+lapt_r+avpt_r+kpt_r
+on-arrival: social_republican_r = sapt_r+lapt_r+rpt_r; grand_popular_front_r = kpt_r+sapt_r+lapt_r+rpt_r+avpt_r; popular_front_r = kpt_r+sapt_r+lapt_r+rpt_r; tower_r = sapt_r+lapt_r+rpt_r+avpt_r; economic_r = sapt_r+lapt_r+avpt_r+kpt_r; extended_tower_r = tower_r+tndp_r; extended_economic_r = economic_r+tndp_r
 go-to: coalition_menu
 
 With Aspelund once again serving at the helm, the presumptive coalition is a <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> one. However, with the <span style="color: #f5e324;">**RPT**</span> doubling down on classical liberal economics and the expansion of the Aspelund coalition's size, it may be difficult to translate his victory into a stable government.
@@ -20,12 +20,40 @@ With Aspelund once again serving at the helm, the presumptive coalition is a <sp
 
 - @social_republican: We can form a <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> government.
 - @popular_front: We could form a new "Popular Front" coalition?
+- @tower: The moderate parties can defend the tower together.
+- @economic: An interventionist government must form to end the economic crisis.
+- @failure: No government can be formed.
 
 @social_republican
 subtitle: <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span> ([+ social_republican_r +]%)
 choose-if: social_republican_r >= 50
+on-arrival: rpt_willingness = rpt_relation; rpt_willingness += reformist_strength; rpt_willingness -= left_strength; rpt_willingness += pro_republic/2; rpt_willingness -= nationalism/2; rpt_willingness -= socialism/2
+
+Thankfully, the simple option of another <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> government remains open, and we will not need to do much negotiating beyond that. However, simple does not mean easy, and we will still have to find a better way to reconcile the major differences between our parties that led to the previous government's collapse.
+
+- @rpt_agree: The <span style="color: #f5e324;">**RPT**</span> concedes.
+- @rpt_bribe: We will work hard to convince the <span style="color: #f5e324;">**RPT**</span>.
+- @rpt_refuse: The <span style="color: #f5e324;">**RPT**</span> refuses.
 
 @popular_front
 subtitle: <span style="color: #990000;">**KPT**</span> + <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span>[? if not dahlin_avpt_backing : + <span style="color: #4e9933;">**AVPT**</span> ?]
 choose-if: popular_front_r >= 50 or (not dahlin_avpt_backing and grand_popular_front_r >= 50)
 
+This is an unorthodox idea, to say the least. The <span style="color: #990000;">communists</span> and <span style="color: #f5e324;">republicans</span> on the surface seem to both loathe the idea. Can these differences be reconciled? [? if not dahlin_avpt_backing : There is also the <span style="color: #4e9933;">**AVPT**</span>, which could factor in and may have to depending on the willingness of liberal deputies to collaborate with communists. ?]
+
+@tower
+subtitle: <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span> + <span style="color: #4e9933;">**AVPT**</span>[? if tower_r < 50 and extended_tower_r >= 50 : - perhaps the <span style="color: #a86b15;">**TNDP**</span> could complete this government? ?]
+choose-if: tower_r >= 50 or (extended_tower_r >= 50 and tndp_relation >= 50) and not dahlin_avpt_backing
+
+A grouping together of the moderate parties with us could build a bulwark against extremist agitation in the face of the crisis and further pad out the republic. [? if tower_r < 50 : This bloc does not itself have a majority, but if extended to include the opportunistic <span style="color: #a86b15;">**TNDP**</span>, it would. ?]
+
+@economic
+subtitle: <span style="color: #990000;">**KPT**</span> + <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #4e9933;">**AVPT**</span>[? if economic_r < 50 and extended_economic_r >= 50 : - perhaps the <span style="color: #a86b15;">**TNDP**</span> could complete this government? ?]
+choose-if: economic_r >= 50 or (extended_economic_r >= 50 and tndp_relation >= 50) and not dahlin_avpt_backing
+
+A grouping together of those parties seeking to have the government direct economic resources in order to end the crisis - along economic lines, rather than ideological, bypassing the <span style="color: #f5e324;">republicans</span> - could be what the country needs in the long run to cement the Third Republic. [? if economic_r < 50 : This bloc does not itself have a majority, but if extended to include the opportunistic <span style="color: #a86b15;">**TNDP**</span>, it would. ?]
+
+@failure
+subtitle: Aspelund will be forced to form a government without the consent of his backers.
+
+We have failed to form a government. What Aspelund will do now is uncertain - he could cave in and allow anti-republicans into government, resign, or something else. It's impossible to know. All that can be said is that he seems very frustrated with us, as well as the other parties backing him, for our inability to cooperate in defense of the republic.
