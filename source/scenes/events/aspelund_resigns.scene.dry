@@ -1,6 +1,6 @@
 title: Aspelund Dissolves His Government
 subtitle: We have frustrated the Minister-President too much
-view-if: mp == "Aspelund" and n_elections < 1 and coalition_dissent >= 4 or (coalition__dissent >= 3 and month >= 6 and year == 1928) or (coalition_dissent >= 2 and year >= 1929)
+view-if: minister_president == "Aspelund" and n_elections < 1 and coalition_dissent >= 4 or (coalition__dissent >= 3 and month >= 6 and year == 1928) or (coalition_dissent >= 2 and year >= 1929)
 max-visits: 1
 tags: event
 new-page: true

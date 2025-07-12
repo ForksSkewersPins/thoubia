@@ -1,0 +1,31 @@
+title: Formation of a New Government
+subtitle: [+ minister_president +] prepares to form his government...
+view-if: time >= (second_round_time+2) and second_round_seen
+max-visits: 1
+tags: event
+new-page: true
+go-to: aspelund if minister_president == "Aspelund"; dahlin if minister_president == "Dahlin"
+
+= Formation of a New Government
+
+Following his election, [+ minister_president +] has worked to prepare a list of ministers for his cabinet that will be able to survive any motions of no confidence thrown its way. Now, it seems, he will present this list and confirm his appointments.
+
+@aspelund
+on-arrival: social_republican_r = sapt_r+lapt_r+rpt_r; grand_popular_front_r = kpt_r+sapt_r+lapt_r+rpt_r+avpt_r; popular_front_r = kpt_r+sapt_r+lapt_r+rpt_r; tower_r = sapt_r+lapt_r+rpt_r+avpt_r; economic_r = sapt_r+lapt_r+avpt_r+kpt_r
+go-to: coalition_menu
+
+With Aspelund once again serving at the helm, the presumptive coalition is a <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> one. However, with the <span style="color: #f5e324;">**RPT**</span> doubling down on classical liberal economics and the expansion of the Aspelund coalition's size, it may be difficult to translate his victory into a stable government.
+
+@coalition_menu
+
+- @social_republican: We can form a <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> government.
+- @popular_front: We could form a new "Popular Front" coalition?
+
+@social_republican
+subtitle: <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span> ([+ social_republican_r +]%)
+choose-if: social_republican_r >= 50
+
+@popular_front
+subtitle: <span style="color: #990000;">**KPT**</span> + <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span>[? if not dahlin_avpt_backing : + <span style="color: #4e9933;">**AVPT**</span> ?]
+choose-if: popular_front_r >= 50 or (not dahlin_avpt_backing and grand_popular_front_r >= 50)
+
