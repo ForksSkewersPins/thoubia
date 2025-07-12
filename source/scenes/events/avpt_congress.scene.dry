@@ -22,24 +22,57 @@ var sloth_points = 0;
 
 if (Q.aspelund_votes) {
     aspelund_points += Q.aspelund_votes;
+    console.log("Aspelund votes added:", Q.aspelund_votes);
 }
-aspelund_points += Q.pro_republic/5;
-aspelund_points += (Q.rural_sapt_normalized);
-aspelund_points += (Q.avpt_relation-50);
+aspelund_points += Q.pro_republic / 5;
+console.log("Aspelund pro_republic/5 added:", Q.pro_republic / 5);
 
-hellqvist_points += (100-Q.socialism)/10;
+aspelund_points += Q.rural_sapt_normalized;
+console.log("Aspelund rural_sapt_normalized added:", Q.rural_sapt_normalized);
+
+aspelund_points += (Q.avpt_relation - 50);
+console.log("Aspelund avpt_relation - 50 added:", Q.avpt_relation - 50);
+
+console.log("Total Aspelund Points:", aspelund_points);
+
+hellqvist_points += (100 - Q.socialism) / 10;
+console.log("Hellqvist (100 - socialism)/10 added:", (100 - Q.socialism) / 10);
+
 hellqvist_points += Q.hellqvist_votes;
+console.log("Hellqvist votes added:", Q.hellqvist_votes);
 
-dahlin_points += Q.nationalism/5;
-dahlin_points += (Q.rural_fk_normalized);
-dahlin_points += (50-Q.avpt_relation);
+console.log("Total Hellqvist Points:", hellqvist_points);
+
+dahlin_points += Q.nationalism / 5;
+console.log("Dahlin nationalism/5 added:", Q.nationalism / 5);
+
+dahlin_points += Q.rural_fk_normalized;
+console.log("Dahlin rural_fk_normalized added:", Q.rural_fk_normalized);
+
+dahlin_points += (50 - Q.avpt_relation);
+console.log("Dahlin 50 - avpt_relation added:", 50 - Q.avpt_relation);
+
 dahlin_points += Q.dahlin_votes;
+console.log("Dahlin votes added:", Q.dahlin_votes);
+
+console.log("Total Dahlin Points:", dahlin_points);
 
 sloth_points += Q.sloth_votes;
-sloth_points += (100-Q.pro_republic)/10;
-sloth_points += (100-Q.nationalism)/10;
-sloth_points += Q.socialism/20;
-sloth_points += (Q.rural_tndp_normalized);
+console.log("Sloth votes added:", Q.sloth_votes);
+
+sloth_points += (100 - Q.pro_republic) / 10;
+console.log("Sloth (100 - pro_republic)/10 added:", (100 - Q.pro_republic) / 10);
+
+sloth_points += (100 - Q.nationalism) / 10;
+console.log("Sloth (100 - nationalism)/10 added:", (100 - Q.nationalism) / 10);
+
+sloth_points += Q.socialism / 20;
+console.log("Sloth socialism/20 added:", Q.socialism / 20);
+
+sloth_points += Q.rural_tndp_normalized;
+console.log("Sloth rural_tndp_normalized added:", Q.rural_tndp_normalized);
+
+console.log("Total Sloth Points:", sloth_points);
 
 // Determine the highest scorer
 var pointsMap = {
