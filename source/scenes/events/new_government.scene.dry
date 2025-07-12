@@ -61,8 +61,27 @@ Negotiations for a <span style="color: #d4130c;">Social</span><span style="color
 @popular_front
 subtitle: <span style="color: #990000;">**KPT**</span> + <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span>[? if not dahlin_avpt_backing : + <span style="color: #4e9933;">**AVPT**</span> ?]
 choose-if: popular_front_r >= 50 or (not dahlin_avpt_backing and grand_popular_front_r >= 50)
+go-to: convincing
 
 This is an unorthodox idea, to say the least. The <span style="color: #990000;">communists</span> and <span style="color: #f5e324;">republicans</span> on the surface seem to both loathe the idea. Can these differences be reconciled? [? if not dahlin_avpt_backing : There is also the <span style="color: #4e9933;">**AVPT**</span>, which could factor in and may have to depending on the willingness of liberal deputies to collaborate with communists. ?]
+
+@convincing
+
+- @convince_kpt: We will convince the <span style="color: #990000;">**KPT**</span>.
+- @convince_rpt: We will convince the <span style="color: #f5e324;">**RPT**</span>.
+- @convince_avpt: We will convince the <span style="color: #4e9933;">**AVPT**</span>.
+- @done: We have convinced everyone.
+
+@convince_kpt
+
+Convincing the <span style="color: #990000;">**KPT**</span> to either enter or provide toleration to a government consisting of bourgeois liberal-capitalist ministers, especially those as unabashadly capitalist as the <span style="color: #f5e324;">**RPT**</span>'s ascendant Hellqvist wing, would be in contrast to all hitherto communist theory.
+
+Seemingly, of those in favor of hearing us out, there are two wings - Ernst Island is open to providing toleration, and utilizing this leverage to extract demands that would empower the workers for revolution in the future. For this he is criticized, including by Iliyevists, who would go further and demand that the <span style="color: #990000;">**KPT**</span> join government to exert on behalf of the workers as much political power as possible and begin building the dictatorship of the proletariat from above as well as below.
+
+Both of these wings diverge from Comintern policy however, and getting either wing to win out will be very tricky. The Iliyevists, sidelined and persecuted, are especially improbable of winning - our hopes rest with Ernst Island and his change of heart.
+
+
+
 
 @tower
 subtitle: <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span> + <span style="color: #4e9933;">**AVPT**</span>[? if tower_r < 50 and extended_tower_r >= 50 : - perhaps the <span style="color: #a86b15;">**TNDP**</span> could complete this government? ?]
