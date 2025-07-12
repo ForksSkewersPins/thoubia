@@ -1,6 +1,6 @@
 title: Second Round of Minister-Presidential Elections
 subtitle: The parties present their candidates for voting...
-view-if: time = second_round_time
+view-if: time >= second_round_time and first_round_seen
 max-visits: 1
 tags: event
 new-page: true
