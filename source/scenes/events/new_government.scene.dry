@@ -59,6 +59,7 @@ go-to: coalition_menu
 Negotiations for a <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> government have unfortunately fallen through. Another government will have to be tried - but what other options are there?
 
 @popular_front
+view-if: not popfront_failed
 subtitle: <span style="color: #990000;">**KPT**</span> + <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span>[? if not dahlin_avpt_backing : + <span style="color: #4e9933;">**AVPT**</span> ?]
 choose-if: popular_front_r >= 50 or (not dahlin_avpt_backing and grand_popular_front_r >= 50)
 go-to: convincing
@@ -80,14 +81,26 @@ Seemingly, of those in favor of hearing us out, there are two wings - Ernst Isla
 
 Both of these wings diverge from Comintern policy however, and getting either wing to win out will be very tricky. The Iliyevists, sidelined and persecuted, are especially improbable of winning - our hopes rest with Ernst Island and his change of heart.
 
+- @odious_demands: We will back the <span style="color: #990000;">**KPT**</span>'s intransingient demands.
+- @island_refuses: The <span style="color: #990000;">**KPT**</span> withdraws from talks.
 
+@odious_demands
+subtitle: The <span style="color: #f5e324;">**RPT**</span> will withdraw.
+on-arrival: popfront_failed = 1; kpt_relation += 10; rpt_relation -= 5; tndp_relation -= 10; avpt_relation -= 5; left_strength += 10; workers_sapt += 3*(1-dissent); unemployed_sapt += 3*(1-dissent); rural_sapt -= 2; new_middle_sapt -= 2; old_middle_sapt -= 2
+go-to: convincing
 
+We have backed <span style="color: #990000;">**KPT**</span>'s intransingient demands demands as a prerequisite for toleration of a government. The <span style="color: #990000;">**KPT**</span> is surprised - amongst their demands include the re-empowerment of worker councils in the political realm. It all seems too good to be true. And, indeed, it is, as the <span style="color: #f5e324;">**RPT**</span> immediately withdraws from talks, refusing to enter a government that is expected to surrender power to workers' and soldiers' councils.
+
+- @economic: Could we bypass the <span style="color: #f5e324;">**RPT**</span>?
+- @coalition_menu: Damn.
 
 @tower
 subtitle: <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span> + <span style="color: #4e9933;">**AVPT**</span>[? if tower_r < 50 and extended_tower_r >= 50 : - perhaps the <span style="color: #a86b15;">**TNDP**</span> could complete this government? ?]
 choose-if: tower_r >= 50 or (extended_tower_r >= 50 and tndp_relation >= 50) and not dahlin_avpt_backing
 
 A grouping together of the moderate parties with us could build a bulwark against extremist agitation in the face of the crisis and further pad out the republic. [? if tower_r < 50 : This bloc does not itself have a majority, but if extended to include the opportunistic <span style="color: #a86b15;">**TNDP**</span>, it would. ?]
+
+
 
 @economic
 subtitle: <span style="color: #990000;">**KPT**</span> + <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #4e9933;">**AVPT**</span>[? if economic_r < 50 and extended_economic_r >= 50 : - perhaps the <span style="color: #a86b15;">**TNDP**</span> could complete this government? ?]
