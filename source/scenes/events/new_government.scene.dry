@@ -94,6 +94,19 @@ We have backed <span style="color: #990000;">**KPT**</span>'s intransingient dem
 - @economic: Could we bypass the <span style="color: #f5e324;">**RPT**</span>?
 - @coalition_menu: Damn.
 
+@island_refuses
+subtitle: We will need to concede to their demands to avoid this.
+on-arrival: popfront_failed = 1; kpt_relation -= 5; rpt_relation += 5; left_dissent += 10; left_strength -= 5; workers_sapt -= 2; workers_kpt += 2
+
+Faced with our refusal to back the <span style="color: #990000;">**KPT**</span>'s intransingient demands, Ernst Island has changed course, turning against the idea and leading the <span style="color: #990000;">**KPT**</span> in walking out of coalition talks.
+
+- @tower: Could we bypass the <span style="color: #990000;">**KPT**</span>?
+- @coalition_menu: Damn.
+
+@convince_rpt
+
+Convincing the <span style="color: #f5e324;">**RPT**</span> to enter into a government either including
+
 @tower
 subtitle: <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span> + <span style="color: #4e9933;">**AVPT**</span>[? if tower_r < 50 and extended_tower_r >= 50 : - perhaps the <span style="color: #a86b15;">**TNDP**</span> could complete this government? ?]
 choose-if: tower_r >= 50 or (extended_tower_r >= 50 and tndp_relation >= 50) and not dahlin_avpt_backing
