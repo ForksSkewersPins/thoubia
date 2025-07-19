@@ -253,8 +253,8 @@ Q.lapt_formed = 0;
 // Support for party by social group
 // they don't have to sum to 100 since the electoral calculations will be normalized.
 // Workers
-Q.workers_kpt = 5;
-Q.workers_sapt = 39;
+Q.workers_kpt = 7;
+Q.workers_sapt = 37;
 Q.workers_lapt = 1;
 Q.workers_rpt = 11;
 Q.workers_tndp = 10;
@@ -301,8 +301,8 @@ Q.rural_nt = 9;
 Q.rural_vp = 0;
 
 // Unemployed
-Q.unemployed_kpt = 15;
-Q.unemployed_sapt = 20;
+Q.unemployed_kpt = 17;
+Q.unemployed_sapt = 18;
 Q.unemployed_lapt = 0;
 Q.unemployed_rpt = 5;
 Q.unemployed_tndp = 10;
