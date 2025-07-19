@@ -100,7 +100,7 @@ if ((topScore - secondScore) / topScore <= 0.10) {
 go-to: aspelund_avpt if aspelund_avpt_backing; hellqvist_avpt if hellqvist_avpt_backing; dahlin_avpt if dahlin_avpt_backing; sloth_avpt if sloth_avpt_backing; abstain if avpt_abstain
 
 @aspelund_avpt
-on-arrival: avpt_relation += 5; rural_avpt -= 5; rural_fk += 5; pro_republic += 5
+on-arrival: avpt_relation += 5; rural_avpt -= 5; rural_fk += 5; pro_republic += 5; avpt_leftist += 2
 
 The <span style="color: #4e9933;">**AVPT**</span> has chosen to back Aspelund's candidacy in an unexpected reaffirming of the republic by the farmers! It seems the party's democratic roots have not been entirely forgotten. This is a promising development that could propel the <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> front back into power.
 
@@ -110,7 +110,7 @@ on-arrival: rural_rpt += 3; rural_avpt -= 3; old_middle_avpt += 3; old_middle_rp
 Surprisingly, the firm disagreements in economic policy between the mainstream <span style="color: #4e9933;">**AVPT**</span> and Hellqvist have been reconciled, and the former has backed the latter's candidacy. At the same time, the latter has walked back on some former statements, asceding to some agricultural subsidies funded by some small tariffs on foodstuffs. Still, the <span style="color: #4e9933;">**AVPT**</span> is skeptical, and it is uncertain how many will truly vote for Hellqvist.
 
 @dahlin_avpt
-on-arrival: rural_avpt -= 5; rural_rpt += 2; rural_lapt += 2; avpt_relation -= 5; nationalism += 5
+on-arrival: rural_avpt -= 5; rural_rpt += 2; rural_lapt += 2; avpt_relation -= 5; nationalism += 5; avpt_leftist -= 1
 
 As we feared, the <span style="color: #4e9933;">**AVPT**</span> has backed Dahlin. It seems increasingly likely that he will win, and a center-right government will form, one dangerously close to military interests.
 
@@ -120,6 +120,6 @@ on-arrival: rural_tndp += 5; old_middle_avpt += 3
 The <span style="color: #a86b15;">**TNDP**</span> and <span style="color: #4e9933;">**AVPT**</span> continue their drift towards each other, it seems, as the latter has decided to run a candidate together with the former in the second round of voting. Who this candidate will be remains to be seen, but it is highly unlikely they will win.
 
 @abstain
-on-arrival: rural_avpt -= 3
+on-arrival: rural_avpt -= 3; avpt_leftist += 1
 
 Fraught with disagreement, the <span style="color: #4e9933;">**AVPT**</span> has chosen to abstain from the second round altogether. This will certainly reduce their leverage in whatever government is formed, and is a waste of their position as kingmaker.

@@ -345,15 +345,15 @@ Q.tndp_seats = 0;
 Q.nt_seats = 0;
 Q.vp_seats = 0;
 
-Q.rpt_relation = 55;
+Q.rpt_relation = 60;
 Q.fk_relation = 10;
 Q.ntap_relation = 20;
-Q.avpt_relation = 35;
-Q.kpt_relation = 30;
-Q.tndp_relation = 30;
+Q.avpt_relation = 40;
+Q.kpt_relation = 35;
+Q.tndp_relation = 35;
 Q.nt_relation = 0;
 Q.vp_relation = 20;
-Q.lapt_relation = 60;
+Q.lapt_relation = 65;
 
 Q.sapt_leftist = 20;
 Q.rpt_leftist = -1;

@@ -10,6 +10,29 @@ go-to: aspelund if minister_president == "Aspelund"; dahlin if minister_presiden
 
 Following his election, [+ minister_president +] has worked to prepare a list of ministers for his cabinet that will be able to survive any motions of no confidence thrown its way. Now, it seems, he will present this list and confirm his appointments.
 
+@dahlin
+on-arrival: labor_minister_party = "NTAP"; interior_minister_party = "NTAP"; finance_minister_party = "TNDP"; economic_minister_party = "NTAP"; justice_minister_party = "FK" if tndp_relation >= 50; justice_minister_party = "TNDP" if tndp_relation < 50; foreign_minister_party = "FK"; reichswehr_minister_party = "NT"; agriculture_minister_party = "AVPT"; agriculture_minister_party = "FK" if not dahlin_avpt_backing; coup_progress += 1
+
+As expected, Dahlin has formed a government made up primarily of his backers. 
+
+Labor: <span style="color: #a22561;">**NTAP**</span>
+
+Interior: <span style="color: #a22561;">**NTAP**</span>
+
+Finance: <span style="color: #a86b15;">**TNDP**</span>
+
+Economic: <span style="color: #a22561;">**NTAP**</span>
+
+Justice: [? if tndp_relation >= 50 : <span style="color: #2f387f;">**FK**</span> ?][? if tndp_relation < 50 : <span style="color: #a86b15;">**TNDP**</span> ?]
+
+Foreign: <span style="color: #2f387f;">**FK**</span>
+
+Army: <span style="color: #441796;">**NT**</span>
+
+Agriculture: [? if dahlin_avpt_backing : <span style="color: #4e9933;">**AVPT**</span> ?][? if not dahlin_avpt_backing : <span style="color: #2f387f;">**FK**</span> ?]
+
+Times are dire for the nascent republic. We may have to fight tooth and nail to prevent authoritarian backsliding during this period.
+
 @aspelund
 on-arrival: social_republican_r = sapt_r+lapt_r+rpt_r; grand_popular_front_r = kpt_r+sapt_r+lapt_r+rpt_r+avpt_r; popular_front_r = kpt_r+sapt_r+lapt_r+rpt_r; tower_r = sapt_r+lapt_r+rpt_r+avpt_r; economic_r = sapt_r+lapt_r+avpt_r+kpt_r; extended_tower_r = tower_r+tndp_r; extended_economic_r = economic_r+tndp_r
 go-to: coalition_menu
@@ -87,7 +110,6 @@ Both of these wings diverge from Comintern policy however, and getting either wi
 @odious_demands
 subtitle: The <span style="color: #f5e324;">**RPT**</span> will withdraw.
 on-arrival: popfront_failed = 1; kpt_relation += 10; rpt_relation -= 5; tndp_relation -= 10; avpt_relation -= 5; left_strength += 10; workers_sapt += 3*(1-dissent); unemployed_sapt += 3*(1-dissent); rural_sapt -= 2; new_middle_sapt -= 2; old_middle_sapt -= 2
-go-to: convincing
 
 We have backed <span style="color: #990000;">**KPT**</span>'s intransingient demands demands as a prerequisite for toleration of a government. The <span style="color: #990000;">**KPT**</span> is surprised - amongst their demands include the re-empowerment of worker councils in the political realm. It all seems too good to be true. And, indeed, it is, as the <span style="color: #f5e324;">**RPT**</span> immediately withdraws from talks, refusing to enter a government that is expected to surrender power to workers' and soldiers' councils.
 
@@ -105,23 +127,65 @@ Faced with our refusal to back the <span style="color: #990000;">**KPT**</span>'
 
 @convince_rpt
 
-Convincing the <span style="color: #f5e324;">**RPT**</span> to enter into a government either including
+Convincing the <span style="color: #f5e324;">**RPT**</span> to enter into a government either including the <span style="color: #990000;">**KPT**</span> or relying on them for the formation of a majority government is near impossible, with the steadfast and bitter opposition of the ascendant Hellqvist wing in the party. 
+
+- @hellqvist_demands: We will pledge no concessions to the <span style="color: #990000;">**KPT**</span> in return for their toleration.
+- @hellqvist_refuses: The <span style="color: #f5e324;">**RPT**</span> withdraws from talks.
+
+@hellqvist_demands
+subtitle: The <span style="color: #990000;">**KPT**</span> will withdraw.
+on-arrival: popfront_failed = 1; kpt_relation -= 10; rpt_relation += 5; left_strength -= 10; workers_sapt -= 3; unemployed_sapt -= 3; workers_kpt += 2; unemployed_kpt += 2
+
+We have pledged that any toleration of a government by the <span style="color: #990000;">**KPT**</span> would be strictly unconditional, with no concessions to be granted in return. The <span style="color: #990000;">**KPT**</span>, seeing no benefit in such an agreement, has withdrawn from talks.
+
+- @tower: Could we bypass the <span style="color: #990000;">**KPT**</span>?
+- @coalition_menu: Damn.
+
+@hellqvist_refuses
+subtitle: We will need to concede to their demands to avoid this.
+on-arrival: popfront_failed = 1; kpt_relation += 5; rpt_relation -= 5; left_dissent -= 10; left_strength += 5; workers_sapt += 2
+
+Faced with our refusal to give assurances of no concessions to the <span style="color: #990000;">**KPT**</span>, Hellqvist has managed to turn the <span style="color: #f5e324;">**RPT**</span> against the government.
+
+- @economic: Could we bypass the <span style="color: #f5e324;">**RPT**</span>?
+- @coalition_menu: Damn.
+
+@convince_avpt
+on-arrival: popfront_failed = 1
+view-if: popular_front_r < 50
+
+Convincing the <span style="color: #4e9933;">**AVPT**</span> to enter into a Popular Front would be...difficult. Much more easy would be convincing them to enter a government with either the <span style="color: #990000;">**KPT**</span> or <span style="color: #4e9933;">**AVPT**</span>, not both.
+
+Indeed, the <span style="color: #4e9933;">**AVPT**</span> has made clear their unwillingness to join such a government.
+
+- @tower: We'll seek to form a bulwark of moderation.
+- @economic: We'll seek to form an interventionist coalition.
+- @coalition_menu: Oh, damn. Okay.
 
 @tower
 subtitle: <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #f5e324;">**RPT**</span> + <span style="color: #4e9933;">**AVPT**</span>[? if tower_r < 50 and extended_tower_r >= 50 : - perhaps the <span style="color: #a86b15;">**TNDP**</span> could complete this government? ?]
 choose-if: tower_r >= 50 or (extended_tower_r >= 50 and tndp_relation >= 50) and not dahlin_avpt_backing
+max-visits: 1
 
 A grouping together of the moderate parties with us could build a bulwark against extremist agitation in the face of the crisis and further pad out the republic. [? if tower_r < 50 : This bloc does not itself have a majority, but if extended to include the opportunistic <span style="color: #a86b15;">**TNDP**</span>, it would. ?]
 
+WIP
 
+- @coalition_menu: Something else?
 
 @economic
 subtitle: <span style="color: #990000;">**KPT**</span> + <span style="color: #d4130c;">**SAPT**</span> + <span style="color: #e49c21;">**LAPT**</span> + <span style="color: #4e9933;">**AVPT**</span>[? if economic_r < 50 and extended_economic_r >= 50 : - perhaps the <span style="color: #a86b15;">**TNDP**</span> could complete this government? ?]
 choose-if: economic_r >= 50 or (extended_economic_r >= 50 and tndp_relation >= 50) and not dahlin_avpt_backing
+max-visits: 1
 
 A grouping together of those parties seeking to have the government direct economic resources in order to end the crisis - along economic lines, rather than ideological, bypassing the <span style="color: #f5e324;">republicans</span> - could be what the country needs in the long run to cement the Third Republic. [? if economic_r < 50 : This bloc does not itself have a majority, but if extended to include the opportunistic <span style="color: #a86b15;">**TNDP**</span>, it would. ?]
 
+WIP
+
+- @coalition_menu: Something else?
+
 @failure
 subtitle: Aspelund will be forced to form a government without the consent of his backers.
+on-arrival: aspelund_caterino_arc = 1
 
 We have failed to form a government. What Aspelund will do now is uncertain - he could cave in and allow anti-republicans into government, resign, or something else. It's impossible to know. All that can be said is that he seems very frustrated with us, as well as the other parties backing him, for our inability to cooperate in defense of the republic.
