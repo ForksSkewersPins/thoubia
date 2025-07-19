@@ -1,0 +1,23 @@
+title: The Electoral Campaign
+subtitle: We must make a key decision in this campaign
+view-if: (time+1) >= next_election_time
+max-visits: 1
+tags: event
+new-page: true
+
+= The Electoral Campaign
+
+In building our provisional government with the <span style="color: #f5e324;">**RPT**</span> we have shifted to the right, focusing more on upholding the republic than the interests of the workers, upsetting both the trade unions and the ideological left. These groups would, now that the <span style="color: #f5e324;">**RPT**</span> have abandoned us, like us to do the same and shift back to the left to win back the workers from the <span style="color: #990000;">communists</span>. Doing so, however, may burn our bridges.
+
+- @campaign_left: We will reaffirm our commitment to the class war.
+- @bridge: We cannot afford to burn bridges.
+
+@campaign_left
+on-arrival: reformist_strength -= 10; left_dissent -= 5; workers_kpt -= 3; unemployed_kpt -= 3; workers_sapt += 2*(1-dissent); unemployed_sapt += 2*(1-dissent); kpt_relation += 5; rpt_relation -= 5; tndp_relation -= 5; avpt_relation -= 5; lapt_relation -= 3
+
+We have published a pamphlet, on which we shall campaign, reaffirming our commitment to the class war on behalf of the proletariat and against the bourgeoisie, clarifying our defense of the republic merely as a vehicle to the dictatorship of the proletariat. The <span style="color: #f5e324;">**RPT**</span>, too, is reminded by this pamphlet, and Hellqvist uses it to retroactively justify his demands to withdraw from government.
+
+@bridge
+on-arrival: left_dissent += 10; labor_dissent += 5; workers_kpt += 1; rpt_relation += 5; tndp_relation += 2; avpt_relation += 3; lapt_relation += 5
+
+We have refused to cave to the demands of our left and labor wings, arguing that this would make building coalitions impossible.
