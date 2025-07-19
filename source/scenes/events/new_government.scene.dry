@@ -96,6 +96,11 @@ This is an unorthodox idea, to say the least. The <span style="color: #990000;">
 - @convince_avpt: We will convince the <span style="color: #4e9933;">**AVPT**</span>.
 - @done: We have convinced everyone.
 
+@done
+view-if: never
+
+no
+
 @convince_kpt
 
 Convincing the <span style="color: #990000;">**KPT**</span> to either enter or provide toleration to a government consisting of bourgeois liberal-capitalist ministers, especially those as unabashadly capitalist as the <span style="color: #f5e324;">**RPT**</span>'s ascendant Hellqvist wing, would be in contrast to all hitherto communist theory.
