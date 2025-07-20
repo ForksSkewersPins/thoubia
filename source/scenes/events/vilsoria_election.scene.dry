@@ -73,7 +73,7 @@ for (let party of Q.vilsoria_parties) {
 const FPTP_SEATS = 32;
 var total_weight = 0;
 for (var party of Q.vilsoria_parties) {
-    Q[party+'_weighted_vilsoria_votes'] = Math.pow((Q[party+'_vilsoria_votes']*Q['vilsoria_'+party]), 2);
+    Q[party+'_weighted_vilsoria_votes'] = Math.pow((Q[party+'_votes_vilsoria']*Q['vilsoria_'+party]), 2);
     total_weight += Q[party+'_weighted_vilsoria_votes'];
 }
 for (var party of Q.vilsoria_parties) {
