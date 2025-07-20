@@ -15,7 +15,7 @@ The Reichstag elections are to be held now.
 
 - @election_algorithm: May we do our best...
 
-@post_election_1928
+@post_election_vilsoria
 on-arrival: {!  
 const PROPORTIONAL_SEATS = 32;
 const TOTAL_SEATS = 64;
