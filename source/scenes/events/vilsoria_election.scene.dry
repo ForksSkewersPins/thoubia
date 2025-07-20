@@ -188,9 +188,9 @@ go-to: coalition_menu
 
 [? if bapv_seats_vilsoria: 
 <tr>
-  <td><div class="box" style='background-color:#4e9933;'> </div> AVPT:</td>
-  <td>[+ avpt_votes_vilsoria +]%</td>
-  <td>[+ avpt_seats_vilsoria +] ([+ avpt_vr +]%)</td>
+  <td><div class="box" style='background-color:#85b24d;'> </div> BAPV:</td>
+  <td>[+ bapv_votes_vilsoria +]%</td>
+  <td>[+ bapv_seats_vilsoria +] ([+ avpt_vr +]%)</td>
 </tr>
 ?]
 
@@ -212,9 +212,9 @@ go-to: coalition_menu
 
 [? if aoe_seats_vilsoria: 
 <tr>
-  <td><div class="box" style='background-color:#2f387f;'> </div> FK:</td>
-  <td>[+ fk_votes_vilsoria +]%</td>
-  <td>[+ fk_seats_vilsoria +] ([+ fk_vr +]%)</td>
+  <td><div class="box" style='background-color:#5a5380;'> </div> AOE:</td>
+  <td>[+ aoe_votes_vilsoria +]%</td>
+  <td>[+ aoe_seats_vilsoria +] ([+ fk_vr +]%)</td>
 </tr>
 ?]
 

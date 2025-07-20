@@ -722,6 +722,10 @@ th {
   fill: #e49c21;
 }
 
+.seat.bapv {
+  fill: #85b24d;
+}
+
 .seat.rpt {
   fill: #f5e324;
 }
@@ -736,6 +740,10 @@ th {
 
 .seat.ntap {
   fill: #a22561;
+}
+
+.seat.aoe {
+  fill: #5a5380;
 }
 
 .seat.fk {
