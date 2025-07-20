@@ -168,7 +168,7 @@ go-to: coalition_menu
 
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
 {!<table>!} 
-<tr><td>Party</td><td>Vote share</td><td>% Change</td><td>Seats</td><td>Change</td></tr>
+<tr><td>Party</td><td>Vote share</td><td>Seats</td></tr>
 
 [? if kpt_seats_vilsoria: 
 <tr>
