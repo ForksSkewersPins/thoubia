@@ -190,7 +190,7 @@ go-to: coalition_menu
 <tr>
   <td><div class="box" style='background-color:#85b24d;'> </div> BAPV:</td>
   <td>[+ bapv_votes_vilsoria +]%</td>
-  <td>[+ bapv_seats_vilsoria +] ([+ avpt_vr +]%)</td>
+  <td>[+ bapv_seats_vilsoria +] ([+ bapv_vr +]%)</td>
 </tr>
 ?]
 
@@ -214,7 +214,7 @@ go-to: coalition_menu
 <tr>
   <td><div class="box" style='background-color:#5a5380;'> </div> AOE:</td>
   <td>[+ aoe_votes_vilsoria +]%</td>
-  <td>[+ aoe_seats_vilsoria +] ([+ fk_vr +]%)</td>
+  <td>[+ aoe_seats_vilsoria +] ([+ aoe_vr +]%)</td>
 </tr>
 ?]
 
