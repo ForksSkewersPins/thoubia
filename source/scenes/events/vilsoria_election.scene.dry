@@ -170,53 +170,41 @@ go-to: coalition_menu
 {!<table>!} 
 <tr><td>Party</td><td>Vote share</td><td>Seats</td></tr>
 
-[? if kpt_seats_vilsoria > 0:
 <tr>
   <td><div class="box" style='background-color:#990000;'> </div> KPT:</td>
   <td>[+ kpt_votes_vilsoria +]%</td>
   <td>[+ kpt_seats_vilsoria +] ([+ kpt_vr +]%)</td>
 </tr>
-?]
 
-[? if sapt_seats_vilsoria > 0:
 <tr>
   <td><div class="box" style='background-color:#d4130c;'> </div> SAPT:</td>
   <td>[+ sapt_votes_vilsoria +]%</td>
   <td>[+ sapt_seats_vilsoria +] ([+ sapt_vr +]%)</td>
 </tr>
-?]
 
-[? if bapv_seats_vilsoria > 0:
 <tr>
   <td><div class="box" style='background-color:#85b24d;'> </div> BAPV:</td>
   <td>[+ bapv_votes_vilsoria +]%</td>
   <td>[+ bapv_seats_vilsoria +] ([+ bapv_vr +]%)</td>
 </tr>
-?]
 
-[? if rpt_seats_vilsoria > 0:
 <tr>
   <td><div class="box" style='background-color:#f5e324;'> </div> RPT:</td>
   <td>[+ rpt_votes_vilsoria +]%</td>
   <td>[+ rpt_seats_vilsoria +] ([+ rpt_vr +]%)</td>
 </tr>
-?]
 
-[? if tndp_seats_vilsoria > 0:
 <tr>
   <td><div class="box" style='background-color:#a86b15;'> </div> TNDP:</td>
   <td>[+ tndp_votes_vilsoria +]%</td>
   <td>[+ tndp_seats_vilsoria +] ([+ tndp_vr +]%)</td>
 </tr>
-?]
 
-[? if aoe_seats_vilsoria > 0:
 <tr>
   <td><div class="box" style='background-color:#5a5380;'> </div> AOE:</td>
   <td>[+ aoe_votes_vilsoria +]%</td>
   <td>[+ aoe_seats_vilsoria +] ([+ aoe_vr +]%)</td>
 </tr>
-?]
 
 {!</table>!}
 
