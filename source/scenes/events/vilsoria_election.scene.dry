@@ -173,81 +173,48 @@ go-to: coalition_menu
 [? if kpt_seats_vilsoria: 
 <tr>
   <td><div class="box" style='background-color:#990000;'> </div> KPT:</td>
-  <td>[+ kpt_votes +]%</td>
-  <td>[+ str_votes_change_kpt +]</td>
-  <td>[+ kpt_seats_vilsoria +] ([+ kpt_r +]%)</td>
+  <td>[+ kpt_votes_vilsoria +]%</td>
+  <td>[+ kpt_seats_vilsoria +] ([+ kpt_vr +]%)</td>
 </tr>
 ?]
 
 [? if sapt_seats_vilsoria: 
 <tr>
   <td><div class="box" style='background-color:#d4130c;'> </div> SAPT:</td>
-  <td>[+ sapt_votes +]%</td>
-  <td>[+ str_votes_change_sapt +]</td>
-  <td>[+ sapt_seats_vilsoria +] ([+ sapt_r +]%)</td>
+  <td>[+ sapt__votes_vilsoria +]%</td>
+  <td>[+ sapt_seats_vilsoria +] ([+ sapt_vr +]%)</td>
 </tr>
 ?]
 
 [? if bapv_seats_vilsoria: 
 <tr>
   <td><div class="box" style='background-color:#4e9933;'> </div> AVPT:</td>
-  <td>[+ avpt_votes +]%</td>
-  <td>[+ str_votes_change_avpt +]</td>
-  <td>[+ avpt_seats_vilsoria +] ([+ avpt_r +]%)</td>
-</tr>
-?]
-
-[? if lapt_seats_vilsoria: 
-<tr>
-  <td><div class="box" style='background-color:#e49c21;'> </div> LAPT:</td>
-  <td>[+ lapt_votes +]%</td>
-  <td>[+ str_votes_change_lapt +]</td>
-  <td>[+ lapt_seats_vilsoria +] ([+ lapt_r +]%)</td>
+  <td>[+ avpt__votes_vilsoria +]%</td>
+  <td>[+ avpt_seats_vilsoria +] ([+ avpt_vr +]%)</td>
 </tr>
 ?]
 
 [? if rpt_seats_vilsoria: 
 <tr>
   <td><div class="box" style='background-color:#f5e324;'> </div> RPT:</td>
-  <td>[+ rpt_votes +]%</td>
-  <td>[+ str_votes_change_rpt +]</td>
-  <td>[+ rpt_seats_vilsoria +] ([+ rpt_r +]%)</td>
+  <td>[+ rpt__votes_vilsoria +]%</td>
+  <td>[+ rpt_seats_vilsoria +] ([+ rpt_vr +]%)</td>
 </tr>
 ?]
 
 [? if tndp_seats_vilsoria: 
 <tr>
   <td><div class="box" style='background-color:#a86b15;'> </div> TNDP:</td>
-  <td>[+ tndp_votes +]%</td>
-  <td>[+ str_votes_change_tndp +]</td>
-  <td>[+ tndp_seats_vilsoria +] ([+ tndp_r +]%)</td>
+  <td>[+ tndp__votes_vilsoria +]%</td>
+  <td>[+ tndp_seats_vilsoria +] ([+ tndp_vr +]%)</td>
 </tr>
 ?]
 
 [? if aoe_seats_vilsoria: 
 <tr>
   <td><div class="box" style='background-color:#2f387f;'> </div> FK:</td>
-  <td>[+ fk_votes +]%</td>
-  <td>[+ str_votes_change_fk +]</td>
-  <td>[+ fk_seats_vilsoria +] ([+ fk_r +]%)</td>
-</tr>
-?]
-
-[? if vp_seats_vilsoria: 
-<tr>
-  <td><div class="box" style='background-color:#a08464;'> </div> VP:</td>
-  <td>[+ vp_votes +]%</td>
-  <td>[+ str_votes_change_vp +]</td>
-  <td>[+ vp_seats_vilsoria +] ([+ vp_r +]%)</td>
-</tr>
-?]
-
-[? if nt_seats_vilsoria: 
-<tr>
-  <td><div class="box" style='background-color:#441796;'> </div> NT:</td>
-  <td>[+ nt_votes +]%</td>
-  <td>[+ str_votes_change_nt +]</td>
-  <td>[+ nt_seats_vilsoria +] ([+ nt_r +]%)</td>
+  <td>[+ fk__votes_vilsoria +]%</td>
+  <td>[+ fk_seats_vilsoria +] ([+ fk_vr +]%)</td>
 </tr>
 ?]
 
