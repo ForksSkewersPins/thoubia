@@ -50,9 +50,6 @@ if (Q.achievement_holy_moly) {
     }
 }
 
-const contentElement = document.getElementById('content');
-contentElement.style.backgroundColor = '#beb093ff';
-
 if (Q.rubicon && Q.chancellor != Q.nsdap_chancellor) {
 const contentElement = document.getElementById('content');
 contentElement.style.backgroundColor = '#645E51';

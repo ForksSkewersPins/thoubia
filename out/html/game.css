@@ -1,23 +1,24 @@
 body {
-  --bg-color: #f3f3e3;
-  --border-color: #000;
-  --content-bg-color: #f3f3f3;
-  --text-color: #431;
-  --link-color: #900;
-  --link-hover-color: rgba(255, 0, 0, 0.1);
-  --unavailable-bg-color: rgba(0, 0, 0, 0.1);
-  --unavailable-color: #999;
-  --tab-bg-color: #dedede;
-  --tab-color: #ddd;
-  --tab-hover-color: #ececec;
-  --card-border-color: #ccc; 
-  --card-bg-color: #ddd; 
+  --bg-color: #beb093;               /* beige background */
+  --border-color: #a39473;           /* darker beige for border */
+  --content-bg-color: #d6cfa6;       /* lighter beige for content background */
+  --text-color: #6e6650;             /* medium brownish beige for text */
+  --link-color: #9c8e5d;             /* muted beige/brown for links */
+  --link-hover-color: rgba(190, 176, 147, 0.4); /* semi-transparent beige */
+  --unavailable-bg-color: rgba(190, 176, 147, 0.2); /* very light beige transparent */
+  --unavailable-color: #b0a985;      /* pale beige for unavailable text */
+  --tab-bg-color: #d0cba1;           /* soft beige for tab background */
+  --tab-color: #c1b78a;              /* beige for tab text */
+  --tab-hover-color: #bfb88a;        /* slightly darker beige for hover */
+  --card-border-color: #c6bc99;      /* beige border for cards */
+  --card-bg-color: #d9d0a8;          /* beige card background */
   font-family: "Minion Pro", Georgia, serif;
   background-color: var(--bg-color);
   padding: 0;
   line-height: 155%;
   overflow-y: scroll;
 }
+
 body.dark-mode {
   --bg-color: #000;
   --border-color: #fff;
