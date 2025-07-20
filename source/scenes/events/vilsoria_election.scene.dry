@@ -45,7 +45,7 @@ let dhondtTable = [];
 
 for (let party of validParties) {
     let votes = Q.party_votes[party];
-    for (let divisor = 1; divisor <= TOTAL_SEATS; divisor++) {
+    for (let divisor = 1; divisor <= PROPORTIONAL_SEATS; divisor++) {
         dhondtTable.push({
             party: party,
             value: votes / divisor
@@ -55,7 +55,7 @@ for (let party of validParties) {
 
 // Step 4: Allocate top 351 seats
 dhondtTable.sort((a, b) => b.value - a.value);
-let topSeats = dhondtTable.slice(0, TOTAL_SEATS);
+let topSeats = dhondtTable.slice(0, PROPORTIONAL_SEATS);
 
 // Step 5: Count seats
 let seatCounts = {};
