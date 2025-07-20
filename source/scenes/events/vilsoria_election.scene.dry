@@ -107,13 +107,13 @@ for (let seat of fptpTopSeats) {
 for (let party of Q.vilsoria_parties) {
     const seats = fptpSeatCounts[party] || 0;
     Q[party + '_seats_vilsoria'] += seats;
-    Q[party+'_vr'] = (Math.round((Q[party + '_seats_vilsoria'] / TOTAL_SEATS) * 1000)) / 10;  // % of seats
+    Q[party+'_vr'] = parseFloat(((Q[party + '_seats_vilsoria'] / TOTAL_SEATS) * 100).toFixed(1));  // % of seats
 }
 
 !}
 on-departure: nazi_urgency = 1 if (nazi_urgency == 0 and nsdap_r >= 15)
 on-display: {!
-data = Q.parties
+data = Q.vilsoria_parties
     .filter(party => Q[party + '_seats_vilsoria']) // Only include parties with seat data
     .map(party => ({
         id: party,
