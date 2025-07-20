@@ -1,0 +1,26 @@
+title: Public Works Plan
+subtitle: [+ minister_president +] signs off on an <span style="color: #a22561;">**NTAP**</span> plan to end the economic crisis...
+view-if: time >= (second_round_time+5) and second_round_seen and minister_president == "Dahlin"
+max-visits: 1
+tags: event
+new-page: true
+on-arrival: unemployed -= 5; workers += 2; old_middle += 1; rural += 1; new_middle += 1; inflation += 4; economic_growth += 2; budget -= 3; unemployed_ntap += 5; workers_ntap += 3; new_middle_ntap += 3; old_middle_ntap += 2; rural_ntap += 2; old_middle_fk -= 2; rural_fk -= 2
+
+= Public Works Plan
+
+The <span style="color: #a22561;">**NTAP**</span> and <span style="color: #a86b15;">**TNDP**</span> have collaborated on an ambitious economic plan that would follow a Cajnesian, interventionist approach and inject mass funds into the economy. Despite our staunch opposition to their pro-junta stances, this economic plan is widely popular amongst the trade unions, though <span style="color: #f5e324;">**RPT**</span> economists have criticized it, arguing that such spending would reduce investor confidence, lead to a debt crisis and exacerbate the crisis. Our party left, too, attacks the plan, considering it to be "saving capitalism" and bailing out the same businesses that created the crisis.
+
+- @vote_for: We will vote for the plan in the parliament.
+- @vote_against: We will vote against the plan in the parliament.
+- @neutral: We will abstain from the vote.
+
+@vote_for
+subtitle: We will clarify, however, our continued opposition to militarism.
+on-arrival: left_dissent += 5; rpt_relation -= 5; kpt_relation -= 5; tndp_relation += 5; labor_strength += 10; labor_dissent -= 5; sapt_leftist -= 1
+
+@vote_against
+subtitle: This may be difficult to justify to the trade unions.
+on-arrival: left_strength += 10; left_dissent -= 5; rpt_relation += 5; kpt_relation += 5; tndp_relation -= 5; labor_dissent += 10; labor_strength -= 5; workers_sapt -= 2; unemployed_sapt -= 3
+
+@neutral
+subtitle: Perhaps the safest move.
