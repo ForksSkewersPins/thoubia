@@ -1,17 +1,17 @@
 body {
-  --bg-color: #beb093;               /* beige background */
-  --border-color: #a39473;           /* darker beige for border */
-  --content-bg-color: #d6cfa6;       /* lighter beige for content background */
-  --text-color: #6e6650;             /* medium brownish beige for text */
-  --link-color: #9c8e5d;             /* muted beige/brown for links */
-  --link-hover-color: rgba(190, 176, 147, 0.4); /* semi-transparent beige */
-  --unavailable-bg-color: rgba(190, 176, 147, 0.2); /* very light beige transparent */
-  --unavailable-color: #b0a985;      /* pale beige for unavailable text */
-  --tab-bg-color: #d0cba1;           /* soft beige for tab background */
-  --tab-color: #c1b78a;              /* beige for tab text */
-  --tab-hover-color: #bfb88a;        /* slightly darker beige for hover */
-  --card-border-color: #c6bc99;      /* beige border for cards */
-  --card-bg-color: #d9d0a8;          /* beige card background */
+  --bg-color: #a89f82;               /* darker grayish beige */
+  --border-color: #8e866b;           /* dark beige-gray for borders */
+  --content-bg-color: #b3aa8f;       /* muted beige-gray for content */
+  --text-color: #4a4639;             /* dark grayish brown */
+  --link-color: #7a7058;             /* grayish brown for links */
+  --link-hover-color: rgba(168, 159, 130, 0.3); /* subtle transparent beige */
+  --unavailable-bg-color: rgba(120, 112, 88, 0.2); /* muted gray-beige transparent */
+  --unavailable-color: #7f7963;      /* muted grayish beige */
+  --tab-bg-color: #9d9477;           /* darker beige for tab bg */
+  --tab-color: #8c8268;              /* slightly darker gray beige */
+  --tab-hover-color: #7e755f;        /* darker gray-beige hover */
+  --card-border-color: #9a9178;      /* muted beige-gray border */
+  --card-bg-color: #b0a687;          /* grayish beige background */
   font-family: "Minion Pro", Georgia, serif;
   background-color: var(--bg-color);
   padding: 0;
