@@ -11,6 +11,17 @@ As the second round of the Minister-Presidential election approaches, the <span 
 
 Paul Haavik, one of their leaders, has already stepped aside. Seeking to maintain his broad appeal on the left and the right, he is not intervening in the congress' decision, at least not publicly or to our knowledge.
 
+- @campaign_rural: We'll launch a large campaign through the countryside against Dahlin and for the republic.
+- @party_vote: The party votes...
+
+@campaign_rural
+subtitle: -2 resources. We can also connect with the <span style="color: #4e9933;">**AVPT**</span> rank and file.
+choose-if: resources >= 2
+on-arrival: resources -= 2; bonus_avpt = 2; rural_sapt += 5*(1-dissent); pro_republic += 5*(1-dissent); rural_fk -= 5*(1-dissent); nationalism -= 5*(1-dissent); avpt_relation += 5*(1-dissent)
+call: election_algorithm
+
+We have launched a large campaign through the countryside, against nationalism and militarism, for socialism and republicanism, against Dahlin, and for [+ sapt_candidate +]. We have also used this campaign to establish contacts in the <span style="color: #4e9933;">**AVPT**</span>'s rank and file campaign teams and party branches, which may influence their congress. Let us hope this campaign pays off.
+
 - @party_vote: The party votes...
 
 @party_vote
@@ -26,6 +37,10 @@ if (Q.aspelund_votes) {
 }
 aspelund_points += Q.pro_republic / 5;
 console.log("Aspelund pro_republic/5 added:", Q.pro_republic / 5);
+
+if (Q.bonus_avpt) {
+    aspelund_points += Q.bonus_avpt;
+}
 
 aspelund_points += Q.rural_sapt_normalized;
 console.log("Aspelund rural_sapt_normalized added:", Q.rural_sapt_normalized);
