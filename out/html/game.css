@@ -719,6 +719,12 @@ th {
   stroke-width: 1.5px;
 }
 
+.seat.sapo {
+  fill: #b8110b;
+  stroke: #000000;
+  stroke-width: 1.5px;
+}
+
 .seat.lapt {
   fill: #e49c21;
 }

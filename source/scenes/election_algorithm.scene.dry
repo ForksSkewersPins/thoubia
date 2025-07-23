@@ -109,6 +109,11 @@ Q.unemployed_vilsoria = (Q.unemployed*1.5);
 
 Q.vilsoria_kpt = 0.05;
 Q.vilsoria_sapt = 1.5;
+if (Q.left_split) {
+    Q.vilsoria_sapt -= 1;
+    Q.vilsoria_sapo = 3;
+    Q.vilsoria_kpt += 0.45;
+}
 Q.vilsoria_lapt = 0.5;
 Q.vilsoria_rpt = 1;
 Q.vilsoria_tndp = 0.75;
@@ -134,10 +139,12 @@ for (var party of Q.parties) {
     Q[party+'_votes_vilsoria'] = (Math.round((Q[party+'_vilsoria_support']/total_vilsoria) * 1000))/10;
 }
 
-Q.vilsoria_parties = ['kpt', 'sapt', 'bapv', 'rpt', 'tndp', 'aoe'];
-
 Q.bapv_votes_vilsoria = (Q.avpt_votes_vilsoria+Q.lapt_votes_vilsoria+Q.vp_votes_vilsoria);
 Q.aoe_votes_vilsoria = (Q.fk_votes_vilsoria+Q.ntap_votes_vilsoria+Q.nt_votes_vilsoria);
+if (Q.left_split) {
+    Q.sapo_votes_vilsoria += parseFloat(Q.kpt_votes_vilsoria/2).toFixed(1);
+    Q.kpt_votes_vilsoria = parseFloat(Q.kpt_votes_vilsoria/2).toFixed(1);
+}
 
 Q.avpt_votes_vilsoria = 0;
 Q.lapt_votes_vilsoria = 0;

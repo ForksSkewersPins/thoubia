@@ -1,0 +1,43 @@
+title: The Left Splits!
+subtitle: Our policy course has upset the left...
+new-page: true
+tags: event
+view-if: not left_split and left_dissent >= 60
+on-arrival: {!
+
+Q.left_split = 1;
+
+Q.parties.push('sapo');
+Q.vilsoria_parties.push('sapo');
+
+Q.sapo_leftist = (Q.sapt_leftist+1);
+Q.sapo_seats = Math.round(Q.sapt_seats*(Q.left_strength/100));
+Q.sapt_seats -= Q.sapo_seats;
+Q.sapo_r = parseFloat(Q.sapo_seats/TOTAL_SEATS).toFixed(1);
+Q.spt_r -= Q.sapo_r;
+
+Q.workers_sapo = (Q.workers_sapt * (Q.left_strength/200));
+Q.unemployed_sapo = (Q.unemployed_sapt * (Q.left_strength/150));
+
+Q.workers_sapt -= (Q.workers_sapo+3);
+Q.unemployed_sapt -= (Q.unemployed_sapo+3);
+
+Q.new_middle_sapo = 2;
+Q.new_middle_sapt -= 5;
+
+Q.old_middle_sapo = 0;
+Q.rural_sapo = 0;
+
+Q.left_strength *= 0.25;
+
+!}
+go-to: left_split
+
+= Left Split
+
+@left_split
+
+We have offended the left-wing of our party greatly, and they have organized into the <span style="color: #b8110b;">**SAP(O)**</span> - not officially a party, and still part of our parliamentary delegation, they seek to act as an internal pressure group, and to this aim have organized their own lists which they intend to run separately from ours in the national and regional elections.
+
+Ernst Island is rumored to have begun negotiations with the leader of the <span style="color: #b8110b;">**SAP(O)**</span>, Johan Palmgren, for a united front.
+

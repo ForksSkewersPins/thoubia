@@ -621,6 +621,16 @@ go-to: achievement_check_e
 </tr>
 ?]
 
+[? if sapo_seats: 
+<tr>
+  <td><div class="box" style='background-color:#d4130c;'> </div> SAP(O):</td>
+  <td>[+ sapo_votes +]%</td>
+  <td>[+ str_votes_change_sapo +]</td>
+  <td>[+ sapo_seats +] ([+ sapo_r +]%)</td>
+  <td>[+ str_seats_change_sapo +] ([+ str_change_sapo +] pp.)</td>
+</tr>
+?]
+
 [? if sapt_seats: 
 <tr>
   <td><div class="box" style='background-color:#d4130c;'> </div> SAPT:</td>
