@@ -17,10 +17,12 @@ if (Q.island_campaign) {
     Q.island_votes = Q.kpt_seats;
     if (Q.sapt_back_island) {
         Q.island_votes += Math.round(Q.sapt_seats*(Q.left_strength/100));
+        Q.island_votes += Q.sapo_seats || 0;
     }
 }
 if (Q.palmgren_campaign) {
     Q.palmgren_votes = Math.round(Q.sapt_seats*((100-Q.reformist_strength)/100));
+    Q.palmgren_votes += Q.sapo_seats || 0;
     Q.sapt_candidate = "Palmgren";
     Q.candidates.push('palmgren');
     if (Q.kpt_back_candidate) {
@@ -28,6 +30,7 @@ if (Q.palmgren_campaign) {
     }
 } else if (Q.posse_campaign) {
     Q.posse_votes = Q.sapt_seats;
+    Q.posse_votes += Q.sapo_seats || 0;
     Q.posse_votes += Q.lapt_seats;
     Q.sapt_candidate = "Posse";
     Q.candidates.push('posse');
@@ -39,6 +42,7 @@ if (Q.palmgren_campaign) {
     }
 } else if (Q.aspelund_campaign) {
     Q.aspelund_votes = Q.sapt_seats;
+    Q.aspelund_votes += Q.sapo_seats || 0;
     Q.aspelund_votes += Q.lapt_seats;
     Q.sapt_candidate = "Aspelund";
     Q.candidates.push('aspelund');

@@ -114,6 +114,10 @@ if (Q.left_split) {
     Q.vilsoria_sapo = 3;
     Q.vilsoria_kpt += 0.5;
 }
+if (Q.sapo_absorbed) {
+    Q.vilsoria_sapt -= 0.25;
+    Q.vilsoria_kpt += 2;
+}
 Q.vilsoria_lapt = 0.5;
 Q.vilsoria_rpt = 1;
 Q.vilsoria_tndp = 0.75;

@@ -22,16 +22,19 @@ if (Q.kpt_seats >= 20) {
     Q.candidates.push('palmgren');
     Q.palmgren_votes = Q.kpt_seats;
     Q.palmgren_votes += Math.round(Q.sapt_seats*(Q.left_strength/100));
+    Q.palmgren_votes += Q.sapo_seats || 0;
 }
 
 if (Q.posse_campaign) {
     Q.posse_votes = Q.sapt_seats;
     Q.posse_votes += Q.lapt_seats;
+    Q.posse_votes += Q.sapo_seats || 0;
     Q.sapt_candidate = "Posse";
     Q.candidates.push('posse');
 } else if (Q.aspelund_campaign) {
     Q.aspelund_votes = Q.sapt_seats;
     Q.aspelund_votes += Q.lapt_seats;
+    Q.aspelund_votes += Q.sapo_seats || 0;
     Q.sapt_candidate = "Aspelund";
     Q.candidates.push('aspelund');
     Q.aspelund_votes += Math.round(Q.rpt_seats*(Q.pro_republic/500));
