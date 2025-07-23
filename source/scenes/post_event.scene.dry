@@ -1656,6 +1656,13 @@ if ((Q.month_actions >= 1 && !Q.rubicon) || (Q.month_actions >= 4 && Q.rubicon))
         Q.old_middle_nsdap -= 6/12;
     }
 
+    if (Q.left_split && !Q.sapo_absorbed && (Q.sapo_votes/(Q.sapo_votes+Q.sapt_votes) < (Q.left_dissent/200))) {
+        Q.workers_sapt -= (Q.left_dissent/(Q.left_strength+5));
+        Q.workers_sapo += (Q.left_dissent/(Q.left_strength+5));
+        Q.unemployed_sapt -= (Q.left_dissent/(Q.left_strength+5));
+        Q.unemployed_sapo += (Q.left_dissent/(Q.left_strength+5));
+    }
+
     ////////////////////////// annual support changes
     if (Q.year == 1928) {
         Q.unemployed += 8/12;
