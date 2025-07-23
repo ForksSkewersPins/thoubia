@@ -1,6 +1,6 @@
 title: <span style="color: #b8110b;">**SAP(O)**</span> Defects
 subtitle: Island and Palmgren conclude talks
-view-if: (left_dissent+kpt_relation >= 80) or left_dissent >= 90
+view-if: (left_dissent+kpt_relation >= 100) or left_dissent >= 90 and left_split
 on-arrival: {!
 Q.parties = Q.parties.filter(item => item !== "sapo");
 Q.vilsoria_parties = Q.vilsoria_parties.filter(item => item !== "sapo");
