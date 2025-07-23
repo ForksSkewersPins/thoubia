@@ -178,6 +178,16 @@ go-to: coalition_menu
   <td>[+ kpt_seats_vilsoria +] ([+ kpt_vr +]%)</td>
 </tr>
 
+[? if left_split :
+
+<tr>
+  <td><div class="box" style='background-color:#d4130c;'> </div> SAPO:</td>
+  <td>[+ sapo_votes_vilsoria +]%</td>
+  <td>[+ sapo_seats_vilsoria +] ([+ sapo_vr +]%)</td>
+</tr>
+
+?]
+
 <tr>
   <td><div class="box" style='background-color:#d4130c;'> </div> SAPT:</td>
   <td>[+ sapt_votes_vilsoria +]%</td>
