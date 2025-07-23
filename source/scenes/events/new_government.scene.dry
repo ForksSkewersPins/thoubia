@@ -23,11 +23,11 @@ Finance: <span style="color: #a86b15;">**TNDP**</span>
 
 Economic: <span style="color: #a22561;">**NTAP**</span>
 
-Justice: [? if tndp_relation >= 50 : <span style="color: #2f387f;">**FK**</span> ?][? if tndp_relation < 50 : <span style="color: #a86b15;">**TNDP**</span> ?]
+Justice: <span style="color: #2f387f;">**FK**</span>
 
 Foreign: <span style="color: #2f387f;">**FK**</span>
 
-Army: <span style="color: #441796;">**NT**</span>
+Defense: <span style="color: #441796;">**NT**</span>
 
 Agriculture: [? if dahlin_avpt_backing : <span style="color: #4e9933;">**AVPT**</span> ?][? if not dahlin_avpt_backing : <span style="color: #2f387f;">**FK**</span> ?]
 

@@ -18,10 +18,13 @@ There is not much we can really do about this.
 
 @protest
 subtitle: -1 resource - this could be seen as hypocritical
-on-arrival: resources -= 1; lapt_relation -= 5; rpt_relation -= 5; workers_sapt += goal_sapt_total
+on-arrival: resources -= 1; lapt_relation -= 5; rpt_relation -= 5; workers_sapt += goal_sapt_total; time_to_election = 3
+call: set_next_election_time
 
 We launch a flurry of demonstrations against the dissolution of the provisional government. With the elections drawing near, though, there is not too much to protest against. AT the very least, we can convert popular actions by our government into support.
 
 @whatever
+on-arrival: time_to_election = 3
+call: set_next_election_time
 
 This is hardly surprising, and shouldn't be taken offensively. 

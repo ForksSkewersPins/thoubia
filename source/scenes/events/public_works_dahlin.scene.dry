@@ -26,11 +26,28 @@ Regardless, public works have been implemented. Already businesses and economist
 
 @vote_against
 subtitle: This may be difficult to justify to the trade unions.
-on-arrival: left_strength += 10; left_dissent -= 5; rpt_relation += 5; kpt_relation += 5; tndp_relation -= 5; labor_dissent += 10; labor_strength -= 5; workers_sapt -= 2; unemployed_sapt -= 3
+on-arrival: left_strength += 10; left_dissent -= 5; rpt_relation += 5; kpt_relation += 5; tndp_relation -= 5; labor_dissent += 15; reformist_dissent += 5; labor_strength -= 5; workers_sapt -= 4; unemployed_sapt -= 4
 
+We have voted against the proposed legislation, to the outrage of the trade unions. Many have begun agitating against our parliamentary delegation, accusing us of many charges - foremost of them growing out of touch with the on-the-ground needs of the workers.
 
+How can we address their concerns?
+
+- @flawed: We will point to the plan's flaws, such as its subsidies to businesses rather than workers.
+- @capitalism: We will not be the doctors to capitalism in its moment of crisis.
+#- @republic: We must obstruct government policy wherever we can so long as reactionaries hold power.
+
+@flawed
+on-arrival: labor_dissent -= 5; workers_sapt += 1; kpt_relation -= 2
+
+We have pointed out how this public works plan's details mean that rather than alleviating the crisis for the workers would do so by and large for business, and relies on a faulty conception of some sort of trickle-down effect in terms of its effects on the workers. It, too, would weaken the bargaining power of unions in respect to the government. Many relent at this line of thought.
+
+@capitalism
+on-arrival: socialism += 5*(1-dissent); left_strength += 5; left_dissent -= 5; labor_dissent += 5; kpt_relation += 5; rpt_relation -= 10
+
+The worst fears of the trade unions are confirmed by this line of defense. They consider that they are at risk of losing control of the <span style="color: #d4130c;">**SAPT**</span> to left-radical idealists who will prioritize principles over genuine improvements in the lives of the working class. The <span style="color: #d4130c;">**SAPT**</span> as a party was born from the trade unions, so we must be careful in conflicting with them.
 
 @neutral
 subtitle: Perhaps the safest move.
-on-arrival: labor_dissent += 5; tndp_relation -= 3; rpt_relation -= 2; kpt_relation -= 2; left_dissent += 2
+on-arrival: labor_dissent += 5; tndp_relation -= 3; rpt_relation -= 2; kpt_relation -= 2; center_strength += 5
 
+We abstain from the vote, refusing both to back a militaristic plan to save capitalism and to vote against the alleviation of the crisis for the workers. Some grumble, but a major confrontation is avoided.

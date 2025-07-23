@@ -14,7 +14,7 @@ Aspelund has spent this period somewhat radicalizing, looking to Caterino's Refu
 - @party_votes: The party votes...
 
 @party_votes
-on-arrival: new_middle_lapt += 5; new_middle_tndp -= 2; new_middle_rpt -= 2; workers_lapt += 3; workers_rpt -= 1
+on-arrival: new_middle_lapt += 6; new_middle_tndp -= 1; new_middle_rpt -= 4; workers_lapt += 3; workers_rpt -= 1
 
 Fredrik Aspelund is, of course, the natural leader of this party, and he retains his clout from his former Minister-Presidency, and so his chairmanship of the party is confirmed by majority vote. However, the white-collar unions present amend his proposed radical-republican platform, ensuring that the <span style="color: #e49c21;">**LAPT**</span>'s support of a republic is simply an aspect of, rather than the crux, the party's agenda.
 
