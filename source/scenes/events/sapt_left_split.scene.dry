@@ -13,7 +13,7 @@ Q.vilsoria_parties.push('sapo');
 Q.sapo_leftist = (Q.sapt_leftist+1);
 Q.sapo_seats = Math.round(Q.sapt_seats*(Q.left_strength/100));
 Q.sapt_seats -= Q.sapo_seats;
-Q.sapo_r = parseFloat(Q.sapo_seats/TOTAL_SEATS).toFixed(1);
+Q.sapo_r = parseFloat(Q.sapo_seats/351).toFixed(1);
 Q.spt_r -= Q.sapo_r;
 
 Q.workers_sapo = (Q.workers_sapt * (Q.left_strength/200));
