@@ -81,6 +81,8 @@ Q.centrists_resign = 0;
 Q.left_split = 0;
 Q.reformists_resigned = 0;
 
+Q.hellqvist_dissent = 0;
+
 // have we discovered neorevisionism?
 Q.neorevisionism = 0;
 
@@ -355,6 +357,8 @@ Q.tndp_relation = 35;
 Q.nt_relation = 0;
 Q.vp_relation = 20;
 Q.lapt_relation = 65;
+
+Q.rpt_party_leader = "Grönblom";
 
 Q.sapt_leftist = 20;
 Q.rpt_leftist = -1;

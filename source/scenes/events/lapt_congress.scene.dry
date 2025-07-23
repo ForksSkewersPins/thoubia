@@ -1,6 +1,6 @@
 title: <span style="color: #e49c21;">**LAPT**</span> Founding Congress
 subtitle: The white-collar unions send their delegates...
-view-if: year = 1929
+view-if: year = 1929 and month >= 2
 max-visits: 1
 tags: event
 new-page: true
@@ -16,6 +16,6 @@ Aspelund has spent this period somewhat radicalizing, looking to Caterino's Refu
 @party_votes
 on-arrival: new_middle_lapt += 5; new_middle_tndp -= 2; new_middle_rpt -= 2; workers_lapt += 3; workers_rpt -= 1
 
-Fredrik Aspelund is, of course, the natural leader of this party, and he retains his clout from his former Minister-Presidency, and so his chairmanship of the party is confirmed by majority vote. However, the white-collar unions present amend his proposed radical-republican platform, ensuring that the <span style="color: #e49c21;">**LAPT**</span>'s support of a republic is simply an aspect of, rather than the crux, of the party's agenda.
+Fredrik Aspelund is, of course, the natural leader of this party, and he retains his clout from his former Minister-Presidency, and so his chairmanship of the party is confirmed by majority vote. However, the white-collar unions present amend his proposed radical-republican platform, ensuring that the <span style="color: #e49c21;">**LAPT**</span>'s support of a republic is simply an aspect of, rather than the crux, the party's agenda.
 
-Lukas Westergaard, the mind behind the party's formation, has been elected as co-leader.
+Lukas Westergaard, the mind behind the party's formation, has been elected as deputy leader.

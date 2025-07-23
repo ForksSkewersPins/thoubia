@@ -13,7 +13,7 @@ In building our provisional government with the <span style="color: #f5e324;">**
 - @bridge: We cannot afford to burn bridges.
 
 @campaign_left
-on-arrival: reformist_strength -= 10; left_dissent -= 5; workers_kpt -= 3; unemployed_kpt -= 3; workers_sapt += 2*(1-dissent); unemployed_sapt += 2*(1-dissent); kpt_relation += 5; rpt_relation -= 5; tndp_relation -= 5; avpt_relation -= 5; lapt_relation -= 3
+on-arrival: hellqvist_dissent += 1; reformist_strength -= 10; left_dissent -= 5; workers_kpt -= 3; unemployed_kpt -= 3; workers_sapt += 2*(1-dissent); unemployed_sapt += 2*(1-dissent); kpt_relation += 5; rpt_relation -= 5; tndp_relation -= 5; avpt_relation -= 5; lapt_relation -= 3
 
 We have published a pamphlet, on which we shall campaign, reaffirming our commitment to the class war on behalf of the proletariat and against the bourgeoisie, clarifying our defense of the republic merely as a vehicle to the dictatorship of the proletariat. The <span style="color: #f5e324;">**RPT**</span>, too, is reminded by this pamphlet, and Hellqvist uses it to retroactively justify his demands to withdraw from government.
 

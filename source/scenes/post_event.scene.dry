@@ -1689,8 +1689,10 @@ if ((Q.month_actions >= 1 && !Q.rubicon) || (Q.month_actions >= 4 && Q.rubicon))
             Q.rural_sapt -= 1/12;
             Q.unemployed_sapt -= 2/12;
         }
+        Q.hellqvist_dissent += 4/12;
     } 
     if (Q.year == 1929) {
+        Q.hellqvist_dissent += 8/12;
         Q.unemployed += 3/12;
         Q.inflation -= 1/12;
         // increase NSDAP vote share

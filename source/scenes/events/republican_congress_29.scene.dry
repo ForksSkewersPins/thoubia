@@ -1,6 +1,29 @@
 title: Grönblom Resigns!
 subtitle: Hellqvist makes a move for leadership of the <span style="color: #f5e324;">**RPT**</span>
-view-if: year = 1929
+view-if: year >= 1929 and hellqvist_dissent >= 10 and month >= 2
 max-visits: 1
 tags: event
 new-page: true
+
+= Grönblom Resigns!
+
+Hellqvist has continued his aggressive offensive to wrestle control of the <span style="color: #f5e324;">**RPT**</span> from its left-wing, this time forcing Grönblom to resign despite his endless capitulations to the industrialist wing.
+
+Now with Grönblom gone, the party is convening, again, to decide on its new leader. Hellqvist, of course, is running - the <span style="color: #f5e324;">**RPT**</span>'s left-wing scrambles to present a candidate that can carry on Aspelund's legacy in the party while the center finds itself leaderless with Grönblom's resignation.
+
+- @party_votes: The party votes...
+
+@party_votes
+go-to: hellqvist_victory if rpt_relation < 55; deadlock if rpt_relation >= 55
+
+@hellqvist_victory
+on-arrival: rpt_party_leader = "Hellqvist"; hellqvist_dissent = 0; workers_rpt -= 3; new_middle_rpt -= 3; new_middle_lapt += 1; workers_lapt += 1; unemployed_rpt -= 2; pro_republic -= 2; rpt_relation -= 5; old_middle_fk -= 1; old_middle_rpt += 1
+
+As expected and feared, with the backing of the capitalists and the division of his opponents, Matteo Hellqvist has been confirmed as chairman of the <span style="color: #f5e324;">**RPT**</span>. At the very least, he has strongly confirmed the party's commitment to the republic and the Enlightenment-era ideals it represents, even if those include private property. We will not be seeing any collaboration by the <span style="color: #f5e324;">**RPT**</span> with the reactionaries - at least as long as they remain Cajnesian.
+
+@deadlock
+on-arrival: hellqvist_dissent += 2; old_middle_rpt -= 3; new_middle_lapt -= 2; new_middle_rpt += 2; rpt_party_leader = "Ossler"
+
+Surprisingly, despite sure confidence in his imminent victory, Matteo Hellqvist has failed to win in the party congress. Instead, the congress deadlocks, and eventually nominates compromise candidate Leonard Ossler with the backing of the center and left - in the business sphere himself, he has ties with the industrialists, but differs from Hellqvist in his support for a more corporatistic system for the benefit of the nation as a whole, and support for collaboration with the <span style="color: #d4130c;">**SAPT**</span>'s pragmatically minded portions to transform us into "constructive components of the republic".
+
+What Hellqvist will do next is uncertain. Rumors are that he and his wing are planning to split from the party, but Ossler's relative moderatism may make such plans unfeasible. Regardless, Hellqvist is almost certainly feeling quite frustrated. His previous clear and seemingly flawless plan to usurp control of the party is dashed.

@@ -136,7 +136,7 @@ subtitle: -2 resources
 max-visits: 1
 go-to: menu
 unavailable-subtitle: -2 resources - without these resources, the <span style="color: #f5e324;">**RPT**</span> delegation will never be united behind [+ sapt_candidate +].
-on-arrival: resources -= 2; rpt_back_candidate = 1; workers_rpt += 2; old_middle_rpt -= 5; old_middle_rpt -= 3 if sapt_candidate == "Posse"; new_middle_rpt -= 2 if sapt_candidate == "Posse"; rural_rpt -= 2 if sapt_candidate == "Posse"; left_dissent += 5; pro_republic += 10
+on-arrival: resources -= 2; rpt_back_candidate = 1; hellqvist_dissent += 3; workers_rpt += 2; old_middle_rpt -= 5; old_middle_rpt -= 3 if sapt_candidate == "Posse"; new_middle_rpt -= 2 if sapt_candidate == "Posse"; rural_rpt -= 2 if sapt_candidate == "Posse"; left_dissent += 5; pro_republic += 10
 
 Somehow, we have managed to convince the <span style="color: #f5e324;">**RPT**</span> to back [+ sapt_candidate +] as the candidate of the <span style="color: #d4130c;">Social</span><span style="color: #e49c21;">-</span><span style="color: #f5e324;">Republican</span> front. Hellqvist is incensed by his own party's betrayal, however, and the <span style="color: #f5e324;">**RPT**</span> will likely in practice be quite split.
 

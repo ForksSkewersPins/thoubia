@@ -62,7 +62,7 @@ Thankfully, the simple option of another <span style="color: #d4130c;">Social</s
 @rpt_agree
 choose-if: rpt_willingness > 0
 unavailable-subtitle: The <span style="color: #f5e324;">**RPT**</span> is unwilling.
-on-arrival: old_middle_rpt -= 2; rural_rpt -= 2; pro_republic += 3
+on-arrival: old_middle_rpt -= 2; rural_rpt -= 2; pro_republic += 3; hellqvist_dissent += 5
 
 Despite the protests of Hellqvist, the radicals of the <span style="color: #f5e324;">**RPT**</span> have retained significant influence and managed to beat Hellqvist's wing in a vote, convincing Grönblom to back the government's formation.
 
