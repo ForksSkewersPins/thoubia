@@ -18,6 +18,7 @@ on-arrival: reformist_strength -= 10; left_dissent -= 5; workers_kpt -= 3; unemp
 We have published a pamphlet, on which we shall campaign, reaffirming our commitment to the class war on behalf of the proletariat and against the bourgeoisie, clarifying our defense of the republic merely as a vehicle to the dictatorship of the proletariat. The <span style="color: #f5e324;">**RPT**</span>, too, is reminded by this pamphlet, and Hellqvist uses it to retroactively justify his demands to withdraw from government.
 
 @bridge
-on-arrival: left_dissent += 10; labor_dissent += 5; workers_kpt += 1; rpt_relation += 5; tndp_relation += 2; avpt_relation += 3; lapt_relation += 5
+on-arrival: left_dissent += 15; labor_dissent += 5; workers_kpt += 1; rpt_relation += 5; tndp_relation += 2; avpt_relation += 3; lapt_relation += 5
+go-to: sapt_left_split.left_split if left_dissent >= 40
 
 We have refused to cave to the demands of our left and labor wings, arguing that this would make building coalitions impossible.
