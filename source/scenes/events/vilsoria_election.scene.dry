@@ -178,15 +178,11 @@ go-to: coalition_menu
   <td>[+ kpt_seats_vilsoria +] ([+ kpt_vr +]%)</td>
 </tr>
 
-[? if sapo_seats: 
-<tr>
-  <td><div class="box" style='background-color:#d4130c;'> </div> SAP(O):</td>
-  <td>[+ sapo_votes_vilsoria +]%</td>
-  <td>debug</td>
-  <td>[+ sapo_seats +] ([+ sapo_r +]%)</td>
-  <td>debug</td>
-</tr>
-?]
+[? if sapo_seats_vilsoria: <tr> ?]
+  [? if sapo_seats_vilsoria: <td><div class="box" style='background-color:#d4130c;'> </div> SAP(O):</td> ?]
+  [? if sapo_seats_vilsoria: <td>[+ sapo_votes_vilsoria +]%</td> ?]
+  [? if sapo_seats_vilsoria: <td>[+ sapo_seats_vilsoria +] ([+ sapo_vr +]%)</td> ?]
+[? if sapo_seats_vilsoria: </tr> ?]
 
 <tr>
   <td><div class="box" style='background-color:#d4130c;'> </div> SAPT:</td>
