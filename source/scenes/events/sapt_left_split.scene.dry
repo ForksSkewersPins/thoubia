@@ -2,7 +2,12 @@ title: The Left Splits!
 subtitle: Our policy course has upset the left...
 new-page: true
 tags: event
-view-if: not left_split and left_dissent >= 60
+view-if: not left_split and left_dissent >= 50
+go-to: left_split
+
+= Left Split
+
+@left_split
 on-arrival: {!
 
 Q.left_split = 1;
@@ -31,11 +36,6 @@ Q.rural_sapo = 0;
 Q.left_strength *= 0.25;
 
 !}
-go-to: left_split
-
-= Left Split
-
-@left_split
 
 We have offended the left-wing of our party greatly, and they have organized into the <span style="color: #b8110b;">**SAP(O)**</span> - not officially a party, and still part of our parliamentary delegation, they seek to act as an internal pressure group, and to this aim have organized their own lists which they intend to run separately from ours in the national and regional elections.
 
