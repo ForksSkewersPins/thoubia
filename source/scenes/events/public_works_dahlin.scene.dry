@@ -41,13 +41,19 @@ on-arrival: labor_dissent -= 5; workers_sapt += 1; kpt_relation -= 2
 
 We have pointed out how this public works plan's details mean that rather than alleviating the crisis for the workers would do so by and large for business, and relies on a faulty conception of some sort of trickle-down effect in terms of its effects on the workers. It, too, would weaken the bargaining power of unions in respect to the government. Many relent at this line of thought.
 
+Regardless, public works have been implemented. Already businesses and economists have come out against the plan, with some <span style="color: #2f387f;">**FK**</span> industrialists threatening to withdraw their funds.
+
 @capitalism
 on-arrival: socialism += 5*(1-dissent); left_strength += 5; left_dissent -= 5; labor_dissent += 5; kpt_relation += 5; rpt_relation -= 10
 
 The worst fears of the trade unions are confirmed by this line of defense. They consider that they are at risk of losing control of the <span style="color: #d4130c;">**SAPT**</span> to left-radical idealists who will prioritize principles over genuine improvements in the lives of the working class. The <span style="color: #d4130c;">**SAPT**</span> as a party was born from the trade unions, so we must be careful in conflicting with them.
+
+Regardless, public works have been implemented. Already businesses and economists have come out against the plan, with some <span style="color: #2f387f;">**FK**</span> industrialists threatening to withdraw their funds.
 
 @neutral
 subtitle: Perhaps the safest move.
 on-arrival: labor_dissent += 5; tndp_relation -= 3; rpt_relation -= 2; kpt_relation -= 2; center_strength += 5
 
 We abstain from the vote, refusing both to back a militaristic plan to save capitalism and to vote against the alleviation of the crisis for the workers. Some grumble, but a major confrontation is avoided.
+
+Regardless, public works have been implemented. Already businesses and economists have come out against the plan, with some <span style="color: #2f387f;">**FK**</span> industrialists threatening to withdraw their funds.
