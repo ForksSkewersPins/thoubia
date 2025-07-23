@@ -18,9 +18,19 @@ The <span style="color: #a22561;">**NTAP**</span> and <span style="color: #a86b1
 subtitle: We will clarify, however, our continued opposition to militarism.
 on-arrival: left_dissent += 5; rpt_relation -= 5; kpt_relation -= 5; tndp_relation += 5; labor_strength += 10; labor_dissent -= 5; sapt_leftist -= 1
 
+We have voted for the proposed legislation, caving to the demands of the trade unions for national unity in ending the crisis and alleviating its effects on the working class. We acknowledge criticism, and advocate for a much more extensive socialization that would ensure these events cannot happen again, but vote for the proposed public works nonetheless.
+
+The <span style="color: #a86b15;">**TNDP**</span> has applauded our support, but the <span style="color: #f5e324;">**RPT**</span> and <span style="color: #990000;">**KPT**</span> both take it as evidence of our treachery, though for obviously different reasons.
+
+Regardless, public works have been implemented. Already businesses and economists have come out against the plan, with some <span style="color: #2f387f;">**FK**</span> industrialists threatening to withdraw their funds.
+
 @vote_against
 subtitle: This may be difficult to justify to the trade unions.
 on-arrival: left_strength += 10; left_dissent -= 5; rpt_relation += 5; kpt_relation += 5; tndp_relation -= 5; labor_dissent += 10; labor_strength -= 5; workers_sapt -= 2; unemployed_sapt -= 3
 
+
+
 @neutral
 subtitle: Perhaps the safest move.
+on-arrival: labor_dissent += 5; tndp_relation -= 3; rpt_relation -= 2; kpt_relation -= 2; left_dissent += 2
+
