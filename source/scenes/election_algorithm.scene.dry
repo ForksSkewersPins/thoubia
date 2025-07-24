@@ -140,7 +140,7 @@ for (var party of Q.parties) {
     Q[party+'_vilsoria_support'] = party_vilsoria;
 }
 for (var party of Q.parties) {
-    Q[party+'_votes_vilsoria'] = parseFloat((((Q[party+'_vilsoria_support']/total_vilsoria) * 1000)/10).toFixed(1));
+    Q[party+'_votes_vilsoria'] = Number((((Q[party+'_vilsoria_support']/total_vilsoria) * 1000)/10).toFixed(1));
 }
 
 Q.bapv_votes_vilsoria = (Q.avpt_votes_vilsoria+Q.lapt_votes_vilsoria+Q.vp_votes_vilsoria);
