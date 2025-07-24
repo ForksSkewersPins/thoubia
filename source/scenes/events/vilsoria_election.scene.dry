@@ -11,7 +11,7 @@ set-bg: img/map_2.jpg
 
 = Vilsorian Elections, [+ month : month +] [+ year +]
 
-Elections to the state of Vilsoria's regional legislature are being held. The state of Vilsoria, on the border with Leanolu, has always been beset by crime as a result of its position on the border with the *Principality of Leanolu*, an exporter of both oil (legally) and opium (illegally) to the country, and with bandits in the Moasa Desert, which covers a large swathe of Vilsoria, acting as the middlemen in this opium trade. The economic crisis has caused this banditry to grow in prevalence.
+Elections to the state of Vilsoria's regional legislature are being held. The state of Vilsoria, on the border with Leanolu, has always been beset by crime as a result of its position on the border with the *Principality of Leanolu*, an exporter of both oil (legally) and opium (illegally) to the country, and with bandits in the Moasa Desert, which covers a large swathe of Vilsoria, acting as the middlemen in this opium trade. The economic crisis has caused this banditry to grow in prevalence, with the previously governing <span style="color: #f5e324;">**RPT**</span>'s failure to effectively govern resulting in its collapse as a local party.
 
 The <span style="color: #a22561;">**NTAP**</span> and <span style="color: #2f387f;">**FK**</span> here maintain a joint listing, the <span style="color: #5a5380;">**AOE**</span> (Alliance of Order and Unity), in competition with the left-agrarian <span style="color: #85b24d;">**BAPV**</span> (Farmer-Labor Party of Vilsoria). They will compete across thirty-two plurality districts in the region, as well as for the thirty-two proportional seats.
 
@@ -217,3 +217,49 @@ go-to: coalition_menu
 {!</table>!}
 
 @coalition_menu
+
+- @kpt_bapv: The <span style="color: #85b24d;">**BAPV**</span> and <span style="color: #990000;">**KPT**</span> will govern together.
+- @popfront: We will govern with the <span style="color: #85b24d;">**BAPV**</span>.
+- @bapv_majority: The <span style="color: #85b24d;">**BAPV**</span> is able to govern the state alone.
+- @aoe: The <span style="color: #5a5380;">**AOE**</span> has won the elections.
+- @no_majority: There is no clear majority.
+
+@kpt_bapv
+view-if: (kpt_vr+bapv_vr >= 50) and (sapt_vr+sapo_vr+bapv_vr < 50)
+subtitle: Many in both parties are skeptical, but not many other options are there.
+on-arrival: rural_kpt += 3; new_middle_nt += 5; old_middle_nt += 5; new_middle_ntap += 3; old_middle_fk += 3; socialism += 6; rural_fk -= 3; rural_ntap -= 3; rural_nt -= 3; strife += 1; kpt_in_vilsoria = 1
+
+The <span style="color: #990000;">**KPT**</span> and <span style="color: #85b24d;">**BAPV**</span> have concluded talks on the formation of a coalition between the two parties. This move has sent ripples across not just Vilsoria but the rest of Thoubia, while some on the <span style="color: #85b24d;">**BAPV**</span>'s right flank threaten a split and affiliation with the <span style="color: #4e9933;">**AVPT**</span>. 
+
+Immediately, rural and urban self-defense militias are created to combat banditry, while aggressive land reform is initiated seeing agricultural cooperatives take the lead. [? if minister_president == "Dahlin" : A conflict with the central government seems likely, with many of Vilsoria's laws likely overstepping a regional government's purview. ?]
+
+The <span style="color: #5a5380;">**AOE**</span> is quick to paint these events as the bandits having usurped the regional government and now initiating their thievery from above. They have called for the army to occupy the state and restore the rule of law.
+
+@popfront
+view-if: (sapt_vr+sapo_vr+bapv_vr >= 50) and (bapv_vr < 50)
+subtitle: A popular arrangement.
+on-arrival: rural_sapt += 4*(1-dissent); socialism += 3; rural_fk -= 2; rural_ntap -= 2; rural_nt -= 2; sapt_in_vilsoria = 1; sapo_in_vilsoria = 1 if sapo_vr >= sapt_vr
+
+We have entered into a coalition with the <span style="color: #85b24d;">**BAPV**</span> in the state of Vilsoria, backing their leadership of the state in return for the Labor and Education ministries.
+
+[? if sapo_in_vilsoria : The triumph of dissident leftists compared to our central party in these elections has however limited our ability to influence government policy in spite of this development, and with the radical left course we are sure to be taking the <span style="color: #5a5380;">**AOE**</span> has wasted no time in branding us as bandits who have successfully usurped control over the government. ?]
+
+@bapv_majority
+view-if: bapv_vr >= 50
+subtitle: By the farmers, for the farmers, of the farmers.
+on-arrival: bapv_in_vilsoria = 1
+
+The <span style="color: #85b24d;">**BAPV**</span> has surprisingly managed to win a lone majority in the state of Vilsoria, capitalizing off of rural discontent in the face of the Great Depression and concerns about banditry. It is a shame that we could not expand the <span style="color: #d4130c;">**SAPT**</span>'s influence, but at least the state is in good hands, with a land reform program already being initiated and rural self-defense militias being formed to fight banditry.
+
+@aoe
+view-if: aoe_vr+tndp_vr >= 50
+on-arrival: rural_sapt -= 2; rural_avpt -= 2; rural_lapt -= 2; aoe_in_vilsoria = 1; coup_progress += 1; coup_progress += 1 if minister_president == "Dahlin"; coalition_dissent += 1 if minister_president == "Aspelund"
+subtitle: The reactionaries score a key victory.
+
+The <span style="color: #5a5380;">**AOE**</span> has won the elections in Vilsoria and is able to govern the state. [? if minister_president == "Dahlin" : This continues the worrying trend since the victory of Dahlin and will help the reactionary coalition in pursuing its agenda with the cooperation of local governments. ?][? if minister_president != "Dahlin" : This shows that the reactionary trend since the last elections has not been stopped by the re-election of Aspelund. We will need to act more decisively to turn this trend around. ?]
+
+@no_majority
+view-if: not ((kpt_vr+bapv_vr >= 50) and (sapt_vr+sapo_vr+bapv_vr < 50)) and not ((sapt_vr+sapo_vr+bapv_vr >= 50) and (bapv_vr < 50)) and not (bapv_vr >= 50) and not (aoe_vr+tndp_vr >= 50)
+subtitle: The <span style="color: #f5e324;">**RPT**</span> will govern in a caretaker capacity
+
+Surprisingly, the <span style="color: #f5e324;">**RPT**</span> has managed to maintain its rule of Vilsoria - not through electoral victory but simply the division of their opponents. Laws will be voted on individually, at least until the legislature is dissolved again. This will certainly not help combat crime.
