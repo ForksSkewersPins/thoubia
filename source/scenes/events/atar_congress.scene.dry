@@ -1,13 +1,13 @@
-title: <span style="color: #cf633cff;">**ATKR**</span> Congress
-subtitle: The <span style="color: #cf633cff;">**ATKR**</span> (General Thoubian Workers' Union for the Republic) holds its congress...
+title: <span style="color: #cf4b3cff;">**ATKR**</span> Congress
+subtitle: The <span style="color: #cf4b3cff;">**ATKR**</span> (General Thoubian Workers' Union for the Republic) holds its congress...
 view-if: year >= 1929 and month >= 5
 max-visits: 1
 tags: event
 new-page: true
 
-= <span style="color: #cf633cff;">**ATKR**</span> Congress
+= <span style="color: #cf4b3cff;">**ATKR**</span> Congress
 
-The <span style="color: #cf633cff;">**ATKR**</span> is the trade union confederation which formed from those trade unions which were committed to the restoration of the republic and dissatisfied with the <span style="color: #a22561;">**NTAP**</span>'s maintenance of the junta and focus on nationalism. Their existence is the backbone of our party, which has formed as a party for a union and has since grown into a parallel organization. Our success in this congress will depend on the relationship between this parallel organization and ours.
+The <span style="color: #cf4b3cff;">**ATKR**</span> is the trade union confederation which formed from those trade unions which were committed to the restoration of the republic and dissatisfied with the <span style="color: #a22561;">**NTAP**</span>'s maintenance of the junta and focus on nationalism. Their existence is the backbone of our party, which has formed as a party for a union and has since grown into a parallel organization. Our success in this congress will depend on the relationship between this parallel organization and ours.
 
 - @union_votes: The unions vote...
 
@@ -25,7 +25,7 @@ if (Q.left_split && !Q.sapo_absorbed) {
 console.log("Union parties after possible addition:", Q.union_parties);
 
 for (var party of Q.union_parties) {
-    Q[party+'_atkr'] = Q[party+'_workers_normalized'];
+    Q[party+'_atkr'] = Q['workers_'+party+'_normalized'];
     console.log(`${party}_atkr initialized to:`, Q[party+'_atkr']);
 }
 
