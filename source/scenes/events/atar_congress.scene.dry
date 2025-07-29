@@ -14,28 +14,47 @@ The <span style="color: #cf633cff;">**ATKR**</span> is the trade union confedera
 @union_votes
 on-arrival: {! 
 
+console.log("Initial union parties:", ['sapt', 'tndp', 'kpt', 'lapt', 'rpt']);
 Q.union_parties = ['sapt', 'tndp', 'kpt', 'lapt', 'rpt'];
+
 if (Q.left_split && !Q.sapo_absorbed) {
-    Q.union_parties.push['sapo'];
+    console.log("Adding 'sapo' to union_parties due to left_split and !sapo_absorbed");
+    Q.union_parties.push('sapo');
 }
+
+console.log("Union parties after possible addition:", Q.union_parties);
 
 for (var party of Q.union_parties) {
     Q[party+'_atkr'] = Q[party+'_workers_normalized'];
+    console.log(`${party}_atkr initialized to:`, Q[party+'_atkr']);
 }
-Q.sapt_atkr += (Q.labor_strength -= Q.labor_dissent);
+
+console.log("Before sapt_atkr adjustments:", Q.sapt_atkr);
+Q.sapt_atkr += (Q.labor_strength - Q.labor_dissent);
+console.log("After labor strength/dissent adjustment:", Q.sapt_atkr);
 Q.sapt_atkr *= (Q.socialism/100);
+console.log("After socialism scaling:", Q.sapt_atkr);
+
+console.log("Before tndp_atkr adjustment:", Q.tndp_atkr);
 Q.tndp_atkr += (100-Q.pro_republic)/4;
+console.log("After tndp_atkr adjustment:", Q.tndp_atkr);
 
 total_atkr = 0;
 for (var party of Q.union_parties) {
+    console.log(`Processing ${party}_atkr before validation:`, Q[party+'_atkr']);
     if (Q[party+'_atkr'] <= 0) {
         Q[party+'_atkr'] = 0;
+        console.log(`${party}_atkr set to 0 due to non-positive value`);
     }
     Q[party+'_atkr'] = Math.pow(Q[party+'_atkr'], 3);
+    console.log(`${party}_atkr after cubing:`, Q[party+'_atkr']);
     total_atkr += Q[party+'_atkr'];
 }
+console.log("Total attack power:", total_atkr);
+
 for (var party of Q.union_parties) {
     Q[party+'_atkr'] = Math.round((Q[party+'_atkr']/total_atkr)*100);
+    console.log(`${party}_atkr normalized to:`, Q[party+'_atkr']);
 }
 !}
 on-display: {!
